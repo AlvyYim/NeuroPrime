@@ -1,0 +1,286 @@
+[22:34:21.476] [INFO] ============================================================
+[22:34:21.476] [INFO] NeuroPrime 调试日志
+[22:34:21.476] [INFO] 启动时间: 2026-04-19 22:34:21
+[22:34:21.476] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[22:34:21.476] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260419_223421.log
+[22:34:21.476] [INFO] ============================================================
+[22:34:23.747] [INFO] [Scheduler] Removed pycache directory: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\__pycache__
+[22:34:23.747] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[22:34:23.747] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:34:23.747] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[22:34:23.747] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[22:34:23.747] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:34:23.747] [INFO] [Scheduler] Found 16 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[22:34:23.747] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[22:34:24.286] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[22:34:24.286] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.286] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.286] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[22:34:24.288] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[22:34:24.288] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py: local variable 'found' referenced before assignment
+[22:34:24.288] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.288] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py
+[22:34:24.332] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEAlgorithm
+[22:34:24.332] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.332] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.332] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[22:34:24.336] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEBadChannelDetectionAlgorithm
+[22:34:24.336] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.337] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.337] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[22:34:24.341] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEERPAlgorithm
+[22:34:24.341] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneerpalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.341] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.341] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[22:34:24.346] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEFilteringAlgorithm
+[22:34:24.346] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.346] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.346] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[22:34:24.348] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEICAAlgorithm
+[22:34:24.348] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.348] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.348] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[22:34:24.350] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEICAArtifactRemovalAlgorithm
+[22:34:24.350] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.350] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.350] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[22:34:24.356] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEPowerSpectrumAlgorithm
+[22:34:24.356] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.356] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.356] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[22:34:24.359] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEResamplingAlgorithm
+[22:34:24.361] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.361] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.361] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[22:34:24.364] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNESourceLocalizationAlgorithm
+[22:34:24.364] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.364] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.364] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[22:34:24.366] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNETimeFrequencyAlgorithm
+[22:34:24.366] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.366] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.366] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[22:34:24.369] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[22:34:24.369] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py: local variable 'found' referenced before assignment
+[22:34:24.371] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.371] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\viewlfpdata.py
+[22:34:24.376] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[22:34:24.376] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\viewlfpdata.py: local variable 'found' referenced before assignment
+[22:34:24.376] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:24.376] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[22:34:24.381] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[22:34:24.381] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: local variable 'found' referenced before assignment
+[22:34:24.381] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.626] [INFO] ============================================================
+[22:34:33.626] [INFO] _populate_custom_algorithms started
+[22:34:33.626] [INFO] Attempting to reload custom algorithms...
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.base
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.scheduler
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.spike_detection
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.lfp_analysis
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.behavior_analysis
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms.decoding
+[22:34:33.630] [INFO] Removed module from cache: src.algorithms
+[22:34:33.640] [INFO] [Scheduler] Removed pycache directory: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\__pycache__
+[22:34:33.641] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[22:34:33.641] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:34:33.641] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[22:34:33.641] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[22:34:33.641] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:34:33.641] [INFO] [Scheduler] Found 16 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[22:34:33.641] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[22:34:33.653] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[22:34:33.653] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.654] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.654] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[22:34:33.658] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[22:34:33.658] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py: local variable 'found' referenced before assignment
+[22:34:33.658] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.658] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py
+[22:34:33.687] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEAlgorithm
+[22:34:33.687] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.687] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.687] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[22:34:33.691] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEBadChannelDetectionAlgorithm
+[22:34:33.691] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.691] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.691] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[22:34:33.694] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEERPAlgorithm
+[22:34:33.694] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneerpalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.694] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.694] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[22:34:33.697] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEFilteringAlgorithm
+[22:34:33.697] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.697] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.697] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[22:34:33.697] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEICAAlgorithm
+[22:34:33.697] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.697] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.697] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[22:34:33.703] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEICAArtifactRemovalAlgorithm
+[22:34:33.704] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.704] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.705] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[22:34:33.708] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEPowerSpectrumAlgorithm
+[22:34:33.709] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.709] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.709] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[22:34:33.713] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNEResamplingAlgorithm
+[22:34:33.713] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.713] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.713] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[22:34:33.715] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNESourceLocalizationAlgorithm
+[22:34:33.715] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.715] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.715] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[22:34:33.720] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: MNETimeFrequencyAlgorithm
+[22:34:33.720] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.721] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.721] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[22:34:33.723] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[22:34:33.723] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py: local variable 'found' referenced before assignment
+[22:34:33.723] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.723] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\viewlfpdata.py
+[22:34:33.726] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[22:34:33.726] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\viewlfpdata.py: local variable 'found' referenced before assignment
+[22:34:33.726] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.726] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[22:34:33.728] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[22:34:33.728] [ERROR] [Scheduler] Error loading custom algorithm from c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: local variable 'found' referenced before assignment
+[22:34:33.728] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "c:\Users\buaal\Desktop\NeuroPrime\src\algorithms\scheduler.py", line 255, in _load_custom_algorithms
+    if not found:
+UnboundLocalError: local variable 'found' referenced before assignment
+
+[22:34:33.728] [INFO] Custom algorithms reload completed
+[22:34:33.728] [INFO] Total algorithms available: 23
+[22:34:33.728] [INFO] Added custom algorithm: MNEAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEBadChannelDetectionAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEERPAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEFilteringAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEICAAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEICAArtifactRemovalAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEPowerSpectrumAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNEResamplingAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNESourceLocalizationAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: MNETimeFrequencyAlgorithm (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: ViewLFPData (category: 自定义算法)
+[22:34:33.728] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[22:34:33.728] [INFO] Total custom algorithms added: 12
+[22:34:33.728] [INFO] ============================================================

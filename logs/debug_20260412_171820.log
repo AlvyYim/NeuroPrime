@@ -1,0 +1,293 @@
+[17:18:20.248] [INFO] ============================================================
+[17:18:20.248] [INFO] NeuroPrime 调试日志
+[17:18:20.248] [INFO] 启动时间: 2026-04-12 17:18:20
+[17:18:20.252] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[17:18:20.252] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_171820.log
+[17:18:20.252] [INFO] ============================================================
+[17:18:21.889] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:18:21.889] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:18:21.889] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:18:21.889] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:18:21.889] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:18:21.889] [INFO] [Scheduler] Found 2 Python files: ['view_raw_data.py', '__init__.py']
+[17:18:21.891] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py
+[17:18:21.899] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawData
+[17:18:21.899] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py...
+[17:18:21.899] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:18:48.491] [INFO] ============================================================
+[17:18:48.491] [INFO] _populate_custom_algorithms started
+[17:18:48.491] [INFO] Attempting to reload custom algorithms...
+[17:18:48.491] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:18:48.491] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:18:48.491] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:18:48.491] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:18:48.491] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:18:48.491] [INFO] [Scheduler] Found 2 Python files: ['view_raw_data.py', '__init__.py']
+[17:18:48.491] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py
+[17:18:48.493] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawData
+[17:18:48.493] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py...
+[17:18:48.493] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:18:48.493] [INFO] Custom algorithms reload completed
+[17:18:48.493] [INFO] Total algorithms available: 9
+[17:18:48.493] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding', 'ViewRawData:自定义算法']
+[17:18:48.493] [INFO] Added custom algorithm: ViewRawData (category: 自定义算法)
+[17:18:48.493] [INFO] Total custom algorithms added: 1
+[17:18:48.493] [INFO] ============================================================
+[17:18:53.315] [INFO] add_data_item 被调用
+[17:18:53.315] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:18:59.449] [INFO] ============================================================
+[17:18:59.449] [INFO] _on_run_clicked 被调用
+[17:18:59.449] [INFO] _get_selected_data_items 被调用
+[17:18:59.449] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:18:59.449] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:18:59.449] [INFO] 返回 1 个有效数据项
+[17:18:59.449] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:18:59.449] [DEBUG] selected_data_len = 1 (type: int)
+[17:18:59.451] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:18:59.451] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:18:59.451] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:18:59.451] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:18:59.451] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:18:59.451] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:18:59.451] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=1
+[17:18:59.451] [INFO] ============================================================
+[17:18:59.451] [INFO] _on_run_analysis 被调用
+[17:18:59.451] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:18:59.451] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:18:59.451] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:18:59.451] [DEBUG] data_items_len = 1 (type: int)
+[17:18:59.451] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:18:59.451] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:18:59.451] [INFO] data_items[0] type: <class 'dict'>
+[17:18:59.451] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:18:59.451] [INFO] ============================================================
+[17:18:59.451] [INFO] _run_analysis_async 被调用
+[17:18:59.451] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:18:59.451] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:18:59.451] [DEBUG] data_items_len = 1 (type: int)
+[17:18:59.451] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:18:59.451] [INFO] data_items[0] type: <class 'dict'>
+[17:18:59.451] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:06.429] [INFO] add_data_item 被调用
+[17:19:06.429] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:19:09.395] [INFO] ============================================================
+[17:19:09.395] [INFO] _on_run_clicked 被调用
+[17:19:09.395] [INFO] _get_selected_data_items 被调用
+[17:19:09.395] [DEBUG] selected_data_items_len = 2 (type: int)
+[17:19:09.395] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:19:09.395] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[17:19:09.395] [INFO] 返回 2 个有效数据项
+[17:19:09.395] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:19:09.395] [DEBUG] selected_data_len = 2 (type: int)
+[17:19:09.395] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:19:09.395] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:09.395] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[17:19:09.395] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:09.395] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:19:09.395] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:09.395] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:09.395] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:19:09.395] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=2
+[17:19:09.395] [INFO] ============================================================
+[17:19:09.395] [INFO] _on_run_analysis 被调用
+[17:19:09.395] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:19:09.395] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:09.395] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:09.395] [DEBUG] data_items_len = 2 (type: int)
+[17:19:09.395] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:19:09.395] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:19:09.395] [INFO] data_items[0] type: <class 'dict'>
+[17:19:09.395] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:09.395] [INFO] ============================================================
+[17:19:09.395] [INFO] _run_analysis_async 被调用
+[17:19:09.395] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:09.395] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:09.395] [DEBUG] data_items_len = 2 (type: int)
+[17:19:09.397] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:09.397] [INFO] data_items[0] type: <class 'dict'>
+[17:19:09.397] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:25.411] [INFO] add_data_item 被调用
+[17:19:25.411] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:19:28.958] [INFO] ============================================================
+[17:19:28.958] [INFO] _on_run_clicked 被调用
+[17:19:28.958] [INFO] _get_selected_data_items 被调用
+[17:19:28.958] [DEBUG] selected_data_items_len = 3 (type: int)
+[17:19:28.958] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:19:28.958] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[17:19:28.958] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[17:19:28.958] [INFO] 返回 3 个有效数据项
+[17:19:28.958] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:19:28.958] [DEBUG] selected_data_len = 3 (type: int)
+[17:19:28.958] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:19:28.958] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:28.958] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[17:19:28.958] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:28.958] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[17:19:28.958] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:28.958] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:19:28.958] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:28.958] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:28.958] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:19:28.958] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=3
+[17:19:28.958] [INFO] ============================================================
+[17:19:28.958] [INFO] _on_run_analysis 被调用
+[17:19:28.958] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:19:28.958] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:28.958] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:28.958] [DEBUG] data_items_len = 3 (type: int)
+[17:19:28.958] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:19:28.958] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:19:28.958] [INFO] data_items[0] type: <class 'dict'>
+[17:19:28.958] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:28.958] [INFO] ============================================================
+[17:19:28.958] [INFO] _run_analysis_async 被调用
+[17:19:28.958] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:28.958] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:28.958] [DEBUG] data_items_len = 3 (type: int)
+[17:19:28.958] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:28.958] [INFO] data_items[0] type: <class 'dict'>
+[17:19:28.958] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:41.286] [INFO] add_data_item 被调用
+[17:19:41.286] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:19:43.224] [INFO] ============================================================
+[17:19:43.225] [INFO] _on_run_clicked 被调用
+[17:19:43.225] [INFO] _get_selected_data_items 被调用
+[17:19:43.225] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:19:43.225] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:19:43.225] [INFO] 返回 1 个有效数据项
+[17:19:43.225] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:19:43.225] [DEBUG] selected_data_len = 1 (type: int)
+[17:19:43.225] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:19:43.225] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:43.225] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:19:43.225] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:43.225] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:43.226] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:19:43.226] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=1
+[17:19:43.226] [INFO] ============================================================
+[17:19:43.226] [INFO] _on_run_analysis 被调用
+[17:19:43.226] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:19:43.226] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:43.226] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:43.226] [DEBUG] data_items_len = 1 (type: int)
+[17:19:43.226] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:19:43.226] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:19:43.226] [INFO] data_items[0] type: <class 'dict'>
+[17:19:43.226] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:43.226] [INFO] ============================================================
+[17:19:43.226] [INFO] _run_analysis_async 被调用
+[17:19:43.226] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:43.226] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:43.226] [DEBUG] data_items_len = 1 (type: int)
+[17:19:43.226] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:43.226] [INFO] data_items[0] type: <class 'dict'>
+[17:19:43.226] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:48.257] [INFO] add_data_item 被调用
+[17:19:48.257] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:19:51.781] [INFO] add_data_item 被调用
+[17:19:51.781] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:19:53.291] [INFO] ============================================================
+[17:19:53.291] [INFO] _on_run_clicked 被调用
+[17:19:53.291] [INFO] _get_selected_data_items 被调用
+[17:19:53.291] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:19:53.291] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:19:53.291] [INFO] 返回 1 个有效数据项
+[17:19:53.291] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:19:53.291] [DEBUG] selected_data_len = 1 (type: int)
+[17:19:53.291] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:19:53.291] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:53.291] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:19:53.291] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:53.291] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:53.291] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:19:53.291] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=1
+[17:19:53.291] [INFO] ============================================================
+[17:19:53.291] [INFO] _on_run_analysis 被调用
+[17:19:53.291] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:19:53.291] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:53.291] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:53.291] [DEBUG] data_items_len = 1 (type: int)
+[17:19:53.291] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:19:53.291] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:19:53.291] [INFO] data_items[0] type: <class 'dict'>
+[17:19:53.291] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:53.291] [INFO] ============================================================
+[17:19:53.291] [INFO] _run_analysis_async 被调用
+[17:19:53.291] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:19:53.291] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:19:53.291] [DEBUG] data_items_len = 1 (type: int)
+[17:19:53.293] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:19:53.293] [INFO] data_items[0] type: <class 'dict'>
+[17:19:53.293] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:19:58.648] [INFO] add_data_item 被调用
+[17:19:58.648] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:20:03.986] [INFO] add_data_item 被调用
+[17:20:03.986] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:20:06.945] [INFO] ============================================================
+[17:20:06.945] [INFO] _on_run_clicked 被调用
+[17:20:06.945] [INFO] _get_selected_data_items 被调用
+[17:20:06.945] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:20:06.945] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:20:06.945] [INFO] 返回 1 个有效数据项
+[17:20:06.945] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:20:06.945] [DEBUG] selected_data_len = 1 (type: int)
+[17:20:06.945] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:20:06.945] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:20:06.945] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:20:06.945] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:20:06.945] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:06.945] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:20:06.945] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=1
+[17:20:06.947] [INFO] ============================================================
+[17:20:06.947] [INFO] _on_run_analysis 被调用
+[17:20:06.947] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:20:06.947] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:06.947] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:20:06.947] [DEBUG] data_items_len = 1 (type: int)
+[17:20:06.947] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:20:06.947] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:20:06.947] [INFO] data_items[0] type: <class 'dict'>
+[17:20:06.947] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:20:06.947] [INFO] ============================================================
+[17:20:06.947] [INFO] _run_analysis_async 被调用
+[17:20:06.947] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:06.947] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:20:06.947] [DEBUG] data_items_len = 1 (type: int)
+[17:20:06.947] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:20:06.947] [INFO] data_items[0] type: <class 'dict'>
+[17:20:06.947] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:20:47.958] [INFO] add_data_item 被调用
+[17:20:47.958] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:20:55.202] [INFO] ============================================================
+[17:20:55.202] [INFO] _on_run_clicked 被调用
+[17:20:55.202] [INFO] _get_selected_data_items 被调用
+[17:20:55.202] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:20:55.202] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:20:55.202] [INFO] 返回 1 个有效数据项
+[17:20:55.202] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:20:55.203] [DEBUG] selected_data_len = 1 (type: int)
+[17:20:55.203] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:20:55.203] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:20:55.203] [INFO] 自定义算法使用默认参数: {'time_start': 0.0, 'time_duration': 10.0, 'show_grid': True}
+[17:20:55.203] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:20:55.203] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:55.203] [DEBUG] current_algorithm = ViewRawData (type: str)
+[17:20:55.203] [INFO] 发送请求: algorithm=ViewRawData, data_items数量=1
+[17:20:55.203] [INFO] ============================================================
+[17:20:55.203] [INFO] _on_run_analysis 被调用
+[17:20:55.203] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:20:55.203] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:55.203] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:20:55.203] [DEBUG] data_items_len = 1 (type: int)
+[17:20:55.203] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:20:55.203] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:20:55.203] [INFO] data_items[0] type: <class 'dict'>
+[17:20:55.203] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:20:55.203] [INFO] ============================================================
+[17:20:55.203] [INFO] _run_analysis_async 被调用
+[17:20:55.203] [DEBUG] algorithm_name = ViewRawData (type: str)
+[17:20:55.203] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:20:55.203] [DEBUG] data_items_len = 1 (type: int)
+[17:20:55.203] [DEBUG] parameters_keys = ['time_start', 'time_duration', 'show_grid'] (type: list)
+[17:20:55.203] [INFO] data_items[0] type: <class 'dict'>
+[17:20:55.203] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

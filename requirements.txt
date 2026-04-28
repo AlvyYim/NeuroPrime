@@ -1,0 +1,18 @@
+# NeuroPrime 依赖包
+
+# GUI库
+PyQt6
+
+# 科学计算库
+numpy
+scipy
+matplotlib
+
+# 机器学习库
+scikit-learn
+
+# HDF5文件处理
+h5py
+
+# 其他可能需要的库
+pandas

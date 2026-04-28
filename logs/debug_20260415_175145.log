@@ -1,0 +1,179 @@
+[17:51:45.867] [INFO] ============================================================
+[17:51:45.867] [INFO] NeuroPrime 调试日志
+[17:51:45.867] [INFO] 启动时间: 2026-04-15 17:51:45
+[17:51:45.867] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[17:51:45.867] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260415_175145.log
+[17:51:45.867] [INFO] ============================================================
+[17:51:47.166] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:51:47.167] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:51:47.167] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:51:47.167] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:51:47.167] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:51:47.167] [INFO] [Scheduler] Found 5 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'testscriptalgorithm.py', 'view_raw_lfp_data.py', '__init__.py']
+[17:51:47.167] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[17:51:47.476] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[17:51:47.476] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py...
+[17:51:47.476] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:51:47.476] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[17:51:47.479] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[17:51:47.479] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py...
+[17:51:47.479] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:51:47.479] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[17:51:47.480] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[17:51:47.480] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py...
+[17:51:47.480] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:51:47.480] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:51:47.480] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:51:47.480] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:51:47.480] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[17:54:05.390] [INFO] ============================================================
+[17:54:05.390] [INFO] _populate_custom_algorithms started
+[17:54:05.390] [INFO] Attempting to reload custom algorithms...
+[17:54:05.390] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:54:05.391] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:54:05.391] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:54:05.391] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:54:05.391] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:54:05.391] [INFO] [Scheduler] Found 5 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'testscriptalgorithm.py', 'view_raw_lfp_data.py', '__init__.py']
+[17:54:05.391] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[17:54:05.391] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[17:54:05.391] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py...
+[17:54:05.392] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:54:05.392] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[17:54:05.392] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[17:54:05.392] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py...
+[17:54:05.392] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:54:05.392] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[17:54:05.392] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[17:54:05.392] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py...
+[17:54:05.392] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[17:54:05.392] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:54:05.393] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:54:05.393] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:54:05.393] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[17:54:05.393] [INFO] Custom algorithms reload completed
+[17:54:05.393] [INFO] Total algorithms available: 12
+[17:54:05.393] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'ROCAnalysis:Behavior', 'LDADecoder:Decoding', 'CustomAlgorithm:Custom', 'CustomAlgorithmNew:Custom', 'ViewRawLFPData:自定义算法']
+[17:54:05.393] [INFO] Added custom algorithm: CustomAlgorithm (category: Custom)
+[17:54:05.393] [INFO] Added custom algorithm: CustomAlgorithmNew (category: Custom)
+[17:54:05.393] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[17:54:05.393] [INFO] Total custom algorithms added: 3
+[17:54:05.393] [INFO] ============================================================
+[17:54:33.305] [INFO] add_data_item 被调用
+[17:54:33.306] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:33.306] [INFO] add_data_item 被调用
+[17:54:33.306] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:33.306] [INFO] add_data_item 被调用
+[17:54:33.306] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:33.306] [INFO] add_data_item 被调用
+[17:54:33.306] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:39.885] [INFO] add_data_item 被调用
+[17:54:39.886] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:41.702] [INFO] ============================================================
+[17:54:41.702] [INFO] _on_run_clicked 被调用
+[17:54:41.702] [INFO] _get_selected_data_items 被调用
+[17:54:41.702] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:54:41.702] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:54:41.702] [INFO] 返回 1 个有效数据项
+[17:54:41.702] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:54:41.702] [DEBUG] selected_data_len = 1 (type: int)
+[17:54:41.702] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:54:41.702] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:41.702] [INFO] 自定义算法使用默认参数: {}
+[17:54:41.703] [DEBUG] parameters_keys = [] (type: list)
+[17:54:41.703] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:54:41.703] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:54:41.703] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:54:41.703] [INFO] ============================================================
+[17:54:41.703] [INFO] _on_run_analysis 被调用
+[17:54:41.703] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:54:41.703] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:54:41.703] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:54:41.703] [DEBUG] data_items_len = 1 (type: int)
+[17:54:41.703] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:54:41.703] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:54:41.703] [INFO] data_items[0] type: <class 'dict'>
+[17:54:41.703] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:41.703] [INFO] ============================================================
+[17:54:41.703] [INFO] _run_analysis_async 被调用
+[17:54:41.703] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:54:41.703] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:54:41.703] [DEBUG] data_items_len = 1 (type: int)
+[17:54:41.703] [DEBUG] parameters_keys = [] (type: list)
+[17:54:41.703] [INFO] data_items[0] type: <class 'dict'>
+[17:54:41.703] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:48.272] [INFO] add_data_item 被调用
+[17:54:48.273] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:49.403] [INFO] add_data_item 被调用
+[17:54:49.403] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:54:56.196] [INFO] ============================================================
+[17:54:56.196] [INFO] _on_run_clicked 被调用
+[17:54:56.196] [INFO] _get_selected_data_items 被调用
+[17:54:56.196] [DEBUG] selected_data_items_len = 2 (type: int)
+[17:54:56.196] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:54:56.196] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[17:54:56.196] [INFO] 返回 2 个有效数据项
+[17:54:56.196] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:54:56.196] [DEBUG] selected_data_len = 2 (type: int)
+[17:54:56.196] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:54:56.196] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:56.197] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[17:54:56.197] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:56.197] [INFO] 自定义算法使用默认参数: {'threshold': 3.0}
+[17:54:56.197] [DEBUG] parameters_keys = ['threshold'] (type: list)
+[17:54:56.197] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:54:56.197] [DEBUG] current_algorithm = CustomAlgorithmNew (type: str)
+[17:54:56.197] [INFO] 发送请求: algorithm=CustomAlgorithmNew, data_items数量=2
+[17:54:56.197] [INFO] ============================================================
+[17:54:56.197] [INFO] _on_run_analysis 被调用
+[17:54:56.197] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:54:56.197] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:54:56.197] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:54:56.197] [DEBUG] data_items_len = 2 (type: int)
+[17:54:56.197] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:54:56.197] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:54:56.197] [INFO] data_items[0] type: <class 'dict'>
+[17:54:56.197] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:54:56.197] [INFO] ============================================================
+[17:54:56.197] [INFO] _run_analysis_async 被调用
+[17:54:56.197] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:54:56.197] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:54:56.197] [DEBUG] data_items_len = 2 (type: int)
+[17:54:56.197] [DEBUG] parameters_keys = ['threshold'] (type: list)
+[17:54:56.197] [INFO] data_items[0] type: <class 'dict'>
+[17:54:56.197] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:55:04.463] [INFO] add_data_item 被调用
+[17:55:04.463] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:55:05.888] [INFO] ============================================================
+[17:55:05.890] [INFO] _on_run_clicked 被调用
+[17:55:05.890] [INFO] _get_selected_data_items 被调用
+[17:55:05.890] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:55:05.890] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:55:05.890] [INFO] 返回 1 个有效数据项
+[17:55:05.890] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:55:05.890] [DEBUG] selected_data_len = 1 (type: int)
+[17:55:05.890] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:55:05.890] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:55:05.890] [INFO] 自定义算法使用默认参数: {'threshold': 3.0}
+[17:55:05.890] [DEBUG] parameters_keys = ['threshold'] (type: list)
+[17:55:05.890] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:55:05.890] [DEBUG] current_algorithm = CustomAlgorithmNew (type: str)
+[17:55:05.890] [INFO] 发送请求: algorithm=CustomAlgorithmNew, data_items数量=1
+[17:55:05.890] [INFO] ============================================================
+[17:55:05.890] [INFO] _on_run_analysis 被调用
+[17:55:05.890] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:55:05.890] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:55:05.890] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:55:05.890] [DEBUG] data_items_len = 1 (type: int)
+[17:55:05.890] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:55:05.890] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:55:05.890] [INFO] data_items[0] type: <class 'dict'>
+[17:55:05.890] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:55:05.890] [INFO] ============================================================
+[17:55:05.890] [INFO] _run_analysis_async 被调用
+[17:55:05.890] [DEBUG] algorithm_name = CustomAlgorithmNew (type: str)
+[17:55:05.890] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:55:05.890] [DEBUG] data_items_len = 1 (type: int)
+[17:55:05.890] [DEBUG] parameters_keys = ['threshold'] (type: list)
+[17:55:05.890] [INFO] data_items[0] type: <class 'dict'>
+[17:55:05.890] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

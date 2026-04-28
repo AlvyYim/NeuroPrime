@@ -1,0 +1,38 @@
+[16:03:59.879] [INFO] ============================================================
+[16:03:59.879] [INFO] NeuroPrime 调试日志
+[16:03:59.879] [INFO] 启动时间: 2026-04-11 16:03:59
+[16:03:59.879] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[16:03:59.879] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_160359.log
+[16:03:59.879] [INFO] ============================================================
+[16:04:02.189] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[16:04:02.189] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:04:02.189] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[16:04:02.189] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[16:04:02.189] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:04:02.191] [INFO] [Scheduler] Found 2 Python files: ['view_raw_data.py', '__init__.py']
+[16:04:02.191] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py
+[16:04:02.204] [ERROR] [Scheduler] ALGORITHM_INFO found but class not valid: <class 'view_raw_data.ViewRawData'>
+[16:04:11.937] [INFO] add_data_item 被调用
+[16:04:11.937] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[16:04:11.937] [INFO] add_data_item 被调用
+[16:04:11.937] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[16:04:11.937] [INFO] add_data_item 被调用
+[16:04:11.937] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[16:04:11.937] [INFO] add_data_item 被调用
+[16:04:11.937] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[16:04:13.391] [INFO] ============================================================
+[16:04:13.391] [INFO] _populate_custom_algorithms started
+[16:04:13.391] [INFO] Attempting to reload custom algorithms...
+[16:04:13.391] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[16:04:13.391] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:04:13.391] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[16:04:13.391] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[16:04:13.391] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:04:13.391] [INFO] [Scheduler] Found 2 Python files: ['view_raw_data.py', '__init__.py']
+[16:04:13.391] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_data.py
+[16:04:13.397] [ERROR] [Scheduler] ALGORITHM_INFO found but class not valid: <class 'view_raw_data.ViewRawData'>
+[16:04:13.397] [INFO] Custom algorithms reload completed
+[16:04:13.397] [INFO] Total algorithms available: 8
+[16:04:13.397] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding']
+[16:04:13.397] [INFO] Total custom algorithms added: 0
+[16:04:13.397] [INFO] ============================================================

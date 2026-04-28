@@ -1,0 +1,78 @@
+[15:23:23.795] [INFO] ============================================================
+[15:23:23.795] [INFO] NeuroPrime 调试日志
+[15:23:23.795] [INFO] 启动时间: 2026-04-11 15:23:23
+[15:23:23.795] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[15:23:23.795] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_152323.log
+[15:23:23.795] [INFO] ============================================================
+[15:23:35.782] [INFO] add_data_item 被调用
+[15:23:35.782] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:35.836] [INFO] add_data_item 被调用
+[15:23:35.836] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:35.836] [INFO] add_data_item 被调用
+[15:23:35.836] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:35.836] [INFO] add_data_item 被调用
+[15:23:35.836] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:42.671] [INFO] add_data_item 被调用
+[15:23:42.671] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:43.797] [INFO] add_data_item 被调用
+[15:23:43.797] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:43.797] [INFO] add_data_item 被调用
+[15:23:43.797] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:43.797] [INFO] add_data_item 被调用
+[15:23:43.797] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:43.797] [INFO] add_data_item 被调用
+[15:23:43.797] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:52.868] [INFO] add_data_item 被调用
+[15:23:52.868] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:23:58.193] [INFO] add_data_item 被调用
+[15:23:58.193] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:24:03.889] [INFO] _get_selected_data_items 被调用
+[15:24:03.889] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:24:03.889] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:24:03.889] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:24:03.889] [INFO] 返回 2 个有效数据项
+[15:24:11.457] [INFO] ============================================================
+[15:24:11.457] [INFO] _on_run_clicked 被调用
+[15:24:11.457] [INFO] _get_selected_data_items 被调用
+[15:24:11.457] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:24:11.457] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:24:11.457] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:24:11.457] [INFO] 返回 2 个有效数据项
+[15:24:11.457] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:24:11.457] [DEBUG] selected_data_len = 2 (type: int)
+[15:24:11.457] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:24:11.457] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:24:11.457] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:24:11.457] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:24:11.457] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx'] (type: list)
+[15:24:11.457] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:24:11.457] [DEBUG] current_algorithm = LFPSpectrogram (type: str)
+[15:24:11.457] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 84.082, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 84.082}, 'Fix_Grating_006_LFP': {'original_range': (0.0, 84.082), 'start_time': 0.0, 'duration': 84.082}}}
+[15:24:11.457] [INFO] 发送请求: algorithm=LFPSpectrogram, data_items数量=2
+[15:24:11.457] [INFO] ============================================================
+[15:24:11.457] [INFO] _on_run_analysis 被调用
+[15:24:11.457] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:24:11.457] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:24:11.457] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:24:11.457] [DEBUG] data_items_len = 2 (type: int)
+[15:24:11.457] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:24:11.457] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:24:11.457] [INFO] data_items[0] type: <class 'dict'>
+[15:24:11.457] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:24:11.460] [INFO] ============================================================
+[15:24:11.460] [INFO] _run_analysis_async 被调用
+[15:24:11.460] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:24:11.460] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:24:11.460] [DEBUG] data_items_len = 2 (type: int)
+[15:24:11.460] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx', 'time_alignment'] (type: list)
+[15:24:11.460] [INFO] data_items[0] type: <class 'dict'>
+[15:24:11.460] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:24:11.465] [ERROR] 运行分析时出错 异常: 'tuple' object has no attribute 'get'
+[15:24:11.465] [ERROR] 异常堆栈:
+[15:24:11.467] [ERROR]   Traceback (most recent call last):
+[15:24:11.467] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 893, in _run_analysis_async
+[15:24:11.467] [ERROR]       self._display_analysis_results(algorithm_name, output, data_items)
+[15:24:11.467] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 1005, in _display_analysis_results
+[15:24:11.467] [ERROR]       global_start = time_range.get('start', 0) if time_range else 0
+[15:24:11.467] [ERROR]   AttributeError: 'tuple' object has no attribute 'get'
+[15:24:11.467] [ERROR]   

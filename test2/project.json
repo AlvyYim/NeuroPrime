@@ -1,0 +1,26 @@
+{
+  "name": "test2",
+  "creation_time": "2026-04-23T18:05:24.323426",
+  "last_modified": "2026-04-23T20:25:33.653310",
+  "version": "1.0",
+  "description": "",
+  "trials": [
+    {
+      "name": "FC_Grating_012",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-23T20:25:33.652592",
+      "hdf5_file": "FC_Grating_012.h5",
+      "source_files": {
+        "ns3": "C:\\Users\\Administrator\\Desktop\\new hope\\dataandcode\\FC_Grating_012.ns3",
+        "nev": "C:\\Users\\Administrator\\Desktop\\new hope\\dataandcode\\FC_Grating_012.nev",
+        "mbm": "C:\\Users\\Administrator\\Desktop\\new hope\\dataandcode\\FC_Grating_012.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+[15:51:36.466] [INFO] ============================================================
+[15:51:36.466] [INFO] NeuroPrime 调试日志
+[15:51:36.466] [INFO] 启动时间: 2026-04-11 15:51:36
+[15:51:36.466] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[15:51:36.466] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_155136.log
+[15:51:36.466] [INFO] ============================================================
+[15:51:51.893] [INFO] add_data_item 被调用
+[15:51:51.893] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:51:53.668] [INFO] _populate_custom_algorithms called, total algorithms: 8
+[15:51:53.668] [INFO] Checking algorithm: SpikeDetectionThreshold, category: Spike
+[15:51:53.668] [INFO] Checking algorithm: SpikeSortingPCA, category: Spike
+[15:51:53.668] [INFO] Checking algorithm: LFPPowerSpectrum, category: LFP
+[15:51:53.668] [INFO] Checking algorithm: LFPSpectrogram, category: LFP
+[15:51:53.668] [INFO] Checking algorithm: PSTHAnalysis, category: Behavior
+[15:51:53.668] [INFO] Checking algorithm: RasterPlotAnalysis, category: Behavior
+[15:51:53.668] [INFO] Checking algorithm: TuningCurveAnalysis, category: Behavior
+[15:51:53.668] [INFO] Checking algorithm: LDADecoder, category: Decoding
+[15:51:53.668] [INFO] Total custom algorithms added: 0
+[15:52:07.531] [INFO] ============================================================
+[15:52:07.531] [INFO] _on_run_clicked 被调用
+[15:52:07.531] [INFO] _get_selected_data_items 被调用
+[15:52:07.531] [DEBUG] selected_data_items_len = 1 (type: int)
+[15:52:07.531] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:52:07.531] [INFO] 返回 1 个有效数据项
+[15:52:07.531] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:52:07.531] [DEBUG] selected_data_len = 1 (type: int)
+[15:52:07.531] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:52:07.531] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:52:07.531] [DEBUG] parameters_keys = [] (type: list)
+[15:52:07.531] [DEBUG] algorithm_name =  (type: str)
+[15:52:07.531] [DEBUG] current_algorithm = None (type: NoneType)
+[15:52:07.531] [INFO] 发送请求: algorithm=, data_items数量=1
+[15:52:07.531] [INFO] ============================================================
+[15:52:07.531] [INFO] _on_run_analysis 被调用
+[15:52:07.531] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:52:07.531] [DEBUG] algorithm_name =  (type: str)
+[15:52:07.531] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:52:07.531] [DEBUG] data_items_len = 1 (type: int)
+[15:52:07.531] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:52:07.531] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[15:52:07.531] [INFO] data_items[0] type: <class 'dict'>
+[15:52:07.531] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

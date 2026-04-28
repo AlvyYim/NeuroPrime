@@ -1,0 +1,2024 @@
+[14:55:10.857] [INFO] ============================================================
+[14:55:10.857] [INFO] NeuroPrime 调试日志
+[14:55:10.857] [INFO] 启动时间: 2026-04-24 14:55:10
+[14:55:10.857] [INFO] Python版本: 3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]
+[14:55:10.857] [INFO] 日志文件: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\logs\debug_20260424_145510.log
+[14:55:10.857] [INFO] ============================================================
+[14:55:26.971] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[14:55:26.972] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[14:55:26.972] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[14:55:26.972] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[14:55:26.972] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[14:55:26.972] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[14:55:26.973] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[14:55:26.973] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[14:55:31.868] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[14:55:31.868] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[14:55:31.870] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[14:55:31.870] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[14:55:31.882] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[14:55:31.882] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[14:55:31.883] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[14:55:31.883] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[14:55:31.894] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[14:55:31.896] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.896] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[14:55:31.908] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[14:55:31.909] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.910] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[14:55:31.928] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[14:55:31.929] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.929] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[14:55:31.946] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[14:55:31.947] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.947] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[14:55:31.964] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[14:55:31.966] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.966] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[14:55:31.981] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[14:55:31.982] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.982] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[14:55:31.995] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[14:55:31.997] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:31.997] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[14:55:32.011] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[14:55:32.012] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.012] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[14:55:32.025] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[14:55:32.026] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.026] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[14:55:32.039] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[14:55:32.040] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.040] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[14:55:32.054] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[14:55:32.056] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.056] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[14:55:32.068] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[14:55:32.069] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.069] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[14:55:32.082] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[14:55:32.083] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.083] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[14:55:32.097] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[14:55:32.099] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.099] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[14:55:32.112] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[14:55:32.114] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[14:55:32.114] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[14:55:32.127] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[14:55:32.127] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[14:55:32.127] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[14:55:32.127] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[14:55:32.141] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[14:55:32.141] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[14:55:32.141] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[14:55:32.141] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[14:55:32.156] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[14:55:32.156] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[14:55:32.157] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:19.179] [INFO] add_data_item 被调用
+[15:00:19.179] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:00:19.908] [INFO] add_data_item 被调用
+[15:00:19.908] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:00:25.439] [INFO] ============================================================
+[15:00:25.439] [INFO] _populate_custom_algorithms started
+[15:00:25.439] [INFO] Attempting to reload custom algorithms...
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.base
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.scheduler
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.spike_detection
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.lfp_analysis
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.spike_analysis
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.behavior_analysis
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms.decoding
+[15:00:25.439] [INFO] Removed module from cache: src.algorithms
+[15:00:26.126] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:00:26.126] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:26.126] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:26.126] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:26.126] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:00:26.126] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:26.127] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:00:26.127] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:00:26.145] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:00:26.146] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:26.146] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:26.146] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:00:26.150] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:00:26.151] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:26.151] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:26.151] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:00:26.158] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:00:26.159] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.159] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:00:26.172] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:00:26.173] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.173] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:00:26.193] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:00:26.194] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.194] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:00:26.212] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:00:26.213] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.213] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:00:26.231] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:00:26.232] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.232] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:00:26.239] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:00:26.240] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.240] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:00:26.247] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:00:26.248] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.248] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:00:26.263] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:00:26.264] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.264] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:00:26.272] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:00:26.273] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.273] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:00:26.285] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:00:26.286] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.286] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:00:26.293] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:00:26.294] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.294] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:00:26.300] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:00:26.301] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.301] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:00:26.309] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:00:26.310] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.310] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:00:26.325] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:00:26.326] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.326] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:00:26.339] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:00:26.340] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:26.340] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:00:26.345] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:00:26.345] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:26.345] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:26.345] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:00:26.350] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:00:26.350] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:26.351] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:26.351] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:00:26.357] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:00:26.357] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:26.357] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:26.357] [INFO] Custom algorithms reload completed
+[15:00:26.357] [INFO] Total algorithms available: 15
+[15:00:26.357] [INFO] Added custom algorithm: ViewLFPData (category: 自定义算法)
+[15:00:26.358] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[15:00:26.358] [INFO] Total custom algorithms added: 2
+[15:00:26.358] [INFO] ============================================================
+[15:00:38.453] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:00:38.454] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:38.454] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:38.454] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:38.454] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:00:38.454] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:38.454] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:00:38.455] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:00:38.461] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:00:38.461] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:38.461] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:38.461] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:00:38.465] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:00:38.465] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:38.466] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:38.466] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:00:38.474] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:00:38.475] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.475] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:00:38.488] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:00:38.489] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.489] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:00:38.508] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:00:38.508] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.509] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:00:38.526] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:00:38.527] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.527] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:00:38.544] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:00:38.545] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.545] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:00:38.552] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:00:38.554] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.554] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:00:38.560] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:00:38.561] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.561] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:00:38.575] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:00:38.576] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.576] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:00:38.583] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:00:38.584] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.584] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:00:38.598] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:00:38.599] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.599] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:00:38.606] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:00:38.607] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.607] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:00:38.613] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:00:38.614] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.614] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:00:38.622] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:00:38.623] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.623] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:00:38.638] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:00:38.639] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.639] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:00:38.653] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:00:38.654] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:38.654] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:00:38.659] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:00:38.659] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:38.660] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:38.660] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:00:38.665] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:00:38.665] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:38.665] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:38.665] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:00:38.670] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:00:38.670] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:38.671] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:41.473] [INFO] ============================================================
+[15:00:41.473] [INFO] _on_run_clicked 被调用
+[15:00:41.473] [INFO] _get_selected_data_items 被调用
+[15:00:41.473] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:00:41.473] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:00:41.473] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:00:41.473] [INFO] 返回 2 个有效数据项
+[15:00:41.473] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:00:41.473] [DEBUG] selected_data_len = 2 (type: int)
+[15:00:41.473] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:00:41.473] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:00:41.473] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:00:41.473] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:00:41.473] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:00:41.473] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:00:41.473] [DEBUG] current_algorithm = PSTHAnalysis (type: str)
+[15:00:41.473] [INFO] 发送请求: algorithm=PSTHAnalysis, data_items数量=2
+[15:00:41.473] [INFO] ============================================================
+[15:00:41.473] [INFO] _on_run_analysis 被调用
+[15:00:41.473] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:00:41.473] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:00:41.473] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:00:41.473] [DEBUG] data_items_len = 2 (type: int)
+[15:00:41.473] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:00:41.473] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[15:00:41.473] [INFO] data_items[0] type: <class 'dict'>
+[15:00:41.473] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:00:42.158] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:00:42.158] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:42.158] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:42.158] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:00:42.158] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:00:42.158] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:00:42.158] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:00:42.158] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:00:42.163] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:00:42.163] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:42.164] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:42.164] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:00:42.168] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:00:42.168] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:42.169] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:42.169] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:00:42.176] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:00:42.177] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.177] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:00:42.191] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:00:42.192] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.192] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:00:42.211] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:00:42.212] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.212] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:00:42.230] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:00:42.231] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.231] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:00:42.248] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:00:42.249] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.249] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:00:42.257] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:00:42.258] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.258] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:00:42.264] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:00:42.265] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.265] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:00:42.278] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:00:42.279] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.279] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:00:42.286] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:00:42.288] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.288] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:00:42.300] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:00:42.301] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.301] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:00:42.309] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:00:42.310] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.310] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:00:42.316] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:00:42.317] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.317] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:00:42.324] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:00:42.325] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.325] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:00:42.339] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:00:42.340] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.340] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:00:42.355] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:00:42.356] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:00:42.356] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:00:42.360] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:00:42.360] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:42.361] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:42.361] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:00:42.367] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:00:42.367] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:42.367] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:42.367] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:00:42.373] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:00:42.373] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:00:42.374] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:00:42.374] [INFO] ============================================================
+[15:00:42.374] [INFO] _run_analysis_async 被调用
+[15:00:42.374] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:00:42.374] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:00:42.374] [DEBUG] data_items_len = 2 (type: int)
+[15:00:42.374] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:00:42.374] [INFO] data_items[0] type: <class 'dict'>
+[15:00:42.374] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:01:15.502] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:01:15.503] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:01:15.503] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:01:15.503] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:01:15.503] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:01:15.503] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:01:15.503] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:01:15.503] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:01:15.510] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:01:15.510] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:01:15.511] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:01:15.511] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:01:15.516] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:01:15.516] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:01:15.517] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:01:15.517] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:01:15.526] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:01:15.527] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.528] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:01:15.544] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:01:15.545] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.545] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:01:15.565] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:01:15.566] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.566] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:01:15.584] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:01:15.586] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.586] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:01:15.606] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:01:15.607] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.607] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:01:15.614] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:01:15.615] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.616] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:01:15.622] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:01:15.623] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.623] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:01:15.638] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:01:15.639] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.639] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:01:15.646] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:01:15.647] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.647] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:01:15.660] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:01:15.661] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.661] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:01:15.668] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:01:15.669] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.669] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:01:15.676] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:01:15.677] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.677] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:01:15.684] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:01:15.685] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.685] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:01:15.700] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:01:15.701] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.701] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:01:15.715] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:01:15.716] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:01:15.716] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:01:15.721] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:01:15.721] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:01:15.722] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:01:15.722] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:01:15.727] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:01:15.727] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:01:15.728] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:01:15.728] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:01:15.732] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:01:15.732] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:01:15.733] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:01:30.530] [INFO] _get_selected_data_items 被调用
+[15:01:30.531] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:01:30.531] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:01:30.531] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:01:30.531] [INFO] 返回 2 个有效数据项
+[15:02:04.545] [INFO] _get_selected_data_items 被调用
+[15:02:04.546] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:02:04.546] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:02:04.546] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:02:04.546] [INFO] 返回 2 个有效数据项
+[15:02:40.626] [INFO] ============================================================
+[15:02:40.626] [INFO] _on_run_clicked 被调用
+[15:02:40.626] [INFO] _get_selected_data_items 被调用
+[15:02:40.626] [DEBUG] selected_data_items_len = 1 (type: int)
+[15:02:40.626] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:02:40.626] [INFO] 返回 1 个有效数据项
+[15:02:40.626] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:02:40.626] [DEBUG] selected_data_len = 1 (type: int)
+[15:02:40.626] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:02:40.626] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:02:40.626] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:02:40.626] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:02:40.626] [DEBUG] current_algorithm = PSTHAnalysis (type: str)
+[15:02:40.626] [INFO] 发送请求: algorithm=PSTHAnalysis, data_items数量=1
+[15:02:40.626] [INFO] ============================================================
+[15:02:40.626] [INFO] _on_run_analysis 被调用
+[15:02:40.626] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:02:40.626] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:02:40.626] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:02:40.626] [DEBUG] data_items_len = 1 (type: int)
+[15:02:40.626] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:02:40.626] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[15:02:40.626] [INFO] data_items[0] type: <class 'dict'>
+[15:02:40.626] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:02:41.309] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:02:41.309] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:02:41.309] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:02:41.309] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:02:41.309] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:02:41.310] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:02:41.310] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:02:41.310] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:02:41.316] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:02:41.316] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:02:41.317] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:02:41.317] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:02:41.321] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:02:41.321] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:02:41.322] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:02:41.322] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:02:41.329] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:02:41.331] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.331] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:02:41.344] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:02:41.346] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.346] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:02:41.366] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:02:41.367] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.367] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:02:41.387] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:02:41.388] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.388] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:02:41.405] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:02:41.406] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.406] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:02:41.413] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:02:41.414] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.415] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:02:41.422] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:02:41.423] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.423] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:02:41.437] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:02:41.438] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.438] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:02:41.445] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:02:41.446] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.446] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:02:41.460] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:02:41.461] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.461] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:02:41.468] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:02:41.469] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.469] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:02:41.477] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:02:41.478] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.478] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:02:41.485] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:02:41.486] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.486] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:02:41.501] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:02:41.503] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.503] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:02:41.520] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:02:41.521] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:02:41.521] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:02:41.526] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:02:41.526] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:02:41.527] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:02:41.527] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:02:41.533] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:02:41.533] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:02:41.534] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:02:41.534] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:02:41.540] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:02:41.540] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:02:41.541] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:02:52.891] [INFO] add_data_item 被调用
+[15:02:52.891] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:41:10.681] [INFO] ============================================================
+[15:41:10.681] [INFO] _on_run_clicked 被调用
+[15:41:10.681] [INFO] _get_selected_data_items 被调用
+[15:41:10.681] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:41:10.681] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:41:10.681] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:41:10.681] [INFO] 返回 2 个有效数据项
+[15:41:10.681] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:41:10.681] [DEBUG] selected_data_len = 2 (type: int)
+[15:41:10.681] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:41:10.681] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:10.681] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:41:10.681] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:10.681] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:41:10.681] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:10.681] [DEBUG] current_algorithm = PSTHAnalysis (type: str)
+[15:41:10.681] [INFO] 发送请求: algorithm=PSTHAnalysis, data_items数量=2
+[15:41:10.681] [INFO] ============================================================
+[15:41:10.681] [INFO] _on_run_analysis 被调用
+[15:41:10.681] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:41:10.681] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:10.681] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:41:10.681] [DEBUG] data_items_len = 2 (type: int)
+[15:41:10.681] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:41:10.681] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[15:41:10.681] [INFO] data_items[0] type: <class 'dict'>
+[15:41:10.681] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:13.782] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:41:13.782] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:41:13.782] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:41:13.782] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:41:13.782] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:41:13.782] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:41:13.782] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:41:13.782] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:41:13.788] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:41:13.788] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:13.789] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:13.789] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:41:13.795] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:41:13.795] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:13.796] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:13.796] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:41:13.803] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:41:13.804] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.804] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:41:13.821] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:41:13.822] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.822] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:41:13.848] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:41:13.849] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.849] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:41:13.875] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:41:13.877] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.877] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:41:13.903] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:41:13.905] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.905] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:41:13.929] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:41:13.931] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.931] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:41:13.951] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:41:13.952] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.952] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:41:13.971] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:41:13.973] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.973] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:41:13.983] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:41:13.984] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:13.984] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:41:14.004] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:41:14.006] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.006] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:41:14.015] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:41:14.017] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.017] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:41:14.026] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:41:14.027] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.028] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:41:14.038] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:41:14.039] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.039] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:41:14.060] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:41:14.062] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.062] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:41:14.082] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:41:14.084] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:14.084] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:41:14.102] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:41:14.102] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:14.103] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:14.103] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:41:14.108] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:41:14.128] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:14.129] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:14.129] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:41:14.144] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:41:14.144] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:14.145] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:14.145] [INFO] ============================================================
+[15:41:14.145] [INFO] _run_analysis_async 被调用
+[15:41:14.145] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:14.145] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:41:14.145] [DEBUG] data_items_len = 2 (type: int)
+[15:41:14.145] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:41:14.145] [INFO] data_items[0] type: <class 'dict'>
+[15:41:14.145] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:21.825] [INFO] ============================================================
+[15:41:21.825] [INFO] _on_run_clicked 被调用
+[15:41:21.825] [INFO] _get_selected_data_items 被调用
+[15:41:21.825] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:41:21.825] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:41:21.825] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:41:21.825] [INFO] 返回 2 个有效数据项
+[15:41:21.825] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:41:21.825] [DEBUG] selected_data_len = 2 (type: int)
+[15:41:21.825] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:41:21.825] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:21.825] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:41:21.825] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:21.825] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:41:21.825] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:21.825] [DEBUG] current_algorithm = PSTHAnalysis (type: str)
+[15:41:21.825] [INFO] 发送请求: algorithm=PSTHAnalysis, data_items数量=2
+[15:41:21.825] [INFO] ============================================================
+[15:41:21.825] [INFO] _on_run_analysis 被调用
+[15:41:21.825] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:41:21.825] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:21.825] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:41:21.825] [DEBUG] data_items_len = 2 (type: int)
+[15:41:21.825] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:41:21.825] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[15:41:21.825] [INFO] data_items[0] type: <class 'dict'>
+[15:41:21.825] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:41:24.815] [INFO] [Scheduler] Removed pycache directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\__pycache__
+[15:41:24.816] [INFO] [Scheduler] NEUROPRIME_ROOT = C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:41:24.816] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:41:24.816] [INFO] [Scheduler] Current working directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime
+[15:41:24.816] [INFO] [Scheduler] Script directory: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms
+[15:41:24.816] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms
+[15:41:24.816] [INFO] [Scheduler] Found 21 Python files: ['customalgorithm.py', 'customalgorithmnew.py', 'mnealgorithm.py', 'mnebadchanneldetectionalgorithm.py', 'mnebeamformingalgorithm.py', 'mnedipolefittingalgorithm.py', 'mneeffectiveconnectivityalgorithm.py', 'mneerpalgorithm.py', 'mnefilteringalgorithm.py', 'mnefunctionalconnectivityalgorithm.py', 'mneicaalgorithm.py', 'mneicaartifactremovalalgorithm.py', 'mnepowerspectrumalgorithm.py', 'mneresamplingalgorithm.py', 'mnesourcelocalizationalgorithm.py', 'mnespectralconnectivityalgorithm.py', 'mnetimefrequencyalgorithm.py', 'testscriptalgorithm.py', 'viewlfpdata.py', 'view_raw_lfp_data.py', '__init__.py']
+[15:41:24.817] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py
+[15:41:24.822] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[15:41:24.822] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:24.823] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:24.823] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[15:41:24.828] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[15:41:24.828] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\customalgorithmnew.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:24.829] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:24.829] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py
+[15:41:24.838] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py: No module named 'mne'
+[15:41:24.840] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnealgorithm.py", line 10, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.840] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+[15:41:24.858] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py: No module named 'mne'
+[15:41:24.860] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.860] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+[15:41:24.886] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py: No module named 'mne'
+[15:41:24.888] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.888] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+[15:41:24.913] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py: No module named 'mne'
+[15:41:24.915] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.915] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+[15:41:24.940] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py: No module named 'mne'
+[15:41:24.941] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py", line 87, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.942] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+[15:41:24.952] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py: No module named 'mne'
+[15:41:24.953] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneerpalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.954] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+[15:41:24.964] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py: No module named 'mne'
+[15:41:24.965] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:24.965] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+[15:41:25.015] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py: No module named 'mne'
+[15:41:25.016] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.016] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+[15:41:25.027] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py: No module named 'mne'
+[15:41:25.028] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.028] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+[15:41:25.041] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py: No module named 'mne'
+[15:41:25.042] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.042] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+[15:41:25.051] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py: No module named 'mne'
+[15:41:25.053] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py", line 60, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.053] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+[15:41:25.064] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py: No module named 'mne'
+[15:41:25.066] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.066] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+[15:41:25.076] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py: No module named 'mne'
+[15:41:25.078] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py", line 57, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.078] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+[15:41:25.099] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py: No module named 'mne'
+[15:41:25.100] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py", line 89, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.100] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+[15:41:25.119] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py: No module named 'mne'
+[15:41:25.121] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 223, in _load_custom_algorithms
+    spec.loader.exec_module(module)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py", line 59, in <module>
+    import mne
+ModuleNotFoundError: No module named 'mne'
+
+[15:41:25.121] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[15:41:25.126] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[15:41:25.126] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\testscriptalgorithm.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:25.127] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:25.127] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py
+[15:41:25.133] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewLFPData
+[15:41:25.133] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\viewlfpdata.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:25.134] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:25.134] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[15:41:25.140] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[15:41:25.140] [ERROR] [Scheduler] Error loading custom algorithm from C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\custom_algorithms\view_raw_lfp_data.py: cannot access local variable 'found' where it is not associated with a value
+[15:41:25.141] [ERROR] [Scheduler] Traceback: Traceback (most recent call last):
+  File "C:\Users\Administrator\Desktop\new hope\code\NeuroPrime\src\algorithms\scheduler.py", line 260, in _load_custom_algorithms
+    if not found:
+           ^^^^^
+UnboundLocalError: cannot access local variable 'found' where it is not associated with a value
+
+[15:41:25.141] [INFO] ============================================================
+[15:41:25.141] [INFO] _run_analysis_async 被调用
+[15:41:25.141] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[15:41:25.141] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:41:25.141] [DEBUG] data_items_len = 2 (type: int)
+[15:41:25.142] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[15:41:25.142] [INFO] data_items[0] type: <class 'dict'>
+[15:41:25.142] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

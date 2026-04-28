@@ -1,0 +1,146 @@
+[15:32:23.695] [INFO] ============================================================
+[15:32:23.695] [INFO] NeuroPrime 调试日志
+[15:32:23.696] [INFO] 启动时间: 2026-04-11 15:32:23
+[15:32:23.696] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[15:32:23.696] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_153223.log
+[15:32:23.696] [INFO] ============================================================
+[15:32:54.831] [INFO] add_data_item 被调用
+[15:32:54.831] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:32:57.660] [INFO] add_data_item 被调用
+[15:32:57.660] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:32:59.616] [INFO] _get_selected_data_items 被调用
+[15:32:59.616] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:32:59.616] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:32:59.616] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:32:59.616] [INFO] 返回 2 个有效数据项
+[15:33:13.666] [INFO] ============================================================
+[15:33:13.666] [INFO] _on_run_clicked 被调用
+[15:33:13.666] [INFO] _get_selected_data_items 被调用
+[15:33:13.666] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:33:13.666] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:33:13.666] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:33:13.666] [INFO] 返回 2 个有效数据项
+[15:33:13.666] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:33:13.666] [DEBUG] selected_data_len = 2 (type: int)
+[15:33:13.666] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:33:13.666] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:13.666] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:33:13.668] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:13.668] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx'] (type: list)
+[15:33:13.668] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:13.668] [DEBUG] current_algorithm = LFPSpectrogram (type: str)
+[15:33:13.668] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 50.0, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 50.0}, 'FC_Grating_015_LFP': {'original_range': (0.0, 83.996), 'start_time': 0.0, 'duration': 50.0}}}
+[15:33:13.668] [INFO] 发送请求: algorithm=LFPSpectrogram, data_items数量=2
+[15:33:13.668] [INFO] ============================================================
+[15:33:13.668] [INFO] _on_run_analysis 被调用
+[15:33:13.668] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:33:13.668] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:13.668] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:33:13.668] [DEBUG] data_items_len = 2 (type: int)
+[15:33:13.668] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:33:13.668] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:33:13.668] [INFO] data_items[0] type: <class 'dict'>
+[15:33:13.668] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:13.668] [INFO] ============================================================
+[15:33:13.668] [INFO] _run_analysis_async 被调用
+[15:33:13.668] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:13.668] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:33:13.668] [DEBUG] data_items_len = 2 (type: int)
+[15:33:13.668] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx', 'time_alignment'] (type: list)
+[15:33:13.668] [INFO] data_items[0] type: <class 'dict'>
+[15:33:13.668] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:13.673] [ERROR] 运行分析时出错 异常: name 'parameters' is not defined
+[15:33:13.673] [ERROR] 异常堆栈:
+[15:33:13.673] [ERROR]   Traceback (most recent call last):
+[15:33:13.673] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 893, in _run_analysis_async
+[15:33:13.673] [ERROR]       self._display_analysis_results(algorithm_name, output, data_items)
+[15:33:13.673] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 1021, in _display_analysis_results
+[15:33:13.673] [ERROR]       channel_idx = parameters.get('channel_idx', -1)
+[15:33:13.673] [ERROR]   NameError: name 'parameters' is not defined
+[15:33:13.673] [ERROR]   
+[15:33:19.452] [INFO] _get_selected_data_items 被调用
+[15:33:19.452] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:33:19.452] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:33:19.452] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:33:19.452] [INFO] 返回 2 个有效数据项
+[15:33:34.036] [INFO] ============================================================
+[15:33:34.036] [INFO] _on_run_clicked 被调用
+[15:33:34.036] [INFO] _get_selected_data_items 被调用
+[15:33:34.036] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:33:34.036] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:33:34.036] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:33:34.036] [INFO] 返回 2 个有效数据项
+[15:33:34.036] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:33:34.036] [DEBUG] selected_data_len = 2 (type: int)
+[15:33:34.036] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:33:34.036] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:34.036] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:33:34.036] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:34.036] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx'] (type: list)
+[15:33:34.038] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:34.038] [DEBUG] current_algorithm = LFPSpectrogram (type: str)
+[15:33:34.038] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 50.0, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 50.0}, 'FC_Grating_015_LFP': {'original_range': (0.0, 83.996), 'start_time': 0.0, 'duration': 50.0}}}
+[15:33:34.038] [INFO] 发送请求: algorithm=LFPSpectrogram, data_items数量=2
+[15:33:34.038] [INFO] ============================================================
+[15:33:34.038] [INFO] _on_run_analysis 被调用
+[15:33:34.038] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:33:34.038] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:34.038] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:33:34.038] [DEBUG] data_items_len = 2 (type: int)
+[15:33:34.038] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:33:34.038] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:33:34.038] [INFO] data_items[0] type: <class 'dict'>
+[15:33:34.038] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:34.038] [INFO] ============================================================
+[15:33:34.038] [INFO] _run_analysis_async 被调用
+[15:33:34.038] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:33:34.038] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:33:34.038] [DEBUG] data_items_len = 2 (type: int)
+[15:33:34.038] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx', 'time_alignment'] (type: list)
+[15:33:34.038] [INFO] data_items[0] type: <class 'dict'>
+[15:33:34.038] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:33:34.042] [ERROR] 运行分析时出错 异常: name 'parameters' is not defined
+[15:33:34.042] [ERROR] 异常堆栈:
+[15:33:34.042] [ERROR]   Traceback (most recent call last):
+[15:33:34.042] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 893, in _run_analysis_async
+[15:33:34.042] [ERROR]       self._display_analysis_results(algorithm_name, output, data_items)
+[15:33:34.042] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 1021, in _display_analysis_results
+[15:33:34.042] [ERROR]       channel_idx = parameters.get('channel_idx', -1)
+[15:33:34.042] [ERROR]   NameError: name 'parameters' is not defined
+[15:33:34.042] [ERROR]   
+[15:34:01.709] [INFO] ============================================================
+[15:34:01.711] [INFO] _on_run_clicked 被调用
+[15:34:01.711] [INFO] _get_selected_data_items 被调用
+[15:34:01.711] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:34:01.711] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:34:01.711] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:34:01.711] [INFO] 返回 2 个有效数据项
+[15:34:01.711] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:34:01.711] [DEBUG] selected_data_len = 2 (type: int)
+[15:34:01.711] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:34:01.711] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:34:01.711] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:34:01.711] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:34:01.711] [DEBUG] parameters_keys = ['window_type', 'nfft', 'noverlap', 'freq_low', 'freq_high', 'average_method', 'smooth_sigma'] (type: list)
+[15:34:01.711] [DEBUG] algorithm_name = LFPPowerSpectrum (type: str)
+[15:34:01.711] [DEBUG] current_algorithm = LFPPowerSpectrum (type: str)
+[15:34:01.711] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 50.0, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 50.0}, 'FC_Grating_015_LFP': {'original_range': (0.0, 83.996), 'start_time': 0.0, 'duration': 50.0}}}
+[15:34:01.711] [INFO] 发送请求: algorithm=LFPPowerSpectrum, data_items数量=2
+[15:34:01.711] [INFO] ============================================================
+[15:34:01.711] [INFO] _on_run_analysis 被调用
+[15:34:01.711] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:34:01.711] [DEBUG] algorithm_name = LFPPowerSpectrum (type: str)
+[15:34:01.711] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:34:01.711] [DEBUG] data_items_len = 2 (type: int)
+[15:34:01.711] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:34:01.711] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:34:01.711] [INFO] data_items[0] type: <class 'dict'>
+[15:34:01.711] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:34:01.711] [INFO] ============================================================
+[15:34:01.711] [INFO] _run_analysis_async 被调用
+[15:34:01.711] [DEBUG] algorithm_name = LFPPowerSpectrum (type: str)
+[15:34:01.711] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:34:01.711] [DEBUG] data_items_len = 2 (type: int)
+[15:34:01.711] [DEBUG] parameters_keys = ['window_type', 'nfft', 'noverlap', 'freq_low', 'freq_high', 'average_method', 'smooth_sigma', 'time_alignment'] (type: list)
+[15:34:01.711] [INFO] data_items[0] type: <class 'dict'>
+[15:34:01.711] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

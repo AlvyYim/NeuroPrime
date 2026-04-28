@@ -1,0 +1,65 @@
+[23:15:27.733] [INFO] ============================================================
+[23:15:27.733] [INFO] NeuroPrime 调试日志
+[23:15:27.733] [INFO] 启动时间: 2026-04-12 23:15:27
+[23:15:27.733] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[23:15:27.733] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_231527.log
+[23:15:27.733] [INFO] ============================================================
+[23:15:29.831] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[23:15:29.831] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:15:29.831] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[23:15:29.831] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[23:15:29.831] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:15:29.831] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[23:15:29.831] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[23:15:29.841] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[23:15:29.841] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[23:15:29.841] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[23:17:31.944] [INFO] add_data_item 被调用
+[23:17:31.944] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:32.893] [INFO] add_data_item 被调用
+[23:17:32.893] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:38.016] [INFO] add_data_item 被调用
+[23:17:38.016] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:38.914] [INFO] add_data_item 被调用
+[23:17:38.914] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] ============================================================
+[23:17:45.571] [INFO] _on_run_clicked 被调用
+[23:17:45.571] [INFO] _get_selected_data_items 被调用
+[23:17:45.571] [DEBUG] selected_data_items_len = 4 (type: int)
+[23:17:45.571] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:17:45.571] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:17:45.571] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[23:17:45.571] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] 返回 4 个有效数据项
+[23:17:45.571] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:17:45.571] [DEBUG] selected_data_len = 4 (type: int)
+[23:17:45.571] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:45.571] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:45.571] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:45.571] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[23:17:45.571] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:45.571] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'metric', 'stim_condition_key'] (type: list)
+[23:17:45.571] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[23:17:45.571] [DEBUG] current_algorithm = TuningCurveAnalysis (type: str)
+[23:17:45.571] [INFO] 发送请求: algorithm=TuningCurveAnalysis, data_items数量=4
+[23:17:45.571] [INFO] ============================================================
+[23:17:45.571] [INFO] _on_run_analysis 被调用
+[23:17:45.571] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:17:45.571] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[23:17:45.571] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:45.571] [DEBUG] data_items_len = 4 (type: int)
+[23:17:45.571] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:17:45.571] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[23:17:45.571] [INFO] data_items[0] type: <class 'dict'>
+[23:17:45.571] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:45.571] [INFO] ============================================================
+[23:17:45.571] [INFO] _run_analysis_async 被调用
+[23:17:45.571] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[23:17:45.571] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:45.571] [DEBUG] data_items_len = 4 (type: int)
+[23:17:45.571] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'metric', 'stim_condition_key'] (type: list)
+[23:17:45.571] [INFO] data_items[0] type: <class 'dict'>
+[23:17:45.571] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

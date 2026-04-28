@@ -1,0 +1,638 @@
+{
+  "name": "test1",
+  "creation_time": "2026-04-22T11:24:54.879198",
+  "last_modified": "2026-04-23T18:05:02.359264",
+  "version": "1.0",
+  "description": "",
+  "trials": [
+    {
+      "name": "FC_Contour_015",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.219857",
+      "hdf5_file": "FC_Contour_015.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_015.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_015.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_015.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_016",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.220616",
+      "hdf5_file": "FC_Contour_016.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_016.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_016.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_016.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_017",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.227387",
+      "hdf5_file": "FC_Contour_017.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_017.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_017.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_017.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_018",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.236275",
+      "hdf5_file": "FC_Contour_018.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_018.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_018.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_018.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_019",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.244234",
+      "hdf5_file": "FC_Contour_019.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_019.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_019.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_019.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_020",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.253729",
+      "hdf5_file": "FC_Contour_020.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_020.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_020.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_020.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_021",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.261433",
+      "hdf5_file": "FC_Contour_021.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_021.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_021.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_021.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_022",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.271705",
+      "hdf5_file": "FC_Contour_022.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_022.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_022.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_022.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_023",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.279313",
+      "hdf5_file": "FC_Contour_023.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_023.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_023.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_023.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "FC_Contour_024",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.289073",
+      "hdf5_file": "FC_Contour_024.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\FC_Contour_024.ns3",
+        "nev": "F:\\COCO\\231022\\FC_Contour_024.nev",
+        "mbm": "F:\\COCO\\231022\\FC_Contour_024.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_003",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.296561",
+      "hdf5_file": "Fix_Contour_003.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_003.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_003.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_003.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_004",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.307956",
+      "hdf5_file": "Fix_Contour_004.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_004.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_004.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_004.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_005",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.317408",
+      "hdf5_file": "Fix_Contour_005.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_005.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_005.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_005.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_006",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.326070",
+      "hdf5_file": "Fix_Contour_006.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_006.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_006.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_006.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_007",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.335455",
+      "hdf5_file": "Fix_Contour_007.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_007.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_007.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_007.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_008",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.344317",
+      "hdf5_file": "Fix_Contour_008.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_008.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_008.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_008.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_009",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.355715",
+      "hdf5_file": "Fix_Contour_009.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_009.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_009.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_009.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_010",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.380481",
+      "hdf5_file": "Fix_Contour_010.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_010.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_010.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_010.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_011",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.391205",
+      "hdf5_file": "Fix_Contour_011.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_011.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_011.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_011.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_012",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.401880",
+      "hdf5_file": "Fix_Contour_012.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_012.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_012.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_012.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_013",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.410383",
+      "hdf5_file": "Fix_Contour_013.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_013.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_013.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_013.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_014",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.421547",
+      "hdf5_file": "Fix_Contour_014.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_014.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_014.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_014.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_025",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.430361",
+      "hdf5_file": "Fix_Contour_025.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_025.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_025.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_025.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_026",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.439937",
+      "hdf5_file": "Fix_Contour_026.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_026.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_026.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_026.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_027",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.449706",
+      "hdf5_file": "Fix_Contour_027.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_027.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_027.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_027.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_028",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.459648",
+      "hdf5_file": "Fix_Contour_028.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_028.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_028.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_028.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_029",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.470588",
+      "hdf5_file": "Fix_Contour_029.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_029.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_029.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_029.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_030",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.482857",
+      "hdf5_file": "Fix_Contour_030.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_030.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_030.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_030.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_031",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.494724",
+      "hdf5_file": "Fix_Contour_031.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_031.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_031.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_031.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Fix_Contour_032",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.568194",
+      "hdf5_file": "Fix_Contour_032.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Fix_Contour_032.ns3",
+        "nev": "F:\\COCO\\231022\\Fix_Contour_032.nev",
+        "mbm": "F:\\COCO\\231022\\Fix_Contour_032.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "ORItuning002",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.583195",
+      "hdf5_file": "ORItuning002.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\ORItuning002.ns3",
+        "nev": "F:\\COCO\\231022\\ORItuning002.nev",
+        "mbm": "F:\\COCO\\231022\\ORItuning002.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Task_Contour_033",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.598287",
+      "hdf5_file": "Task_Contour_033.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Task_Contour_033.ns3",
+        "nev": "F:\\COCO\\231022\\Task_Contour_033.nev",
+        "mbm": "F:\\COCO\\231022\\Task_Contour_033.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Task_Contour_034",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.614801",
+      "hdf5_file": "Task_Contour_034.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Task_Contour_034.ns3",
+        "nev": "F:\\COCO\\231022\\Task_Contour_034.nev",
+        "mbm": "F:\\COCO\\231022\\Task_Contour_034.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Task_Contour_036",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.646486",
+      "hdf5_file": "Task_Contour_036.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Task_Contour_036.ns3",
+        "nev": "F:\\COCO\\231022\\Task_Contour_036.nev",
+        "mbm": "F:\\COCO\\231022\\Task_Contour_036.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Task_Contour_037",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.661383",
+      "hdf5_file": "Task_Contour_037.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Task_Contour_037.ns3",
+        "nev": "F:\\COCO\\231022\\Task_Contour_037.nev",
+        "mbm": "F:\\COCO\\231022\\Task_Contour_037.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Xtuning000",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.675810",
+      "hdf5_file": "Xtuning000.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Xtuning000.ns3",
+        "nev": "F:\\COCO\\231022\\Xtuning000.nev",
+        "mbm": "F:\\COCO\\231022\\Xtuning000.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    },
+    {
+      "name": "Ytuning001",
+      "experiment_name": "Batch Import",
+      "creation_time": "2026-04-22T11:37:10.692510",
+      "hdf5_file": "Ytuning001.h5",
+      "source_files": {
+        "ns3": "F:\\COCO\\231022\\Ytuning001.ns3",
+        "nev": "F:\\COCO\\231022\\Ytuning001.nev",
+        "mbm": "F:\\COCO\\231022\\Ytuning001.mbm"
+      },
+      "duration": 0.0,
+      "num_channels": 0,
+      "sampling_rate": 0.0,
+      "num_trials": 0,
+      "num_spikes": 0,
+      "description": ""
+    }
+  ]
+}

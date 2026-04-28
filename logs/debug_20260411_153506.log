@@ -1,0 +1,99 @@
+[15:35:06.332] [INFO] ============================================================
+[15:35:06.332] [INFO] NeuroPrime 调试日志
+[15:35:06.332] [INFO] 启动时间: 2026-04-11 15:35:06
+[15:35:06.332] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[15:35:06.332] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_153506.log
+[15:35:06.335] [INFO] ============================================================
+[15:35:18.507] [INFO] add_data_item 被调用
+[15:35:18.507] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:18.507] [INFO] add_data_item 被调用
+[15:35:18.507] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:18.507] [INFO] add_data_item 被调用
+[15:35:18.507] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:18.507] [INFO] add_data_item 被调用
+[15:35:18.511] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:22.429] [INFO] add_data_item 被调用
+[15:35:22.429] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:22.429] [INFO] add_data_item 被调用
+[15:35:22.429] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:22.429] [INFO] add_data_item 被调用
+[15:35:22.429] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:22.429] [INFO] add_data_item 被调用
+[15:35:22.429] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:35:56.696] [INFO] _get_selected_data_items 被调用
+[15:35:56.696] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:35:56.696] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:35:56.696] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:35:56.696] [INFO] 返回 2 个有效数据项
+[15:36:09.007] [INFO] ============================================================
+[15:36:09.007] [INFO] _on_run_clicked 被调用
+[15:36:09.007] [INFO] _get_selected_data_items 被调用
+[15:36:09.007] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:36:09.007] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:36:09.007] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:36:09.007] [INFO] 返回 2 个有效数据项
+[15:36:09.007] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:36:09.007] [DEBUG] selected_data_len = 2 (type: int)
+[15:36:09.007] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:36:09.007] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:09.007] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:36:09.007] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:09.010] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx'] (type: list)
+[15:36:09.010] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:09.010] [DEBUG] current_algorithm = LFPSpectrogram (type: str)
+[15:36:09.010] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 50.0, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 50.0}, 'Fix_Grating_006_LFP': {'original_range': (0.0, 84.082), 'start_time': 0.0, 'duration': 50.0}}}
+[15:36:09.010] [INFO] 发送请求: algorithm=LFPSpectrogram, data_items数量=2
+[15:36:09.010] [INFO] ============================================================
+[15:36:09.010] [INFO] _on_run_analysis 被调用
+[15:36:09.010] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:36:09.010] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:09.010] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:36:09.010] [DEBUG] data_items_len = 2 (type: int)
+[15:36:09.010] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:36:09.010] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:36:09.010] [INFO] data_items[0] type: <class 'dict'>
+[15:36:09.010] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:09.010] [INFO] ============================================================
+[15:36:09.010] [INFO] _run_analysis_async 被调用
+[15:36:09.010] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:09.010] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:36:09.010] [DEBUG] data_items_len = 2 (type: int)
+[15:36:09.010] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx', 'time_alignment'] (type: list)
+[15:36:09.010] [INFO] data_items[0] type: <class 'dict'>
+[15:36:09.010] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:18.688] [INFO] ============================================================
+[15:36:18.688] [INFO] _on_run_clicked 被调用
+[15:36:18.688] [INFO] _get_selected_data_items 被调用
+[15:36:18.688] [DEBUG] selected_data_items_len = 2 (type: int)
+[15:36:18.688] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[15:36:18.688] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[15:36:18.688] [INFO] 返回 2 个有效数据项
+[15:36:18.688] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[15:36:18.688] [DEBUG] selected_data_len = 2 (type: int)
+[15:36:18.688] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[15:36:18.688] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:18.688] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[15:36:18.688] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:18.688] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx'] (type: list)
+[15:36:18.688] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:18.688] [DEBUG] current_algorithm = LFPSpectrogram (type: str)
+[15:36:18.688] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 50.0, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_LFP': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 50.0}, 'Fix_Grating_006_LFP': {'original_range': (0.0, 84.082), 'start_time': 0.0, 'duration': 50.0}}}
+[15:36:18.688] [INFO] 发送请求: algorithm=LFPSpectrogram, data_items数量=2
+[15:36:18.688] [INFO] ============================================================
+[15:36:18.688] [INFO] _on_run_analysis 被调用
+[15:36:18.688] [DEBUG] params_type = <class 'dict'> (type: type)
+[15:36:18.688] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:18.688] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:36:18.688] [DEBUG] data_items_len = 2 (type: int)
+[15:36:18.688] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[15:36:18.688] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[15:36:18.688] [INFO] data_items[0] type: <class 'dict'>
+[15:36:18.688] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[15:36:18.688] [INFO] ============================================================
+[15:36:18.688] [INFO] _run_analysis_async 被调用
+[15:36:18.690] [DEBUG] algorithm_name = LFPSpectrogram (type: str)
+[15:36:18.690] [DEBUG] data_items_type = <class 'list'> (type: type)
+[15:36:18.690] [DEBUG] data_items_len = 2 (type: int)
+[15:36:18.690] [DEBUG] parameters_keys = ['window_type', 'nperseg', 'noverlap', 'nfft', 'freq_low', 'freq_high', 'channel_idx', 'time_alignment'] (type: list)
+[15:36:18.690] [INFO] data_items[0] type: <class 'dict'>
+[15:36:18.690] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

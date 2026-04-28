@@ -1,0 +1,115 @@
+[18:49:32.082] [INFO] ============================================================
+[18:49:32.082] [INFO] NeuroPrime 调试日志
+[18:49:32.082] [INFO] 启动时间: 2026-04-15 18:49:32
+[18:49:32.082] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[18:49:32.082] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260415_184932.log
+[18:49:32.082] [INFO] ============================================================
+[18:49:33.318] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[18:49:33.318] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[18:49:33.318] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[18:49:33.318] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[18:49:33.318] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[18:49:33.319] [INFO] [Scheduler] Found 11 Python files: ['aaaa.py', 'customalgorithm.py', 'customalgorithmnew.py', 'customalgorithmtest.py', 'new.py', 'newnew.py', 'newnewnew.py', 'newnewnewnewnewn.py', 'testscriptalgorithm.py', 'view_raw_lfp_data.py', '__init__.py']
+[18:49:33.319] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\aaaa.py
+[18:49:33.677] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: aaaa
+[18:49:33.678] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\aaaa.py...
+[18:49:33.678] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.678] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[18:49:33.678] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[18:49:33.678] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py...
+[18:49:33.678] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.678] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[18:49:33.678] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[18:49:33.678] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py...
+[18:49:33.678] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.678] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmtest.py
+[18:49:33.679] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmTest
+[18:49:33.679] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmtest.py...
+[18:49:33.679] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.679] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\new.py
+[18:49:33.679] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: New
+[18:49:33.679] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\new.py...
+[18:49:33.679] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.679] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnew.py
+[18:49:33.680] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnew
+[18:49:33.680] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnew.py...
+[18:49:33.680] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.680] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnew.py
+[18:49:33.680] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnewnew
+[18:49:33.681] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnew.py...
+[18:49:33.681] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.681] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnewnewnewn.py
+[18:49:33.681] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnewnewnewnewn
+[18:49:33.681] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnewnewnewn.py...
+[18:49:33.681] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.681] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[18:49:33.681] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[18:49:33.681] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py...
+[18:49:33.682] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:33.682] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[18:49:33.683] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[18:49:33.683] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[18:49:33.683] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[18:49:44.991] [INFO] ============================================================
+[18:49:44.991] [INFO] _populate_custom_algorithms started
+[18:49:44.991] [INFO] Attempting to reload custom algorithms...
+[18:49:44.991] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[18:49:44.991] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[18:49:44.991] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[18:49:44.991] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[18:49:44.991] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[18:49:44.993] [INFO] [Scheduler] Found 11 Python files: ['aaaa.py', 'customalgorithm.py', 'customalgorithmnew.py', 'customalgorithmtest.py', 'new.py', 'newnew.py', 'newnewnew.py', 'newnewnewnewnewn.py', 'testscriptalgorithm.py', 'view_raw_lfp_data.py', '__init__.py']
+[18:49:44.993] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\aaaa.py
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: aaaa
+[18:49:44.993] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\aaaa.py...
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.993] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithm
+[18:49:44.993] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py...
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.993] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmNew
+[18:49:44.993] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py...
+[18:49:44.993] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.993] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmtest.py
+[18:49:44.994] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: CustomAlgorithmTest
+[18:49:44.994] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmtest.py...
+[18:49:44.994] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.994] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\new.py
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: New
+[18:49:44.995] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\new.py...
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnew.py
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnew
+[18:49:44.995] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnew.py...
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnew.py
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnewnew
+[18:49:44.995] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnew.py...
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnewnewnewn.py
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: newnewnewnewnewn
+[18:49:44.995] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnewnewnewn.py...
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: TestScriptAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py...
+[18:49:44.995] [INFO] [Scheduler] Loaded custom algorithm: CustomAlgorithm
+[18:49:44.995] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[18:49:44.996] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[18:49:44.996] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[18:49:44.996] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[18:49:44.996] [INFO] Custom algorithms reload completed
+[18:49:44.996] [INFO] Total algorithms available: 18
+[18:49:44.996] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'ROCAnalysis:Behavior', 'LDADecoder:Decoding', 'aaaa:自定义算法', 'CustomAlgorithm:Custom', 'CustomAlgorithmNew:Custom', 'CustomAlgorithmTest:自定义算法', 'New:自定义算法', 'newnew:自定义算法', 'newnewnew:自定义算法', 'newnewnewnewnewn:自定义算法', 'ViewRawLFPData:自定义算法']
+[18:49:44.996] [INFO] Added custom algorithm: aaaa (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: CustomAlgorithm (category: Custom)
+[18:49:44.996] [INFO] Added custom algorithm: CustomAlgorithmNew (category: Custom)
+[18:49:44.996] [INFO] Added custom algorithm: CustomAlgorithmTest (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: New (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: newnew (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: newnewnew (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: newnewnewnewnewn (category: 自定义算法)
+[18:49:44.996] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[18:49:44.996] [INFO] Total custom algorithms added: 9
+[18:49:44.996] [INFO] ============================================================

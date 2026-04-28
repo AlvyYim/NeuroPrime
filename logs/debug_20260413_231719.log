@@ -1,0 +1,198 @@
+[23:17:19.768] [INFO] ============================================================
+[23:17:19.768] [INFO] NeuroPrime 调试日志
+[23:17:19.768] [INFO] 启动时间: 2026-04-13 23:17:19
+[23:17:19.768] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[23:17:19.768] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260413_231719.log
+[23:17:19.768] [INFO] ============================================================
+[23:17:20.785] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[23:17:20.785] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:17:20.785] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[23:17:20.785] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[23:17:20.785] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:17:20.785] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[23:17:20.785] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[23:17:20.792] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[23:17:20.792] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[23:17:20.792] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[23:17:36.414] [INFO] add_data_item 被调用
+[23:17:36.414] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:37.581] [INFO] add_data_item 被调用
+[23:17:37.581] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:43.330] [INFO] ============================================================
+[23:17:43.330] [INFO] _on_run_clicked 被调用
+[23:17:43.330] [INFO] _get_selected_data_items 被调用
+[23:17:43.330] [DEBUG] selected_data_items_len = 2 (type: int)
+[23:17:43.330] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:17:43.330] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:17:43.330] [INFO] 返回 2 个有效数据项
+[23:17:43.330] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:17:43.330] [DEBUG] selected_data_len = 2 (type: int)
+[23:17:43.330] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:17:43.330] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:43.330] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:17:43.330] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:43.330] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:17:43.330] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:43.330] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[23:17:43.330] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=2
+[23:17:43.330] [INFO] ============================================================
+[23:17:43.330] [INFO] _on_run_analysis 被调用
+[23:17:43.330] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:17:43.330] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:43.330] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:43.330] [DEBUG] data_items_len = 2 (type: int)
+[23:17:43.330] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:17:43.330] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[23:17:43.330] [INFO] data_items[0] type: <class 'dict'>
+[23:17:43.330] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:43.330] [INFO] ============================================================
+[23:17:43.330] [INFO] _run_analysis_async 被调用
+[23:17:43.330] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:43.330] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:43.330] [DEBUG] data_items_len = 2 (type: int)
+[23:17:43.330] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:17:43.330] [INFO] data_items[0] type: <class 'dict'>
+[23:17:43.330] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:50.880] [INFO] add_data_item 被调用
+[23:17:50.880] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:52.677] [INFO] add_data_item 被调用
+[23:17:52.677] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] ============================================================
+[23:17:54.227] [INFO] _on_run_clicked 被调用
+[23:17:54.227] [INFO] _get_selected_data_items 被调用
+[23:17:54.227] [DEBUG] selected_data_items_len = 4 (type: int)
+[23:17:54.227] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:17:54.227] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:17:54.227] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[23:17:54.227] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] 返回 4 个有效数据项
+[23:17:54.227] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:17:54.227] [DEBUG] selected_data_len = 4 (type: int)
+[23:17:54.227] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:54.227] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:54.227] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:54.227] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[23:17:54.227] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:54.227] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:17:54.227] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:54.227] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[23:17:54.227] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=4
+[23:17:54.227] [INFO] ============================================================
+[23:17:54.227] [INFO] _on_run_analysis 被调用
+[23:17:54.227] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:17:54.227] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:54.227] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:54.227] [DEBUG] data_items_len = 4 (type: int)
+[23:17:54.227] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:17:54.227] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[23:17:54.227] [INFO] data_items[0] type: <class 'dict'>
+[23:17:54.227] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:17:54.227] [INFO] ============================================================
+[23:17:54.227] [INFO] _run_analysis_async 被调用
+[23:17:54.227] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:17:54.227] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:17:54.227] [DEBUG] data_items_len = 4 (type: int)
+[23:17:54.227] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:17:54.227] [INFO] data_items[0] type: <class 'dict'>
+[23:17:54.227] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:09.757] [INFO] add_data_item 被调用
+[23:18:09.757] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:18:11.350] [INFO] add_data_item 被调用
+[23:18:11.350] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:18:12.621] [INFO] add_data_item 被调用
+[23:18:12.621] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:18:14.077] [INFO] add_data_item 被调用
+[23:18:14.077] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] ============================================================
+[23:18:16.592] [INFO] _on_run_clicked 被调用
+[23:18:16.592] [INFO] _get_selected_data_items 被调用
+[23:18:16.592] [DEBUG] selected_data_items_len = 4 (type: int)
+[23:18:16.592] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:18:16.592] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:18:16.592] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[23:18:16.592] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] 返回 4 个有效数据项
+[23:18:16.592] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:18:16.592] [DEBUG] selected_data_len = 4 (type: int)
+[23:18:16.592] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:16.592] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:16.592] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:16.592] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[23:18:16.592] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:16.592] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:18:16.592] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:16.592] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[23:18:16.592] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=4
+[23:18:16.592] [INFO] ============================================================
+[23:18:16.592] [INFO] _on_run_analysis 被调用
+[23:18:16.592] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:18:16.592] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:16.592] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:18:16.592] [DEBUG] data_items_len = 4 (type: int)
+[23:18:16.592] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:18:16.592] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[23:18:16.592] [INFO] data_items[0] type: <class 'dict'>
+[23:18:16.592] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:16.592] [INFO] ============================================================
+[23:18:16.592] [INFO] _run_analysis_async 被调用
+[23:18:16.592] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:16.592] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:18:16.592] [DEBUG] data_items_len = 4 (type: int)
+[23:18:16.592] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:18:16.592] [INFO] data_items[0] type: <class 'dict'>
+[23:18:16.592] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:25.223] [INFO] _get_selected_data_items 被调用
+[23:18:25.223] [DEBUG] selected_data_items_len = 4 (type: int)
+[23:18:25.223] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:18:25.223] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:18:25.227] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[23:18:25.227] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[23:18:25.227] [INFO] 返回 4 个有效数据项
+[23:18:31.832] [INFO] ============================================================
+[23:18:31.832] [INFO] _on_run_clicked 被调用
+[23:18:31.832] [INFO] _get_selected_data_items 被调用
+[23:18:31.832] [DEBUG] selected_data_items_len = 4 (type: int)
+[23:18:31.832] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:18:31.832] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:18:31.832] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[23:18:31.832] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] 返回 4 个有效数据项
+[23:18:31.832] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:18:31.832] [DEBUG] selected_data_len = 4 (type: int)
+[23:18:31.832] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:31.832] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:31.832] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:31.832] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:31.832] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:18:31.832] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:31.832] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[23:18:31.832] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 84.082, 'sync_mode': 'global', 'data_configs': {'Fix_Grating_006_Spikes': {'original_range': (0.0, 84.082), 'start_time': 0.0, 'duration': 84.082}, 'Fix_Grating_006_Events': {'original_range': (0.0, 84.082), 'start_time': 0.0, 'duration': 84.082}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 84.082}, 'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 84.082}}}
+[23:18:31.832] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=4
+[23:18:31.832] [INFO] ============================================================
+[23:18:31.832] [INFO] _on_run_analysis 被调用
+[23:18:31.832] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:18:31.832] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:31.832] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:18:31.832] [DEBUG] data_items_len = 4 (type: int)
+[23:18:31.832] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:18:31.832] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[23:18:31.832] [INFO] data_items[0] type: <class 'dict'>
+[23:18:31.832] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:18:31.832] [INFO] ============================================================
+[23:18:31.832] [INFO] _run_analysis_async 被调用
+[23:18:31.832] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:18:31.832] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:18:31.832] [DEBUG] data_items_len = 4 (type: int)
+[23:18:31.832] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class', 'time_alignment'] (type: list)
+[23:18:31.832] [INFO] data_items[0] type: <class 'dict'>
+[23:18:31.832] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

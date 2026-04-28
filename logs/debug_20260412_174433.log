@@ -1,0 +1,403 @@
+[17:44:33.295] [INFO] ============================================================
+[17:44:33.295] [INFO] NeuroPrime 调试日志
+[17:44:33.295] [INFO] 启动时间: 2026-04-12 17:44:33
+[17:44:33.295] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[17:44:33.295] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_174433.log
+[17:44:33.295] [INFO] ============================================================
+[17:44:35.193] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:44:35.193] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:44:35.193] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:44:35.193] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:44:35.195] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:44:35.195] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[17:44:35.195] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:44:35.202] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:44:35.202] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:44:35.202] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:44:57.276] [INFO] add_data_item 被调用
+[17:44:57.276] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:44:58.720] [INFO] ============================================================
+[17:44:58.720] [INFO] _populate_custom_algorithms started
+[17:44:58.720] [INFO] Attempting to reload custom algorithms...
+[17:44:58.720] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:44:58.720] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:44:58.720] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:44:58.720] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:44:58.722] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:44:58.722] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[17:44:58.722] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:44:58.723] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:44:58.724] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:44:58.724] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:44:58.724] [INFO] Custom algorithms reload completed
+[17:44:58.724] [INFO] Total algorithms available: 9
+[17:44:58.724] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding', 'ViewRawLFPData:自定义算法']
+[17:44:58.724] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[17:44:58.724] [INFO] Total custom algorithms added: 1
+[17:44:58.724] [INFO] ============================================================
+[17:45:03.566] [INFO] ============================================================
+[17:45:03.569] [INFO] _on_run_clicked 被调用
+[17:45:03.569] [INFO] _get_selected_data_items 被调用
+[17:45:03.569] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:45:03.569] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:45:03.569] [INFO] 返回 1 个有效数据项
+[17:45:03.569] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:45:03.569] [DEBUG] selected_data_len = 1 (type: int)
+[17:45:03.569] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:45:03.569] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:03.569] [INFO] 自定义算法使用默认参数: {}
+[17:45:03.569] [DEBUG] parameters_keys = [] (type: list)
+[17:45:03.569] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:45:03.569] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:45:03.569] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:45:03.569] [INFO] ============================================================
+[17:45:03.569] [INFO] _on_run_analysis 被调用
+[17:45:03.569] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:45:03.569] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:45:03.569] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:03.569] [DEBUG] data_items_len = 1 (type: int)
+[17:45:03.569] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:45:03.569] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:45:03.569] [INFO] data_items[0] type: <class 'dict'>
+[17:45:03.569] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:03.569] [INFO] ============================================================
+[17:45:03.569] [INFO] _run_analysis_async 被调用
+[17:45:03.569] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:45:03.569] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:03.569] [DEBUG] data_items_len = 1 (type: int)
+[17:45:03.569] [DEBUG] parameters_keys = [] (type: list)
+[17:45:03.569] [INFO] data_items[0] type: <class 'dict'>
+[17:45:03.569] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:34.496] [INFO] ============================================================
+[17:45:34.498] [INFO] _on_run_clicked 被调用
+[17:45:34.498] [INFO] _get_selected_data_items 被调用
+[17:45:34.498] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:45:34.498] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:45:34.498] [INFO] 返回 1 个有效数据项
+[17:45:34.498] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:45:34.498] [DEBUG] selected_data_len = 1 (type: int)
+[17:45:34.498] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:45:34.498] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:34.498] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:45:34.498] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:34.498] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:45:34.498] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:45:34.498] [INFO] ============================================================
+[17:45:34.498] [INFO] _on_run_analysis 被调用
+[17:45:34.498] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:45:34.498] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:34.498] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:34.498] [DEBUG] data_items_len = 1 (type: int)
+[17:45:34.498] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:45:34.498] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:45:34.498] [INFO] data_items[0] type: <class 'dict'>
+[17:45:34.498] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:34.498] [INFO] ============================================================
+[17:45:34.498] [INFO] _run_analysis_async 被调用
+[17:45:34.498] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:34.498] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:34.498] [DEBUG] data_items_len = 1 (type: int)
+[17:45:34.498] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:45:34.498] [INFO] data_items[0] type: <class 'dict'>
+[17:45:34.498] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:51.339] [INFO] add_data_item 被调用
+[17:45:51.339] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:45:52.735] [INFO] add_data_item 被调用
+[17:45:52.735] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:45:54.388] [INFO] ============================================================
+[17:45:54.388] [INFO] _on_run_clicked 被调用
+[17:45:54.388] [INFO] _get_selected_data_items 被调用
+[17:45:54.388] [DEBUG] selected_data_items_len = 3 (type: int)
+[17:45:54.388] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:45:54.388] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[17:45:54.389] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[17:45:54.389] [INFO] 返回 3 个有效数据项
+[17:45:54.389] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:45:54.389] [DEBUG] selected_data_len = 3 (type: int)
+[17:45:54.389] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:45:54.389] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:54.389] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[17:45:54.389] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:54.389] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[17:45:54.389] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:54.389] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:45:54.389] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:54.389] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:45:54.389] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=3
+[17:45:54.389] [INFO] ============================================================
+[17:45:54.389] [INFO] _on_run_analysis 被调用
+[17:45:54.389] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:45:54.389] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:54.389] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:54.389] [DEBUG] data_items_len = 3 (type: int)
+[17:45:54.389] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:45:54.389] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:45:54.389] [INFO] data_items[0] type: <class 'dict'>
+[17:45:54.389] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:45:54.389] [INFO] ============================================================
+[17:45:54.389] [INFO] _run_analysis_async 被调用
+[17:45:54.389] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:45:54.389] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:45:54.389] [DEBUG] data_items_len = 3 (type: int)
+[17:45:54.389] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:45:54.389] [INFO] data_items[0] type: <class 'dict'>
+[17:45:54.389] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:03.791] [INFO] add_data_item 被调用
+[17:46:03.791] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:05.652] [INFO] ============================================================
+[17:46:05.652] [INFO] _on_run_clicked 被调用
+[17:46:05.652] [INFO] _get_selected_data_items 被调用
+[17:46:05.652] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:46:05.652] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:46:05.652] [INFO] 返回 1 个有效数据项
+[17:46:05.652] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:46:05.652] [DEBUG] selected_data_len = 1 (type: int)
+[17:46:05.652] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:46:05.652] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:05.652] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:05.652] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:05.652] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:46:05.652] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:46:05.652] [INFO] ============================================================
+[17:46:05.652] [INFO] _on_run_analysis 被调用
+[17:46:05.652] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:46:05.652] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:05.655] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:05.655] [DEBUG] data_items_len = 1 (type: int)
+[17:46:05.655] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:46:05.655] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:46:05.655] [INFO] data_items[0] type: <class 'dict'>
+[17:46:05.655] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:05.656] [INFO] ============================================================
+[17:46:05.656] [INFO] _run_analysis_async 被调用
+[17:46:05.656] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:05.656] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:05.656] [DEBUG] data_items_len = 1 (type: int)
+[17:46:05.656] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:05.656] [INFO] data_items[0] type: <class 'dict'>
+[17:46:05.656] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:11.687] [INFO] add_data_item 被调用
+[17:46:11.687] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:19.381] [INFO] add_data_item 被调用
+[17:46:19.385] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:21.099] [INFO] ============================================================
+[17:46:21.099] [INFO] _on_run_clicked 被调用
+[17:46:21.099] [INFO] _get_selected_data_items 被调用
+[17:46:21.099] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:46:21.099] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:46:21.099] [INFO] 返回 1 个有效数据项
+[17:46:21.099] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:46:21.099] [DEBUG] selected_data_len = 1 (type: int)
+[17:46:21.099] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:46:21.099] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:21.099] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:21.099] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:21.099] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:46:21.099] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:46:21.099] [INFO] ============================================================
+[17:46:21.099] [INFO] _on_run_analysis 被调用
+[17:46:21.099] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:46:21.099] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:21.099] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:21.099] [DEBUG] data_items_len = 1 (type: int)
+[17:46:21.099] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:46:21.099] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:46:21.099] [INFO] data_items[0] type: <class 'dict'>
+[17:46:21.099] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:21.099] [INFO] ============================================================
+[17:46:21.099] [INFO] _run_analysis_async 被调用
+[17:46:21.099] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:21.099] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:21.099] [DEBUG] data_items_len = 1 (type: int)
+[17:46:21.099] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:21.099] [INFO] data_items[0] type: <class 'dict'>
+[17:46:21.099] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:30.458] [INFO] add_data_item 被调用
+[17:46:30.458] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:32.803] [INFO] ============================================================
+[17:46:32.803] [INFO] _on_run_clicked 被调用
+[17:46:32.803] [INFO] _get_selected_data_items 被调用
+[17:46:32.803] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:46:32.803] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:46:32.803] [INFO] 返回 1 个有效数据项
+[17:46:32.803] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:46:32.803] [DEBUG] selected_data_len = 1 (type: int)
+[17:46:32.803] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:46:32.803] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:32.803] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:32.803] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:32.803] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:46:32.803] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:46:32.803] [INFO] ============================================================
+[17:46:32.805] [INFO] _on_run_analysis 被调用
+[17:46:32.805] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:46:32.805] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:32.805] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:32.805] [DEBUG] data_items_len = 1 (type: int)
+[17:46:32.805] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:46:32.805] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:46:32.805] [INFO] data_items[0] type: <class 'dict'>
+[17:46:32.805] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:32.805] [INFO] ============================================================
+[17:46:32.805] [INFO] _run_analysis_async 被调用
+[17:46:32.805] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:32.805] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:32.805] [DEBUG] data_items_len = 1 (type: int)
+[17:46:32.805] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:32.805] [INFO] data_items[0] type: <class 'dict'>
+[17:46:32.805] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:37.463] [INFO] add_data_item 被调用
+[17:46:37.465] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:41.220] [INFO] add_data_item 被调用
+[17:46:41.220] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:46:42.725] [INFO] ============================================================
+[17:46:42.725] [INFO] _on_run_clicked 被调用
+[17:46:42.725] [INFO] _get_selected_data_items 被调用
+[17:46:42.725] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:46:42.725] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:46:42.725] [INFO] 返回 1 个有效数据项
+[17:46:42.725] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:46:42.725] [DEBUG] selected_data_len = 1 (type: int)
+[17:46:42.725] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:46:42.725] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:42.725] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:42.725] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:42.725] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:46:42.725] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:46:42.725] [INFO] ============================================================
+[17:46:42.725] [INFO] _on_run_analysis 被调用
+[17:46:42.725] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:46:42.725] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:42.725] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:42.725] [DEBUG] data_items_len = 1 (type: int)
+[17:46:42.725] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:46:42.725] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:46:42.725] [INFO] data_items[0] type: <class 'dict'>
+[17:46:42.725] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:46:42.725] [INFO] ============================================================
+[17:46:42.725] [INFO] _run_analysis_async 被调用
+[17:46:42.725] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:46:42.725] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:46:42.725] [DEBUG] data_items_len = 1 (type: int)
+[17:46:42.725] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:46:42.725] [INFO] data_items[0] type: <class 'dict'>
+[17:46:42.725] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:30.500] [INFO] ============================================================
+[17:51:30.500] [INFO] _on_run_clicked 被调用
+[17:51:30.500] [INFO] _get_selected_data_items 被调用
+[17:51:30.500] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:51:30.500] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:51:30.500] [INFO] 返回 1 个有效数据项
+[17:51:30.500] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:51:30.500] [DEBUG] selected_data_len = 1 (type: int)
+[17:51:30.500] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:51:30.500] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:30.500] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:51:30.500] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:51:30.500] [DEBUG] current_algorithm = SpikeDetectionThreshold (type: str)
+[17:51:30.500] [INFO] 发送请求: algorithm=SpikeDetectionThreshold, data_items数量=1
+[17:51:30.500] [INFO] ============================================================
+[17:51:30.500] [INFO] _on_run_analysis 被调用
+[17:51:30.500] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:51:30.500] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:51:30.500] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:30.500] [DEBUG] data_items_len = 1 (type: int)
+[17:51:30.500] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:51:30.500] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:51:30.500] [INFO] data_items[0] type: <class 'dict'>
+[17:51:30.500] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:30.500] [INFO] ============================================================
+[17:51:30.500] [INFO] _run_analysis_async 被调用
+[17:51:30.500] [DEBUG] algorithm_name = SpikeDetectionThreshold (type: str)
+[17:51:30.500] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:30.500] [DEBUG] data_items_len = 1 (type: int)
+[17:51:30.500] [DEBUG] parameters_keys = ['threshold_factor', 'threshold_type', 'window_ms', 'refractory_ms', 'filter_low', 'filter_high', 'use_filter'] (type: list)
+[17:51:30.500] [INFO] data_items[0] type: <class 'dict'>
+[17:51:30.500] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:36.807] [INFO] ============================================================
+[17:51:36.807] [INFO] _populate_custom_algorithms started
+[17:51:36.807] [INFO] Attempting to reload custom algorithms...
+[17:51:36.807] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:51:36.807] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:51:36.807] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:51:36.807] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:51:36.807] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:51:36.807] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[17:51:36.807] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:51:36.807] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:51:36.807] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:51:36.807] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:51:36.807] [INFO] Custom algorithms reload completed
+[17:51:36.807] [INFO] Total algorithms available: 9
+[17:51:36.807] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding', 'ViewRawLFPData:自定义算法']
+[17:51:36.812] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[17:51:36.812] [INFO] Total custom algorithms added: 1
+[17:51:36.812] [INFO] ============================================================
+[17:51:43.033] [INFO] ============================================================
+[17:51:43.033] [INFO] _on_run_clicked 被调用
+[17:51:43.033] [INFO] _get_selected_data_items 被调用
+[17:51:43.033] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:51:43.033] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:51:43.033] [INFO] 返回 1 个有效数据项
+[17:51:43.033] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:51:43.033] [DEBUG] selected_data_len = 1 (type: int)
+[17:51:43.033] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:51:43.033] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:43.033] [INFO] 自定义算法使用默认参数: {}
+[17:51:43.033] [DEBUG] parameters_keys = [] (type: list)
+[17:51:43.033] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:43.033] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:51:43.033] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:51:43.033] [INFO] ============================================================
+[17:51:43.033] [INFO] _on_run_analysis 被调用
+[17:51:43.033] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:51:43.033] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:43.033] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:43.033] [DEBUG] data_items_len = 1 (type: int)
+[17:51:43.033] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:51:43.033] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:51:43.033] [INFO] data_items[0] type: <class 'dict'>
+[17:51:43.033] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:43.033] [INFO] ============================================================
+[17:51:43.033] [INFO] _run_analysis_async 被调用
+[17:51:43.033] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:43.033] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:43.033] [DEBUG] data_items_len = 1 (type: int)
+[17:51:43.033] [DEBUG] parameters_keys = [] (type: list)
+[17:51:43.033] [INFO] data_items[0] type: <class 'dict'>
+[17:51:43.033] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:47.730] [INFO] add_data_item 被调用
+[17:51:47.730] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:51:49.395] [INFO] ============================================================
+[17:51:49.395] [INFO] _on_run_clicked 被调用
+[17:51:49.395] [INFO] _get_selected_data_items 被调用
+[17:51:49.395] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:51:49.395] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:51:49.395] [INFO] 返回 1 个有效数据项
+[17:51:49.395] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:51:49.395] [DEBUG] selected_data_len = 1 (type: int)
+[17:51:49.395] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:51:49.395] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:49.395] [INFO] 自定义算法使用默认参数: {}
+[17:51:49.395] [DEBUG] parameters_keys = [] (type: list)
+[17:51:49.395] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:49.395] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:51:49.395] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:51:49.395] [INFO] ============================================================
+[17:51:49.395] [INFO] _on_run_analysis 被调用
+[17:51:49.395] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:51:49.395] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:49.395] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:49.395] [DEBUG] data_items_len = 1 (type: int)
+[17:51:49.395] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:51:49.395] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:51:49.395] [INFO] data_items[0] type: <class 'dict'>
+[17:51:49.395] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:51:49.395] [INFO] ============================================================
+[17:51:49.395] [INFO] _run_analysis_async 被调用
+[17:51:49.395] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:51:49.395] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:51:49.395] [DEBUG] data_items_len = 1 (type: int)
+[17:51:49.395] [DEBUG] parameters_keys = [] (type: list)
+[17:51:49.395] [INFO] data_items[0] type: <class 'dict'>
+[17:51:49.395] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

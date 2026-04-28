@@ -1,0 +1,48 @@
+# Virtual environments
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data files
+test2/
+data/
+*.h5
+*.nev
+*.ncs
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# IDE configuration
+.vscode/
+.idea/
+*.sublime-*
+
+# Operating system
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Compiled files
+*.pyc
+*.pyo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Project specific
+psth_data.csv
+*.png
+*.jpg
+*.zip
+GitInstaller.exe
+mingit.zip

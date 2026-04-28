@@ -1,0 +1,191 @@
+[22:26:13.911] [INFO] ============================================================
+[22:26:13.911] [INFO] NeuroPrime 调试日志
+[22:26:13.911] [INFO] 启动时间: 2026-04-13 22:26:13
+[22:26:13.911] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[22:26:13.911] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260413_222613.log
+[22:26:13.911] [INFO] ============================================================
+[22:26:14.944] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[22:26:14.944] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:26:14.944] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[22:26:14.944] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[22:26:14.944] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:26:14.944] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[22:26:14.944] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[22:26:14.944] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[22:26:14.944] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[22:26:14.944] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[22:26:37.636] [INFO] add_data_item 被调用
+[22:26:37.636] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:26:38.634] [INFO] add_data_item 被调用
+[22:26:38.634] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:26:41.702] [INFO] add_data_item 被调用
+[22:26:41.702] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:26:43.393] [INFO] add_data_item 被调用
+[22:26:43.393] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:26:52.582] [INFO] _get_selected_data_items 被调用
+[22:26:52.582] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:26:52.582] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:26:52.582] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:26:52.582] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:26:52.582] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:26:52.582] [INFO] 返回 4 个有效数据项
+[22:27:00.588] [INFO] ============================================================
+[22:27:00.588] [INFO] _on_run_clicked 被调用
+[22:27:00.588] [INFO] _get_selected_data_items 被调用
+[22:27:00.588] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:27:00.588] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:27:00.588] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:27:00.588] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:27:00.588] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] 返回 4 个有效数据项
+[22:27:00.588] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:27:00.588] [DEBUG] selected_data_len = 4 (type: int)
+[22:27:00.588] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:27:00.588] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:27:00.588] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:27:00.588] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:27:00.588] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:27:00.588] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:27:00.588] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:27:00.588] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:27:00.588] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=4
+[22:27:00.588] [INFO] ============================================================
+[22:27:00.588] [INFO] _on_run_analysis 被调用
+[22:27:00.588] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:27:00.588] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:27:00.588] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:27:00.588] [DEBUG] data_items_len = 4 (type: int)
+[22:27:00.588] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:27:00.588] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:27:00.588] [INFO] data_items[0] type: <class 'dict'>
+[22:27:00.588] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:27:00.588] [INFO] ============================================================
+[22:27:00.588] [INFO] _run_analysis_async 被调用
+[22:27:00.588] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:27:00.588] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:27:00.588] [DEBUG] data_items_len = 4 (type: int)
+[22:27:00.588] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline', 'time_alignment'] (type: list)
+[22:27:00.588] [INFO] data_items[0] type: <class 'dict'>
+[22:27:00.588] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [INFO] ============================================================
+[22:28:13.910] [INFO] _on_run_clicked 被调用
+[22:28:13.910] [INFO] _get_selected_data_items 被调用
+[22:28:13.910] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:28:13.910] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:28:13.910] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:28:13.910] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:28:13.910] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] 返回 4 个有效数据项
+[22:28:13.910] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:28:13.910] [DEBUG] selected_data_len = 4 (type: int)
+[22:28:13.910] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'metric', 'stim_condition_key'] (type: list)
+[22:28:13.910] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[22:28:13.910] [DEBUG] current_algorithm = TuningCurveAnalysis (type: str)
+[22:28:13.910] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:28:13.910] [INFO] 发送请求: algorithm=TuningCurveAnalysis, data_items数量=4
+[22:28:13.910] [INFO] ============================================================
+[22:28:13.910] [INFO] _on_run_analysis 被调用
+[22:28:13.910] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:28:13.910] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[22:28:13.910] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:28:13.910] [DEBUG] data_items_len = 4 (type: int)
+[22:28:13.910] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:28:13.910] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:28:13.910] [INFO] data_items[0] type: <class 'dict'>
+[22:28:13.910] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:13.910] [INFO] ============================================================
+[22:28:13.910] [INFO] _run_analysis_async 被调用
+[22:28:13.910] [DEBUG] algorithm_name = TuningCurveAnalysis (type: str)
+[22:28:13.910] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:28:13.910] [DEBUG] data_items_len = 4 (type: int)
+[22:28:13.910] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'metric', 'stim_condition_key', 'time_alignment'] (type: list)
+[22:28:13.910] [INFO] data_items[0] type: <class 'dict'>
+[22:28:13.910] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:34.950] [INFO] add_data_item 被调用
+[22:28:34.950] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:28:36.268] [INFO] add_data_item 被调用
+[22:28:36.268] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:28:40.196] [INFO] ============================================================
+[22:28:40.196] [INFO] _on_run_clicked 被调用
+[22:28:40.196] [INFO] _get_selected_data_items 被调用
+[22:28:40.196] [DEBUG] selected_data_items_len = 2 (type: int)
+[22:28:40.196] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:28:40.196] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:28:40.196] [INFO] 返回 2 个有效数据项
+[22:28:40.196] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:28:40.196] [DEBUG] selected_data_len = 2 (type: int)
+[22:28:40.196] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:28:40.196] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:40.196] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:28:40.196] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:40.196] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type'] (type: list)
+[22:28:40.196] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[22:28:40.196] [DEBUG] current_algorithm = PSTHAnalysis (type: str)
+[22:28:40.196] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:28:40.196] [INFO] 发送请求: algorithm=PSTHAnalysis, data_items数量=2
+[22:28:40.196] [INFO] ============================================================
+[22:28:40.196] [INFO] _on_run_analysis 被调用
+[22:28:40.196] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:28:40.196] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[22:28:40.196] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:28:40.196] [DEBUG] data_items_len = 2 (type: int)
+[22:28:40.196] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:28:40.196] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:28:40.196] [INFO] data_items[0] type: <class 'dict'>
+[22:28:40.196] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:28:40.196] [INFO] ============================================================
+[22:28:40.196] [INFO] _run_analysis_async 被调用
+[22:28:40.196] [DEBUG] algorithm_name = PSTHAnalysis (type: str)
+[22:28:40.196] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:28:40.196] [DEBUG] data_items_len = 2 (type: int)
+[22:28:40.196] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'bin_size', 'smoothing_sigma', 'event_type', 'time_alignment'] (type: list)
+[22:28:40.196] [INFO] data_items[0] type: <class 'dict'>
+[22:28:40.196] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:30:04.507] [INFO] ============================================================
+[22:30:04.507] [INFO] _on_run_clicked 被调用
+[22:30:04.507] [INFO] _get_selected_data_items 被调用
+[22:30:04.507] [DEBUG] selected_data_items_len = 2 (type: int)
+[22:30:04.507] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:30:04.507] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:30:04.507] [INFO] 返回 2 个有效数据项
+[22:30:04.507] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:30:04.507] [DEBUG] selected_data_len = 2 (type: int)
+[22:30:04.507] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:30:04.507] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:30:04.507] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:30:04.507] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:30:04.507] [DEBUG] parameters_keys = [] (type: list)
+[22:30:04.507] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[22:30:04.507] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[22:30:04.507] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:30:04.507] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=2
+[22:30:04.507] [INFO] ============================================================
+[22:30:04.507] [INFO] _on_run_analysis 被调用
+[22:30:04.507] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:30:04.507] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[22:30:04.507] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:30:04.507] [DEBUG] data_items_len = 2 (type: int)
+[22:30:04.507] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:30:04.507] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:30:04.507] [INFO] data_items[0] type: <class 'dict'>
+[22:30:04.507] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:30:04.507] [INFO] ============================================================
+[22:30:04.507] [INFO] _run_analysis_async 被调用
+[22:30:04.507] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[22:30:04.507] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:30:04.507] [DEBUG] data_items_len = 2 (type: int)
+[22:30:04.507] [DEBUG] parameters_keys = ['time_alignment'] (type: list)
+[22:30:04.507] [INFO] data_items[0] type: <class 'dict'>
+[22:30:04.507] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

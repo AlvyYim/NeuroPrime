@@ -1,0 +1,18 @@
+[16:00:23.624] [INFO] ============================================================
+[16:00:23.624] [INFO] NeuroPrime 调试日志
+[16:00:23.624] [INFO] 启动时间: 2026-04-11 16:00:23
+[16:00:23.624] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[16:00:23.624] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_160023.log
+[16:00:23.624] [INFO] ============================================================
+[16:00:37.899] [INFO] _populate_custom_algorithms called, total algorithms: 8
+[16:00:37.899] [INFO] Checking algorithm: SpikeDetectionThreshold, category: Spike
+[16:00:37.927] [INFO] Checking algorithm: SpikeSortingPCA, category: Spike
+[16:00:37.927] [INFO] Checking algorithm: LFPPowerSpectrum, category: LFP
+[16:00:37.927] [INFO] Checking algorithm: LFPSpectrogram, category: LFP
+[16:00:37.927] [INFO] Checking algorithm: PSTHAnalysis, category: Behavior
+[16:00:37.927] [INFO] Checking algorithm: RasterPlotAnalysis, category: Behavior
+[16:00:37.927] [INFO] Checking algorithm: TuningCurveAnalysis, category: Behavior
+[16:00:37.927] [INFO] Checking algorithm: LDADecoder, category: Decoding
+[16:00:37.927] [INFO] Total custom algorithms added: 0
+[16:00:46.143] [INFO] add_data_item 被调用
+[16:00:46.143] [DEBUG] data_item_type = <class 'dict'> (type: type)

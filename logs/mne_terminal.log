@@ -1,0 +1,777 @@
+2026-04-14 21:46:55,779 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 21:47:19,295 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 21:47:43,694 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 21:47:43,736 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 21:47:43,741 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 21:48:42,422 - src.ui.mne_terminal - INFO - Executing script
+2026-04-14 21:48:42,423 - src.ui.mne_terminal - INFO - Executing script code
+2026-04-14 21:48:42,461 - src.ui.mne_terminal - ERROR - Error executing script: unterminated string literal (detected at line 199) (<string>, line 199)
+2026-04-14 21:48:42,463 - src.ui.mne_terminal - INFO - Script execution completed
+2026-04-14 21:52:53,092 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 21:52:53,130 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 21:52:53,135 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:18:36,766 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:18:36,805 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:18:36,812 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:19:41,654 - src.ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 22:19:41,656 - src.ui.mne_terminal - INFO - Validating script code
+2026-04-14 22:19:41,657 - src.ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 199) (<string>, line 199)
+2026-04-14 22:19:41,659 - src.ui.mne_terminal - INFO - Script validation completed
+2026-04-14 22:26:32,498 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:26:32,502 - ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:26:32,506 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:28:10,919 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:28:30,885 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:28:31,173 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:28:31,184 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:30:04,017 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:30:04,021 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:30:04,024 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:30:25,052 - src.ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-14 22:30:25,063 - src.ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-14 22:30:56,118 - src.ui.mne_terminal - INFO - Template changed to: Advanced Spike Analysis
+2026-04-14 22:30:56,127 - src.ui.mne_terminal - INFO - Template Advanced Spike Analysis loaded successfully
+2026-04-14 22:30:59,235 - src.ui.mne_terminal - INFO - Template changed to: Custom Algorithm
+2026-04-14 22:30:59,245 - src.ui.mne_terminal - INFO - Template Custom Algorithm loaded successfully
+2026-04-14 22:31:21,560 - src.ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 22:31:21,562 - src.ui.mne_terminal - INFO - Validating script code
+2026-04-14 22:31:21,563 - src.ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 199) (<string>, line 199)
+2026-04-14 22:31:21,568 - src.ui.mne_terminal - INFO - Script validation completed
+2026-04-14 22:41:02,618 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:41:02,622 - ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:41:02,625 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:41:05,164 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 22:41:05,165 - ui.mne_terminal - INFO - Validating script code
+2026-04-14 22:41:05,166 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 199) (<string>, line 199)
+2026-04-14 22:41:05,167 - ui.mne_terminal - INFO - Script validation completed
+2026-04-14 22:49:31,349 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:49:31,665 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:49:31,668 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:51:27,963 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:51:27,969 - ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:51:27,971 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:51:37,187 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 22:51:37,187 - ui.mne_terminal - INFO - Validating script code
+2026-04-14 22:51:37,188 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-14 22:51:37,191 - ui.mne_terminal - INFO - Script validation completed
+2026-04-14 22:51:52,466 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-14 22:51:52,469 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+2026-04-14 22:58:55,691 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 22:58:55,694 - ui.mne_terminal - INFO - Setting default template
+2026-04-14 22:58:55,700 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 22:59:39,788 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 22:59:39,788 - ui.mne_terminal - INFO - Validating script code
+2026-04-14 22:59:39,791 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-14 22:59:39,791 - ui.mne_terminal - INFO - Script validation completed
+2026-04-14 22:59:44,882 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-14 23:00:03,374 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+2026-04-14 23:02:08,715 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 23:02:08,885 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-14 23:02:08,889 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 23:04:54,322 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-14 23:04:54,327 - ui.mne_terminal - INFO - Setting default template
+2026-04-14 23:04:54,329 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-14 23:04:56,282 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-14 23:04:56,283 - ui.mne_terminal - INFO - Validating script code
+2026-04-14 23:04:56,283 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-14 23:04:56,284 - ui.mne_terminal - INFO - Script validation completed
+2026-04-14 23:04:59,582 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-14 23:05:19,102 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\testscriptalgorithm.py
+2026-04-14 23:05:30,956 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-14 23:05:32,878 - ui.mne_terminal - INFO - Algorithm integration cancelled
+2026-04-15 17:47:01,657 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 17:47:01,661 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 17:47:01,665 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 17:47:04,993 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 17:47:04,993 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 17:47:04,995 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 17:47:04,996 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 17:47:14,926 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 17:47:22,618 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmnew.py
+2026-04-15 17:50:55,662 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 17:50:55,770 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-15 17:50:55,774 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 17:54:07,613 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 17:54:07,618 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 17:54:07,620 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 17:58:35,437 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 17:58:35,444 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 17:58:35,447 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 17:58:38,889 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 17:58:38,892 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 17:58:38,892 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 17:58:38,894 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 17:58:40,522 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 17:58:44,792 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithmtest.py
+2026-04-15 18:13:20,512 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:13:20,701 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:13:20,705 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:17:54,211 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:17:54,216 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:17:54,219 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:18:55,947 - ui.mne_terminal - INFO - Opening script
+2026-04-15 18:18:58,058 - ui.mne_terminal - INFO - Open file dialog cancelled
+2026-04-15 18:18:59,497 - ui.mne_terminal - INFO - Saving script as
+2026-04-15 18:19:02,097 - ui.mne_terminal - INFO - Save as dialog cancelled
+2026-04-15 18:19:06,393 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:19:06,393 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:19:06,394 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:19:06,395 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:19:08,710 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:19:14,652 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\new.py
+2026-04-15 18:23:51,133 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:23:51,140 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:23:51,144 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:23:53,434 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:23:53,434 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:23:53,435 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:23:53,437 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:23:55,247 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:23:59,003 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\customalgorithm.py
+2026-04-15 18:24:03,697 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:24:10,022 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnew.py
+2026-04-15 18:28:25,250 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:28:25,254 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:28:25,258 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:28:27,125 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:28:27,126 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:28:27,127 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:28:27,128 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:28:28,065 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:28:34,826 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnew.py
+2026-04-15 18:30:12,967 - src.ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:30:13,160 - src.ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:30:13,166 - src.ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:31:00,635 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:31:00,639 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:31:00,643 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:31:03,212 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:31:03,213 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:31:03,215 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:31:03,217 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:31:04,526 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:31:08,498 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\aaaa.py
+2026-04-15 18:42:39,920 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:42:39,928 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:42:39,932 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:42:44,233 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:42:44,233 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:42:44,234 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:42:44,236 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:42:45,944 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:42:50,149 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\newnewnewnewnewn.py
+2026-04-15 18:52:22,233 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:52:22,237 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:52:22,241 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:57:36,792 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:57:36,798 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:57:36,801 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:57:40,217 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 18:57:40,218 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 18:57:40,219 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 18:57:40,221 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 18:57:41,337 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 18:57:43,285 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\bbbb.py
+2026-04-15 18:58:32,377 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 18:58:32,378 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 18:58:32,382 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 18:59:28,560 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-15 18:59:28,571 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-15 18:59:35,462 - ui.mne_terminal - INFO - Template changed to: Custom Algorithm
+2026-04-15 18:59:35,471 - ui.mne_terminal - INFO - Template Custom Algorithm loaded successfully
+2026-04-15 19:06:07,573 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 19:06:07,578 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 19:06:07,583 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 19:07:44,256 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 19:07:44,258 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 19:07:44,261 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 19:07:48,704 - ui.mne_terminal - INFO - Visualization type changed to: Spike Raster Plot
+2026-04-15 19:07:48,714 - ui.mne_terminal - INFO - Visualization template updated successfully
+2026-04-15 19:07:51,087 - ui.mne_terminal - INFO - Visualization type changed to: Auto (Based on Data)
+2026-04-15 19:07:51,099 - ui.mne_terminal - INFO - Visualization template updated successfully
+2026-04-15 19:07:53,219 - ui.mne_terminal - INFO - Visualization type changed to: Raw Signal Plot
+2026-04-15 19:07:53,228 - ui.mne_terminal - INFO - Visualization template updated successfully
+2026-04-15 19:07:58,052 - ui.mne_terminal - INFO - Visualization type changed to: Spectrogram
+2026-04-15 19:07:58,062 - ui.mne_terminal - INFO - Visualization template updated successfully
+2026-04-15 19:08:03,721 - ui.mne_terminal - INFO - Visualization type changed to: Auto (Based on Data)
+2026-04-15 19:08:03,731 - ui.mne_terminal - INFO - Visualization template updated successfully
+2026-04-15 19:08:05,965 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 19:08:05,965 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 19:08:05,966 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 19:08:05,968 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 19:08:07,450 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 19:08:10,598 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\cccc.py
+2026-04-15 19:23:13,647 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 19:23:13,655 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 19:23:13,658 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 19:33:44,424 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-15 19:33:44,428 - ui.mne_terminal - INFO - Setting default template
+2026-04-15 19:33:44,432 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-15 19:34:13,543 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-15 19:34:13,543 - ui.mne_terminal - INFO - Validating script code
+2026-04-15 19:34:13,546 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-15 19:34:13,546 - ui.mne_terminal - INFO - Script validation completed
+2026-04-15 19:34:15,028 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-15 19:34:18,814 - ui.mne_terminal - INFO - Algorithm integration cancelled
+2026-04-16 18:00:22,071 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 18:00:22,075 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 18:00:22,079 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 18:05:46,494 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 18:05:46,501 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 18:05:46,507 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 18:18:14,358 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 18:18:14,362 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 18:18:14,365 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 18:18:16,966 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 18:18:16,977 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 18:18:18,263 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 18:18:18,264 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 18:18:18,265 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 202) (<string>, line 202)
+2026-04-16 18:18:18,269 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 18:21:02,542 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 18:21:02,543 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 18:21:02,546 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 18:35:55,610 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 18:35:55,618 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 18:35:55,622 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 18:35:57,866 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 18:35:57,880 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 18:36:02,283 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 18:36:02,283 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 18:36:02,285 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 203) (<string>, line 203)
+2026-04-16 18:36:02,285 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 19:14:43,547 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 19:14:43,552 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 19:14:43,554 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 19:14:51,555 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 19:14:51,565 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 19:14:53,138 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 19:14:53,138 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 19:14:53,140 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 203) (<string>, line 203)
+2026-04-16 19:14:53,141 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 19:35:49,973 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 19:35:50,209 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 19:35:50,211 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 19:36:31,952 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-16 19:36:32,238 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-16 19:36:33,354 - ui.mne_terminal - INFO - Template changed to: Custom Algorithm
+2026-04-16 19:36:33,355 - ui.mne_terminal - INFO - Template Custom Algorithm loaded successfully
+2026-04-16 19:37:18,814 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 19:37:18,817 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 19:37:18,819 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 19:37:22,120 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 19:37:22,133 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 19:37:24,347 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 19:37:24,347 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 19:37:24,348 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 203) (<string>, line 203)
+2026-04-16 19:37:24,350 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 19:38:54,159 - ui.mne_terminal - INFO - Template changed to: Custom Algorithm
+2026-04-16 19:38:54,159 - ui.mne_terminal - INFO - Template Custom Algorithm loaded successfully
+2026-04-16 19:39:13,798 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 19:39:13,802 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 19:39:13,806 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 20:07:52,203 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 20:07:52,205 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 20:07:52,208 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 20:12:16,619 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 20:12:16,619 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 20:12:16,625 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 20:12:16,627 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 20:13:37,280 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 20:13:37,287 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 20:13:37,291 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 20:29:20,444 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 20:29:20,449 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 20:29:20,452 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 20:29:30,710 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 20:29:30,722 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 20:29:44,487 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 20:29:44,487 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 20:29:44,488 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 247) (<string>, line 247)
+2026-04-16 20:29:44,490 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 20:29:50,878 - ui.mne_terminal - INFO - Template changed to: Monkey Fear Research
+2026-04-16 20:29:50,891 - ui.mne_terminal - INFO - Template Monkey Fear Research loaded successfully
+2026-04-16 21:15:10,281 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 21:15:10,286 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 21:15:10,289 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 21:15:13,931 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 21:15:13,931 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 21:15:13,932 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 21:15:13,934 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 21:15:15,807 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 21:15:15,821 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 21:15:16,766 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 21:15:16,766 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 21:15:16,767 - ui.mne_terminal - ERROR - Error validating script: unterminated string literal (detected at line 247) (<string>, line 247)
+2026-04-16 21:15:16,769 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 21:15:51,769 - ui.mne_terminal - INFO - Template changed to: Custom Algorithm
+2026-04-16 21:15:51,778 - ui.mne_terminal - INFO - Template Custom Algorithm loaded successfully
+2026-04-16 21:17:04,181 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-16 21:17:04,195 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-16 21:17:06,880 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-16 21:17:06,892 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-16 23:44:02,036 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-16 23:44:02,040 - ui.mne_terminal - INFO - Setting default template
+2026-04-16 23:44:02,044 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-16 23:44:06,311 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-16 23:44:06,327 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-16 23:46:05,326 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:05,326 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:05,351 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:05,352 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 23:46:08,441 - ui.mne_terminal - INFO - Template changed to: MNE Source Localization
+2026-04-16 23:46:08,452 - ui.mne_terminal - INFO - Template MNE Source Localization loaded successfully
+2026-04-16 23:46:10,007 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:10,009 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:10,009 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:10,009 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 23:46:11,306 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:11,308 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:11,309 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:11,309 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 23:46:12,040 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:12,041 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:12,042 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:12,043 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 23:46:13,924 - ui.mne_terminal - INFO - Template changed to: MNE Bad Channel Detection
+2026-04-16 23:46:13,937 - ui.mne_terminal - INFO - Template MNE Bad Channel Detection loaded successfully
+2026-04-16 23:46:15,438 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:15,439 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:15,441 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:15,442 - ui.mne_terminal - INFO - Script validation completed
+2026-04-16 23:46:23,254 - ui.mne_terminal - INFO - Template changed to: MNE ERP Analysis
+2026-04-16 23:46:23,304 - ui.mne_terminal - INFO - Template MNE ERP Analysis loaded successfully
+2026-04-16 23:46:24,869 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-16 23:46:24,872 - ui.mne_terminal - INFO - Validating script code
+2026-04-16 23:46:24,874 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-16 23:46:24,874 - ui.mne_terminal - INFO - Script validation completed
+2026-04-17 20:48:39,432 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-17 20:48:39,438 - ui.mne_terminal - INFO - Setting default template
+2026-04-17 20:48:39,448 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-17 21:36:23,606 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-17 21:36:23,619 - ui.mne_terminal - INFO - Setting default template
+2026-04-17 21:36:23,630 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-17 22:38:49,812 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-17 22:38:49,817 - ui.mne_terminal - INFO - Setting default template
+2026-04-17 22:38:49,824 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-17 22:38:53,426 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-17 22:38:53,427 - ui.mne_terminal - INFO - Validating script code
+2026-04-17 22:38:53,427 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-17 22:38:53,432 - ui.mne_terminal - INFO - Script validation completed
+2026-04-17 22:38:54,765 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-17 22:39:18,012 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\viewlfpdata.py
+2026-04-18 20:26:24,510 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 20:26:24,516 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 20:26:24,523 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 20:26:28,117 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 20:26:28,152 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 20:26:29,278 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 20:26:29,279 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 20:26:29,337 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 20:26:29,339 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 20:26:30,597 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 20:26:41,256 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebasicalgorithm.py
+2026-04-18 20:32:10,807 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 20:32:10,812 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 20:32:10,815 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 20:32:14,128 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 20:32:14,140 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 20:32:15,492 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 20:32:15,493 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 20:32:15,494 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 20:32:15,495 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 20:32:18,926 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 20:32:30,333 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebasicalgorithm.py
+2026-04-18 20:54:21,434 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 20:54:21,440 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 20:54:21,444 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 20:59:08,464 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 20:59:08,470 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 20:59:08,475 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 20:59:10,525 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 20:59:10,539 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 21:06:18,440 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:06:18,451 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:06:18,457 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:06:20,934 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 21:06:20,949 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 21:06:21,872 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:06:21,872 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:06:21,874 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:06:21,875 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:06:23,634 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:06:34,007 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebasicalgorithm.py
+2026-04-18 21:11:17,348 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:11:17,352 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:11:17,358 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:11:19,963 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 21:11:19,977 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 21:11:21,229 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:11:21,230 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:11:21,232 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:11:21,235 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:11:21,763 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:11:29,214 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebasicalgorithm.py
+2026-04-18 21:18:22,384 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:18:22,390 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:18:22,394 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:18:59,136 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:18:59,140 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:18:59,144 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:19:01,130 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 21:19:01,143 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 21:19:02,599 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:19:02,599 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:19:02,600 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:19:02,603 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:19:04,407 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:19:10,215 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebasicalgorithm.py
+2026-04-18 21:21:53,058 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:21:53,063 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:21:53,068 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:22:58,390 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:22:58,393 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:22:58,397 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:23:01,263 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 21:23:01,278 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 21:23:06,947 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:23:06,948 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:23:06,949 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:23:06,952 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:23:08,282 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:23:10,252 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+2026-04-18 21:35:54,267 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:35:54,271 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:35:54,275 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:36:52,744 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:36:52,746 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:36:52,750 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:36:55,851 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 21:36:55,864 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 21:38:12,943 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:38:12,945 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:38:12,949 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:38:17,886 - ui.mne_terminal - INFO - Template changed to: MNE Source Localization
+2026-04-18 21:38:17,936 - ui.mne_terminal - INFO - Template MNE Source Localization loaded successfully
+2026-04-18 21:38:19,497 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:38:19,497 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:38:19,498 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:38:19,501 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:38:20,422 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:38:22,338 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+2026-04-18 21:44:27,597 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:44:27,601 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:44:27,607 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:44:50,394 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:44:50,396 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:44:50,401 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:44:52,553 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 21:44:52,568 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 21:44:56,970 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:44:56,971 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:44:56,973 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:44:56,975 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:44:57,811 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:45:00,043 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py
+2026-04-18 21:45:46,160 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:45:46,161 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:45:46,165 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:45:48,245 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 21:45:48,259 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 21:45:49,310 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:45:49,311 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:45:49,312 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:45:49,314 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:45:49,977 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:45:51,254 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+2026-04-18 21:48:11,179 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:48:11,187 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:48:11,192 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:48:13,127 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 21:48:13,142 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 21:48:14,042 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:48:14,043 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:48:14,044 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:48:14,047 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:48:14,951 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:48:16,373 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+2026-04-18 21:49:01,349 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 21:49:01,353 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 21:49:01,358 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 21:49:03,262 - ui.mne_terminal - INFO - Template changed to: MNE Source Localization
+2026-04-18 21:49:03,274 - ui.mne_terminal - INFO - Template MNE Source Localization loaded successfully
+2026-04-18 21:49:04,303 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 21:49:04,304 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 21:49:04,305 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 21:49:04,306 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 21:49:05,151 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 21:49:06,794 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+2026-04-18 22:06:47,775 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:06:47,781 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:06:47,786 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:08:19,791 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:08:19,793 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:08:19,797 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:08:21,742 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 22:08:21,755 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 22:08:22,949 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:08:22,949 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:08:22,951 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:08:22,952 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:08:23,631 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:08:25,061 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+2026-04-18 22:13:56,899 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:13:56,905 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:13:56,911 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:13:59,562 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 22:13:59,574 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 22:14:03,469 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:14:03,469 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:14:03,471 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:14:03,471 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:14:04,696 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:14:05,815 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py
+2026-04-18 22:14:08,358 - ui.mne_terminal - INFO - Template changed to: MNE ICA
+2026-04-18 22:14:08,372 - ui.mne_terminal - INFO - Template MNE ICA loaded successfully
+2026-04-18 22:14:09,656 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:14:09,656 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:14:09,658 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:14:09,658 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:14:10,239 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:14:11,151 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaalgorithm.py
+2026-04-18 22:14:12,849 - ui.mne_terminal - INFO - Template changed to: MNE Source Localization
+2026-04-18 22:14:12,864 - ui.mne_terminal - INFO - Template MNE Source Localization loaded successfully
+2026-04-18 22:14:13,638 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:14:13,639 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:14:13,639 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:14:13,641 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:14:14,105 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:14:15,421 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnesourcelocalizationalgorithm.py
+2026-04-18 22:18:48,495 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:18:48,502 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:18:48,508 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:18:51,375 - ui.mne_terminal - INFO - Template changed to: MNE Basic
+2026-04-18 22:18:51,388 - ui.mne_terminal - INFO - Template MNE Basic loaded successfully
+2026-04-18 22:18:52,288 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:18:52,288 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:18:52,291 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:18:52,292 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:18:52,752 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:18:53,864 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnealgorithm.py
+2026-04-18 22:45:23,179 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:45:23,186 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:45:23,191 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:45:25,528 - ui.mne_terminal - INFO - Template changed to: MNE Filtering
+2026-04-18 22:45:25,563 - ui.mne_terminal - INFO - Template MNE Filtering loaded successfully
+2026-04-18 22:45:27,205 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:45:27,207 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:45:27,208 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:45:27,210 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:45:27,730 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:45:29,109 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefilteringalgorithm.py
+2026-04-18 22:53:19,056 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:53:19,059 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:53:19,065 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:53:21,454 - ui.mne_terminal - INFO - Template changed to: MNE Resampling
+2026-04-18 22:53:21,506 - ui.mne_terminal - INFO - Template MNE Resampling loaded successfully
+2026-04-18 22:53:22,631 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:53:22,631 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:53:22,633 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:53:22,635 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:53:23,194 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:53:24,579 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneresamplingalgorithm.py
+2026-04-18 22:56:50,700 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:56:50,706 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:56:50,711 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:59:37,402 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-18 22:59:37,406 - ui.mne_terminal - INFO - Setting default template
+2026-04-18 22:59:37,411 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-18 22:59:40,310 - ui.mne_terminal - INFO - Template changed to: MNE Bad Channel Detection
+2026-04-18 22:59:40,364 - ui.mne_terminal - INFO - Template MNE Bad Channel Detection loaded successfully
+2026-04-18 22:59:41,789 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-18 22:59:41,790 - ui.mne_terminal - INFO - Validating script code
+2026-04-18 22:59:41,792 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-18 22:59:41,793 - ui.mne_terminal - INFO - Script validation completed
+2026-04-18 22:59:42,320 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-18 22:59:43,576 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebadchanneldetectionalgorithm.py
+2026-04-19 20:06:37,264 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 20:06:37,270 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 20:06:37,280 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 20:26:38,087 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 20:26:38,096 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 20:26:38,104 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 20:26:42,816 - ui.mne_terminal - INFO - Template changed to: MNE ERP Analysis
+2026-04-19 20:26:42,887 - ui.mne_terminal - INFO - Template MNE ERP Analysis loaded successfully
+2026-04-19 20:26:44,491 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 20:26:44,491 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 20:26:44,493 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-19 20:26:44,497 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 20:26:50,310 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-19 20:26:53,598 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneerpalgorithm.py
+2026-04-19 20:41:36,480 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 20:41:36,489 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 20:41:36,498 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 20:51:56,468 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 20:51:56,480 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 20:51:56,486 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 20:52:04,129 - ui.mne_terminal - INFO - Template changed to: MNE Time-Frequency
+2026-04-19 20:52:04,205 - ui.mne_terminal - INFO - Template MNE Time-Frequency loaded successfully
+2026-04-19 20:52:05,777 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 20:52:05,778 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 20:52:05,782 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-19 20:52:05,788 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 20:52:09,218 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-19 20:52:11,538 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnetimefrequencyalgorithm.py
+2026-04-19 21:30:30,216 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 21:30:30,223 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 21:30:30,230 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 21:30:36,439 - ui.mne_terminal - INFO - Template changed to: MNE Power Spectrum
+2026-04-19 21:30:36,501 - ui.mne_terminal - INFO - Template MNE Power Spectrum loaded successfully
+2026-04-19 21:30:37,977 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 21:30:37,978 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 21:30:37,979 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-19 21:30:37,981 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 21:30:41,289 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-19 21:30:43,908 - ui.mne_terminal - INFO - Algorithm integrated successfully: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnepowerspectrumalgorithm.py
+2026-04-19 21:37:59,325 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 21:37:59,332 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 21:37:59,340 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 21:38:09,182 - ui.mne_terminal - INFO - Template changed to: MNE ICA Artifact Removal
+2026-04-19 21:38:09,238 - ui.mne_terminal - INFO - Template MNE ICA Artifact Removal loaded successfully
+2026-04-19 21:38:12,716 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 21:38:12,717 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 21:38:12,720 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-19 21:38:12,722 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 21:38:14,748 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-19 21:38:16,775 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneicaartifactremovalalgorithm.py
+2026-04-19 21:55:09,046 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 21:55:09,062 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 21:55:09,072 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 21:55:13,565 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-19 21:55:13,654 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-19 21:55:15,965 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 21:55:15,965 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 21:55:16,022 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 233)
+2026-04-19 21:55:16,028 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 21:59:57,250 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 21:59:57,259 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 21:59:57,269 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 22:00:02,133 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 22:00:02,136 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 22:00:02,144 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 22:00:10,382 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-19 22:00:10,407 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-19 22:00:12,088 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 22:00:12,089 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 22:00:12,092 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 235)
+2026-04-19 22:00:12,097 - ui.mne_terminal - INFO - Script validation completed
+2026-04-19 22:24:32,591 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-19 22:24:32,598 - ui.mne_terminal - INFO - Setting default template
+2026-04-19 22:24:32,608 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-19 22:24:38,010 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-19 22:24:38,040 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-19 22:24:39,769 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-19 22:24:39,770 - ui.mne_terminal - INFO - Validating script code
+2026-04-19 22:24:39,774 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 235)
+2026-04-19 22:24:39,778 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:16:06,700 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:16:06,705 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:16:06,708 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:16:16,945 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-21 20:16:16,997 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-21 20:16:18,077 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:16:18,077 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:16:18,077 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 235)
+2026-04-21 20:16:18,081 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:17:52,928 - ui.mne_terminal - INFO - Template changed to: MNE Dipole Fitting
+2026-04-21 20:17:52,943 - ui.mne_terminal - INFO - Template MNE Dipole Fitting loaded successfully
+2026-04-21 20:17:55,058 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:17:55,058 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:17:55,060 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 257)
+2026-04-21 20:17:55,060 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:17:59,684 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:17:59,685 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:17:59,686 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 257)
+2026-04-21 20:17:59,687 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:18:08,279 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:18:08,280 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:18:08,281 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 257)
+2026-04-21 20:18:08,281 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:18:10,161 - ui.mne_terminal - INFO - Template changed to: MNE Functional Connectivity
+2026-04-21 20:18:10,215 - ui.mne_terminal - INFO - Template MNE Functional Connectivity loaded successfully
+2026-04-21 20:18:11,152 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:18:11,152 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:18:11,154 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:18:11,155 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:18:16,800 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:18:18,488 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+2026-04-21 20:26:18,461 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:26:18,467 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:26:18,472 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:26:20,631 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-21 20:26:20,647 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-21 20:26:21,509 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:26:21,510 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:26:21,512 - ui.mne_terminal - ERROR - Error validating script: unexpected indent (<string>, line 235)
+2026-04-21 20:26:21,515 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:31:25,723 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:31:25,730 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:31:25,734 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:31:36,082 - ui.mne_terminal - INFO - Template changed to: MNE Functional Connectivity
+2026-04-21 20:31:36,097 - ui.mne_terminal - INFO - Template MNE Functional Connectivity loaded successfully
+2026-04-21 20:31:37,942 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:31:37,942 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:31:37,944 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:31:37,946 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:31:38,864 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:31:40,258 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnefunctionalconnectivityalgorithm.py
+2026-04-21 20:39:48,398 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:39:48,406 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:39:48,410 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:39:51,358 - ui.mne_terminal - INFO - Template changed to: MNE Beamforming
+2026-04-21 20:39:51,373 - ui.mne_terminal - INFO - Template MNE Beamforming loaded successfully
+2026-04-21 20:39:52,056 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:39:52,056 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:39:52,059 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:39:52,061 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:39:54,207 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:39:56,159 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnebeamformingalgorithm.py
+2026-04-21 20:52:50,272 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:52:50,286 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:52:50,290 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:52:54,845 - ui.mne_terminal - INFO - Template changed to: MNE Dipole Fitting
+2026-04-21 20:52:54,860 - ui.mne_terminal - INFO - Template MNE Dipole Fitting loaded successfully
+2026-04-21 20:52:56,361 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:52:56,361 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:52:56,363 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:52:56,365 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:53:01,242 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:53:02,948 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnedipolefittingalgorithm.py
+2026-04-21 20:55:05,808 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 20:55:05,809 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 20:55:05,815 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 20:55:10,409 - ui.mne_terminal - INFO - Template changed to: MNE Effective Connectivity
+2026-04-21 20:55:10,420 - ui.mne_terminal - INFO - Template MNE Effective Connectivity loaded successfully
+2026-04-21 20:55:11,790 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:55:11,790 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:55:11,792 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:55:11,794 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:55:13,988 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:55:15,831 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mneeffectiveconnectivityalgorithm.py
+2026-04-21 20:55:19,804 - ui.mne_terminal - INFO - Template changed to: MNE Spectral Connectivity
+2026-04-21 20:55:19,818 - ui.mne_terminal - INFO - Template MNE Spectral Connectivity loaded successfully
+2026-04-21 20:55:21,268 - ui.mne_terminal - INFO - Validating algorithm interface
+2026-04-21 20:55:21,268 - ui.mne_terminal - INFO - Validating script code
+2026-04-21 20:55:21,272 - ui.mne_terminal - INFO - run_algorithm parameters: ['input_data', 'parameters']
+2026-04-21 20:55:21,273 - ui.mne_terminal - INFO - Script validation completed
+2026-04-21 20:55:24,261 - ui.mne_terminal - INFO - Integrating algorithm into framework
+2026-04-21 20:55:26,063 - ui.mne_terminal - INFO - Algorithm integrated successfully: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\mnespectralconnectivityalgorithm.py
+2026-04-21 21:02:01,686 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 21:02:01,696 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 21:02:01,700 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-21 21:06:40,675 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-21 21:06:40,679 - ui.mne_terminal - INFO - Setting default template
+2026-04-21 21:06:40,684 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully
+2026-04-27 18:46:26,876 - ui.mne_terminal - INFO - Initializing CustomAlgorithmEditor
+2026-04-27 18:46:26,977 - ui.mne_terminal - INFO - Setting default template
+2026-04-27 18:46:26,993 - ui.mne_terminal - INFO - CustomAlgorithmEditor initialized successfully

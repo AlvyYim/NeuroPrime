@@ -1,0 +1,26 @@
+[16:46:48.224] [INFO] ============================================================
+[16:46:48.224] [INFO] NeuroPrime 调试日志
+[16:46:48.224] [INFO] 启动时间: 2026-04-14 16:46:48
+[16:46:48.224] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[16:46:48.226] [INFO] 日志文件: C:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260414_164648.log
+[16:46:48.226] [INFO] ============================================================
+[16:46:49.762] [INFO] [Scheduler] NEUROPRIME_ROOT = None
+[16:46:49.762] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:46:49.764] [INFO] [Scheduler] Current working directory: C:\Users\buaal\Desktop\NeuroPrime
+[16:46:49.764] [INFO] [Scheduler] Script directory: C:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[16:46:49.764] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:46:49.764] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[16:46:49.764] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[16:46:49.772] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[16:46:49.772] [INFO] [Scheduler] Searching for algorithm classes in C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[16:46:49.772] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[16:46:50.474] [INFO] [Scheduler] NEUROPRIME_ROOT = None
+[16:46:50.474] [INFO] [Scheduler] Looking for custom algorithms in: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:46:50.474] [INFO] [Scheduler] Current working directory: C:\Users\buaal\Desktop\NeuroPrime
+[16:46:50.474] [INFO] [Scheduler] Script directory: C:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[16:46:50.474] [INFO] [Scheduler] Custom algorithms directory exists: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[16:46:50.474] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[16:46:50.474] [INFO] [Scheduler] Loading custom algorithm from: C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[16:46:50.474] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[16:46:50.474] [INFO] [Scheduler] Searching for algorithm classes in C:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[16:46:50.474] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData

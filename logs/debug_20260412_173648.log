@@ -1,0 +1,140 @@
+[17:36:48.088] [INFO] ============================================================
+[17:36:48.089] [INFO] NeuroPrime 调试日志
+[17:36:48.089] [INFO] 启动时间: 2026-04-12 17:36:48
+[17:36:48.089] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[17:36:48.089] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_173648.log
+[17:36:48.089] [INFO] ============================================================
+[17:36:50.184] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:36:50.184] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:36:50.184] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:36:50.184] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:36:50.184] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:36:50.189] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[17:36:50.189] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:36:50.197] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:36:50.197] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:36:50.197] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:36:59.936] [INFO] ============================================================
+[17:36:59.936] [INFO] _populate_custom_algorithms started
+[17:36:59.936] [INFO] Attempting to reload custom algorithms...
+[17:36:59.936] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[17:36:59.936] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:36:59.936] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[17:36:59.936] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[17:36:59.936] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[17:36:59.940] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[17:36:59.940] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[17:36:59.941] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[17:36:59.941] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[17:36:59.941] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[17:36:59.941] [INFO] Custom algorithms reload completed
+[17:36:59.941] [INFO] Total algorithms available: 9
+[17:36:59.941] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding', 'ViewRawLFPData:自定义算法']
+[17:36:59.941] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[17:36:59.941] [INFO] Total custom algorithms added: 1
+[17:36:59.941] [INFO] ============================================================
+[17:37:05.761] [INFO] add_data_item 被调用
+[17:37:05.761] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:37:11.571] [INFO] ============================================================
+[17:37:11.571] [INFO] _on_run_clicked 被调用
+[17:37:11.571] [INFO] _get_selected_data_items 被调用
+[17:37:11.571] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:37:11.571] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:37:11.571] [INFO] 返回 1 个有效数据项
+[17:37:11.571] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:37:11.571] [DEBUG] selected_data_len = 1 (type: int)
+[17:37:11.571] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:37:11.571] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:37:11.571] [INFO] 自定义算法使用默认参数: {}
+[17:37:11.571] [DEBUG] parameters_keys = [] (type: list)
+[17:37:11.571] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:37:11.571] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:37:11.571] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:37:11.571] [INFO] ============================================================
+[17:37:11.571] [INFO] _on_run_analysis 被调用
+[17:37:11.571] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:37:11.571] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:37:11.571] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:37:11.571] [DEBUG] data_items_len = 1 (type: int)
+[17:37:11.571] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:37:11.571] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:37:11.571] [INFO] data_items[0] type: <class 'dict'>
+[17:37:11.571] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:37:11.571] [INFO] ============================================================
+[17:37:11.571] [INFO] _run_analysis_async 被调用
+[17:37:11.571] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:37:11.571] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:37:11.571] [DEBUG] data_items_len = 1 (type: int)
+[17:37:11.571] [DEBUG] parameters_keys = [] (type: list)
+[17:37:11.571] [INFO] data_items[0] type: <class 'dict'>
+[17:37:11.571] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:27.013] [INFO] add_data_item 被调用
+[17:39:27.013] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:39:31.455] [INFO] ============================================================
+[17:39:31.455] [INFO] _on_run_clicked 被调用
+[17:39:31.459] [INFO] _get_selected_data_items 被调用
+[17:39:31.459] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:39:31.459] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:39:31.459] [INFO] 返回 1 个有效数据项
+[17:39:31.459] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:39:31.459] [DEBUG] selected_data_len = 1 (type: int)
+[17:39:31.459] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:39:31.459] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:31.459] [INFO] 自定义算法使用默认参数: {}
+[17:39:31.459] [DEBUG] parameters_keys = [] (type: list)
+[17:39:31.459] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:31.459] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:39:31.459] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:39:31.459] [INFO] ============================================================
+[17:39:31.459] [INFO] _on_run_analysis 被调用
+[17:39:31.459] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:39:31.459] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:31.459] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:39:31.459] [DEBUG] data_items_len = 1 (type: int)
+[17:39:31.459] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:39:31.459] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:39:31.459] [INFO] data_items[0] type: <class 'dict'>
+[17:39:31.459] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:31.459] [INFO] ============================================================
+[17:39:31.459] [INFO] _run_analysis_async 被调用
+[17:39:31.459] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:31.459] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:39:31.460] [DEBUG] data_items_len = 1 (type: int)
+[17:39:31.460] [DEBUG] parameters_keys = [] (type: list)
+[17:39:31.460] [INFO] data_items[0] type: <class 'dict'>
+[17:39:31.460] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:36.115] [INFO] add_data_item 被调用
+[17:39:36.115] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[17:39:40.926] [INFO] ============================================================
+[17:39:40.926] [INFO] _on_run_clicked 被调用
+[17:39:40.926] [INFO] _get_selected_data_items 被调用
+[17:39:40.926] [DEBUG] selected_data_items_len = 1 (type: int)
+[17:39:40.926] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[17:39:40.926] [INFO] 返回 1 个有效数据项
+[17:39:40.926] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[17:39:40.926] [DEBUG] selected_data_len = 1 (type: int)
+[17:39:40.926] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[17:39:40.926] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:40.926] [INFO] 自定义算法使用默认参数: {}
+[17:39:40.926] [DEBUG] parameters_keys = [] (type: list)
+[17:39:40.926] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:40.926] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[17:39:40.926] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[17:39:40.926] [INFO] ============================================================
+[17:39:40.927] [INFO] _on_run_analysis 被调用
+[17:39:40.927] [DEBUG] params_type = <class 'dict'> (type: type)
+[17:39:40.927] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:40.927] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:39:40.927] [DEBUG] data_items_len = 1 (type: int)
+[17:39:40.927] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[17:39:40.927] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[17:39:40.927] [INFO] data_items[0] type: <class 'dict'>
+[17:39:40.927] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[17:39:40.927] [INFO] ============================================================
+[17:39:40.927] [INFO] _run_analysis_async 被调用
+[17:39:40.927] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[17:39:40.927] [DEBUG] data_items_type = <class 'list'> (type: type)
+[17:39:40.927] [DEBUG] data_items_len = 1 (type: int)
+[17:39:40.927] [DEBUG] parameters_keys = [] (type: list)
+[17:39:40.927] [INFO] data_items[0] type: <class 'dict'>
+[17:39:40.927] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

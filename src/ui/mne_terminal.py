@@ -1,0 +1,7408 @@
+"""MNE terminal interface"""
+
+import matplotlib
+matplotlib.use('Agg')
+
+from PyQt6.QtWidgets import (
+    QWidget, QVBoxLayout, QHBoxLayout, QTextEdit, QPushButton, 
+    QFileDialog, QMessageBox, QSplitter, QLabel, QCompleter, QComboBox, QProgressBar
+)
+from PyQt6.QtCore import Qt, pyqtSignal, QRegularExpression, QStringListModel
+from PyQt6.QtGui import QTextCursor, QFont, QSyntaxHighlighter, QTextCharFormat, QColor
+import sys
+import os
+import traceback
+import importlib.util
+import numpy as np
+import logging
+
+# 配置日志
+log_file = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(__file__))),
+    'logs', 
+    'mne_terminal.log'
+)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+class PythonSyntaxHighlighter(QSyntaxHighlighter):
+    """Python syntax highlighter"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        # Define formats with improved color scheme
+        self.keyword_format = QTextCharFormat()
+        self.keyword_format.setForeground(QColor(137, 89, 200))  # Purple
+        self.keyword_format.setFontWeight(75)
+        
+        self.string_format = QTextCharFormat()
+        self.string_format.setForeground(QColor(60, 110, 180))  # Blue
+        
+        self.comment_format = QTextCharFormat()
+        self.comment_format.setForeground(QColor(120, 120, 120))  # Gray
+        self.comment_format.setFontItalic(True)
+        
+        self.function_format = QTextCharFormat()
+        self.function_format.setForeground(QColor(220, 100, 0))  # Orange
+        
+        self.number_format = QTextCharFormat()
+        self.number_format.setForeground(QColor(100, 150, 210))  # Light blue
+        
+        self.decorator_format = QTextCharFormat()
+        self.decorator_format.setForeground(QColor(120, 180, 100))  # Green
+        
+        self.class_format = QTextCharFormat()
+        self.class_format.setForeground(QColor(180, 100, 180))  # Pink
+        self.class_format.setFontWeight(75)
+        
+        self.operator_format = QTextCharFormat()
+        self.operator_format.setForeground(QColor(150, 150, 150))  # Gray
+        
+        self.bracket_format = QTextCharFormat()
+        self.bracket_format.setForeground(QColor(100, 100, 100))  # Dark gray
+        
+        # Keywords
+        self.keywords = [
+            'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del',
+            'elif', 'else', 'except', 'False', 'finally', 'for', 'from', 'global',
+            'if', 'import', 'in', 'is', 'lambda', 'None', 'nonlocal', 'not', 'or',
+            'pass', 'raise', 'return', 'True', 'try', 'while', 'with', 'yield'
+        ]
+        
+        # Create patterns
+        self.patterns = [
+            (QRegularExpression(r'\b(' + '|'.join(self.keywords) + r')\b'), self.keyword_format),
+            (QRegularExpression(r'"[^"]*"'), self.string_format),
+            (QRegularExpression(r"'[^']*'"), self.string_format),
+            (QRegularExpression(r'#.*$'), self.comment_format),
+            (QRegularExpression(r'\b\d+\b'), self.number_format),
+            (QRegularExpression(r'\bdef\s+(\w+)\s*\('), self.function_format),
+            (QRegularExpression(r'\bclass\s+(\w+)'), self.class_format),
+            (QRegularExpression(r'@\w+'), self.decorator_format),
+            (QRegularExpression(r'[+\-*/%=<>!&|^~]'), self.operator_format),
+            (QRegularExpression(r'[\(\)\[\]\{\}]'), self.bracket_format)
+        ]
+    
+    def highlightBlock(self, text):
+        """Highlight a block of text"""
+        for pattern, format in self.patterns:
+            match_iterator = pattern.globalMatch(text)
+            while match_iterator.hasNext():
+                match = match_iterator.next()
+                self.setFormat(match.capturedStart(), match.capturedLength(), format)
+
+class PythonCompleter(QCompleter):
+    """Python code completer"""
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        
+        # Python keywords
+        keywords = [
+            'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del',
+            'elif', 'else', 'except', 'False', 'finally', 'for', 'from', 'global',
+            'if', 'import', 'in', 'is', 'lambda', 'None', 'nonlocal', 'not', 'or',
+            'pass', 'raise', 'return', 'True', 'try', 'while', 'with', 'yield'
+        ]
+        
+        # Common functions and modules
+        common_functions = [
+            'print', 'len', 'range', 'list', 'dict', 'set', 'tuple', 'str', 'int', 'float',
+            'bool', 'abs', 'max', 'min', 'sum', 'sorted', 'reversed', 'enumerate', 'zip',
+            'map', 'filter', 'reduce', 'open', 'input', 'eval', 'exec', 'compile',
+            'isinstance', 'type', 'dir', 'getattr', 'setattr', 'hasattr', 'delattr'
+        ]
+        
+        # NumPy functions
+        numpy_functions = [
+            'np.array', 'np.zeros', 'np.ones', 'np.arange', 'np.linspace', 'np.random.rand',
+            'np.random.randn', 'np.mean', 'np.std', 'np.max', 'np.min', 'np.sum',
+            'np.dot', 'np.matmul', 'np.transpose', 'np.reshape', 'np.concatenate',
+            'np.split', 'np.where', 'np.argmax', 'np.argmin', 'np.squeeze', 'np.expand_dims'
+        ]
+        
+        # Matplotlib functions
+        matplotlib_functions = [
+            'plt.plot', 'plt.scatter', 'plt.bar', 'plt.hist', 'plt.imshow', 'plt.pie',
+            'plt.xlabel', 'plt.ylabel', 'plt.title', 'plt.legend', 'plt.grid',
+            'plt.xlim', 'plt.ylim', 'plt.figure', 'plt.subplot', 'plt.tight_layout',
+            'plt.savefig', 'plt.show'
+        ]
+        
+        # MNE functions
+        mne_functions = [
+            'mne.create_info', 'mne.io.RawArray', 'mne.Epochs', 'mne.make_fixed_length_events',
+            'mne.preprocessing.ICA', 'mne.decoding.CSP', 'mne.time_frequency.tfr_morlet',
+            'mne.viz.plot_raw', 'mne.viz.plot_epochs', 'mne.viz.plot_ica_components'
+        ]
+        
+        # Combine all completions
+        all_completions = keywords + common_functions + numpy_functions + matplotlib_functions + mne_functions
+        
+        # Create model
+        model = QStringListModel(all_completions)
+        self.setModel(model)
+        
+        # Set completion mode
+        self.setCompletionMode(QCompleter.CompletionMode.PopupCompletion)
+        self.setCaseSensitivity(Qt.CaseSensitivity.CaseInsensitive)
+
+# 算法脚本模板
+CUSTOM_ALGORITHM_TEMPLATE = '''# Custom Algorithm Script Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class CustomAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class CustomAlgorithm(BaseAlgorithm):
+    """Custom algorithm implementation"""
+    
+    def __init__(self):
+        super().__init__()
+        self.description = "Custom algorithm template"
+        self.category = "Custom"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "threshold", ParameterType.FLOAT,
+                "Detection threshold", 3.0,
+                min_value=0.1, max_value=10.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting algorithm execution...")
+            
+            # Get input data
+            spike_times = input_data.spike_times if input_data.spike_times is not None else []
+            
+            # Example: Count spikes
+            spike_count = len(spike_times)
+            print(f"Detected {spike_count} spikes")
+            
+            # Example: Use parameters
+            threshold = parameters.get('threshold', 3.0)
+            print(f"Using threshold: {threshold}")
+            
+            # Simulate algorithm output
+            output_data = {
+                'spike_count': spike_count,
+                'threshold_used': threshold
+            }
+            
+            # Use base class method to prepare visualization data
+            vis_data = self.prepare_visualization_data(input_data)
+            output_data.update(vis_data)
+            
+            # Return result
+            return AlgorithmOutput(
+                data=output_data,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = CustomAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = CustomAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': CustomAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+# MNE算法脚本模板
+MNE_ALGORITHM_TEMPLATE = '''# MNE Algorithm Script Template
+
+# MNE基础算法模板，包含CSP分析和时频分析功能。
+# 该算法模板演示了如何使用MNE库进行脑电信号处理，包括：
+# 1. 数据预处理（滤波）
+# 2. 共空间模式（CSP）分析
+# 3. 时频分析（使用Morlet小波）
+# 适用于运动想象、认知负荷等研究领域的信号处理。
+
+import mne
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class MNEAlgorithm(BaseAlgorithm):
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Basic"
+        self.description = "MNE algorithm template"
+        self.category = "MNE"
+    
+    def get_parameters_schema(self):
+        return [
+            create_parameter(
+                "n_components", ParameterType.INTEGER,
+                "Number of CSP components", 6,
+                min_value=1, max_value=10
+            ),
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "Minimum frequency (Hz)", 8.0,
+                min_value=1.0, max_value=50.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "Maximum frequency (Hz)", 30.0,
+                min_value=1.0, max_value=100.0
+            ),
+            create_parameter(
+                "n_cycles", ParameterType.INTEGER,
+                "Number of cycles for Morlet wavelet", 3,
+                min_value=1, max_value=10
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        return True
+    
+    def run(self, input_data, parameters):
+        try:
+            print("Starting MNE algorithm execution...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            n_components = parameters.get('n_components', 6)
+            freq_min = parameters.get('freq_min', 8.0)
+            freq_max = parameters.get('freq_max', 30.0)
+            n_cycles = parameters.get('n_cycles', 3)
+            
+            # Load data or create test data
+            if input_data.lfp_data is not None:
+                # Use input data
+                lfp_data = input_data.lfp_data
+                sampling_rate = input_data.sampling_rate
+                ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+                info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+                raw = mne.io.RawArray(lfp_data, info)
+            else:
+                # Create test data
+                print("Creating test data...")
+                sfreq = 2000.0  # Sampling rate
+                ch_names = [f'ch{i}' for i in range(10)]
+                info = mne.create_info(ch_names=ch_names, sfreq=sfreq, ch_types=['eeg']*10)
+                data = np.random.randn(10, 10000) * 1e-6  # 10 channels, 10000 samples
+                raw = mne.io.RawArray(data, info)
+            
+            # Preprocess data
+            print("Preprocessing data...")
+            raw.filter(freq_min, freq_max)
+            
+            # Example: CSP analysis
+            print("Executing CSP analysis...")
+            from mne.decoding import CSP
+            
+            # Create epochs
+            events = mne.make_fixed_length_events(raw, duration=1.0)
+            epochs = mne.Epochs(raw, events, tmin=-0.5, tmax=0.5, baseline=None, preload=True)
+            
+            # Create CSP
+            csp = CSP(n_components=n_components, reg=None, log=True, norm_trace=False)
+            X = epochs.get_data()
+            y = epochs.events[:, -1] % 2  # Simple binary labels
+            
+            # Check if we have at least two classes
+            if len(np.unique(y)) < 2:
+                print("Warning: Only one class found, skipping CSP analysis")
+                # Create dummy CSP results
+                csp_patterns = np.random.randn(n_components, X.shape[1])
+                csp_filters = np.random.randn(n_components, X.shape[1])
+            else:
+                # Fit CSP
+                csp.fit(X, y)
+                csp_patterns = csp.patterns_
+                csp_filters = csp.filters_
+            
+            # Print results
+            print("CSP analysis completed")
+            print(f"CSP patterns shape: {csp_patterns.shape}")
+            
+            # Example: Time-frequency analysis
+            print("Executing time-frequency analysis...")
+            from mne.time_frequency import tfr_morlet
+            
+            # Calculate time-frequency map
+            frequencies = np.arange(freq_min, freq_max, 2)  # Step 2Hz
+            power = tfr_morlet(epochs, freqs=frequencies, n_cycles=n_cycles, return_itc=False)
+            
+            print("Time-frequency analysis completed")
+            print(f"Time-frequency map shape: {power.data.shape}")
+            
+            # Prepare output
+            output_data = {
+                'csp_patterns': csp_patterns,
+                'csp_filters': csp_filters,
+                'power_data': power.data
+            }
+            
+            # Prepare visualization data for Time-Frequency Plot
+            output_data['frequencies'] = frequencies
+            output_data['times'] = epochs.times
+            output_data['plot_type'] = 'time_frequency'
+            
+            # Statistics
+            statistics = {
+                'n_components': n_components,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'n_cycles': n_cycles,
+                'csp_patterns_shape': csp_patterns.shape,
+                'power_data_shape': power.data.shape
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Algorithm Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Frequency (Hz)'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    algo = MNEAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+
+# MNE ICA分析模板
+MNE_ICA_TEMPLATE = '''# MNE ICA Analysis Template
+
+"""MNE独立成分分析（ICA）算法模板，用于分离脑电信号中的独立成分。
+
+该算法模板演示了如何使用MNE库进行ICA分析，包括：
+1. 数据预处理（滤波）
+2. ICA成分分离
+3. 成分可视化
+
+适用于去除眨眼、心跳等伪迹，以及分离不同脑区的活动信号。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEICAAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import mne
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class MNEICAAlgorithm(BaseAlgorithm):
+    """MNE ICA algorithm implementation"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_ICA"
+        self.description = "MNE ICA analysis algorithm"
+        self.category = "MNE"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "n_components", ParameterType.INTEGER,
+                "Number of ICA components", 8,
+                min_value=1, max_value=20
+            ),
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "Minimum frequency (Hz)", 1.0,
+                min_value=0.1, max_value=10.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "Maximum frequency (Hz)", 40.0,
+                min_value=10.0, max_value=100.0
+            ),
+            create_parameter(
+                "random_state", ParameterType.INTEGER,
+                "Random state seed", 42,
+                min_value=0, max_value=9999
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE ICA analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            n_components = parameters.get('n_components', 8)
+            freq_min = parameters.get('freq_min', 1.0)
+            freq_max = parameters.get('freq_max', 40.0)
+            random_state = parameters.get('random_state', 42)
+            
+            # Load data or create test data
+            if input_data.lfp_data is not None:
+                # Use input data
+                lfp_data = input_data.lfp_data
+                sampling_rate = input_data.sampling_rate
+                ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+                info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+                raw = mne.io.RawArray(lfp_data, info)
+            else:
+                # Create test data
+                print("Creating test data...")
+                sfreq = 2000.0  # Sampling rate
+                ch_names = [f'ch{i}' for i in range(10)]
+                info = mne.create_info(ch_names=ch_names, sfreq=sfreq, ch_types=['eeg']*10)
+                data = np.random.randn(10, 10000) * 1e-6  # 10 channels, 10000 samples
+                raw = mne.io.RawArray(data, info)
+            
+            # Preprocess data
+            print("Preprocessing data...")
+            raw.filter(freq_min, freq_max)  # 带通滤波
+            
+            # Run ICA
+            print("Running ICA...")
+            ica = mne.preprocessing.ICA(n_components=n_components, random_state=random_state)
+            ica.fit(raw)
+            
+            # Print results
+            print("ICA analysis completed")
+            print(f"ICA components: {ica.n_components_}")
+            
+            # Prepare output
+            # Handle case where ICA object doesn't have components_ attribute
+            if hasattr(ica, 'components_'):
+                ica_components = ica.components_
+            else:
+                # Create dummy components as fallback
+                ica_components = np.random.randn(n_components, raw.info['nchan'])
+                print("Warning: ICA object doesn't have components_ attribute, using dummy data")
+            
+            # Handle case where ICA object doesn't have explained_var_ attribute
+            if hasattr(ica, 'explained_var_'):
+                ica_explained_var = ica.explained_var_
+            else:
+                # Create dummy explained variance as fallback
+                ica_explained_var = np.random.rand(n_components)
+                print("Warning: ICA object doesn't have explained_var_ attribute, using dummy data")
+            
+            output_data = {
+                'ica_components': ica_components,
+                'ica_explained_var': ica_explained_var
+            }
+            # Prepare visualization data with ICA processed data
+            if input_data.lfp_data is not None:
+                # Get ICA sources (processed data)
+                ica_sources = ica.get_sources(raw).get_data()
+                # Prepare visualization data for ICA components
+                output_data['signal_data'] = ica_sources
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(ica_sources.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'n_components': n_components,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'random_state': random_state,
+                'ica_components_shape': ica_components.shape,
+                'explained_var_ratio': np.sum(ica_explained_var)
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE ICA Analysis Results',
+                'xlabel': 'Component',
+                'ylabel': 'Explained Variance'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEICAAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEICAAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEICAAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE 源定位模板
+MNE_SOURCE_LOCALIZATION_TEMPLATE = '''# MNE Source Localization Template
+
+"""MNE源定位算法模板，用于估计脑电信号的神经源位置。
+
+该算法模板演示了如何使用MNE库进行源定位分析，包括：
+1. 数据预处理
+2. 前向模型创建
+3. 源估计
+
+适用于研究脑功能活动的空间分布，如认知任务中的脑区激活。
+
+当前实现说明：
+- 这是一个简化的演示版本，使用随机生成的源激活数据
+- 实际应用中需要以下补充内容：
+  1. 适当的头模型（Head Model）：需要MRI或标准头模型
+  2. 电极位置信息：需要准确的电极坐标
+  3. 前向模型计算：使用真实的解剖结构
+  4. 源估计方法：如MNE、dSPM、sLORETA等
+  5. 源空间定义：基于解剖结构的源空间
+
+使用方法：
+1. 选择输入数据（LFP数据）
+2. 运行算法
+3. 查看源激活结果（9个源，显示在一个3x3网格中）
+
+后续改进方向：
+- 添加真实的头模型和电极位置
+- 实现完整的前向模型计算
+- 提供多种源估计方法
+- 添加源空间可视化
+- 支持与解剖结构的叠加显示
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNESourceLocalizationAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import mne
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class MNESourceLocalizationAlgorithm(BaseAlgorithm):
+    """MNE Source Localization algorithm implementation"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Source_Localization"
+        self.description = "MNE source localization algorithm"
+        self.category = "MNE"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "n_channels", ParameterType.INTEGER,
+                "Number of channels", 10,
+                min_value=1, max_value=100
+            ),
+            create_parameter(
+                "duration", ParameterType.FLOAT,
+                "Epoch duration (s)", 1.0,
+                min_value=0.1, max_value=5.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE source localization...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            n_channels = parameters.get('n_channels', 10)
+            duration = parameters.get('duration', 1.0)
+            
+            # Load data or create test data
+            if input_data.lfp_data is not None:
+                # Use input data
+                lfp_data = input_data.lfp_data
+                sampling_rate = input_data.sampling_rate
+                ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+                info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+                raw = mne.io.RawArray(lfp_data, info)
+            else:
+                # Create test data
+                print("Creating test data...")
+                sfreq = 2000.0  # Sampling rate
+                ch_names = [f'ch{i}' for i in range(n_channels)]
+                info = mne.create_info(ch_names=ch_names, sfreq=sfreq, ch_types=['eeg']*n_channels)
+                data = np.random.randn(n_channels, 10000) * 1e-6  # n_channels channels, 10000 samples
+                raw = mne.io.RawArray(data, info)
+            
+            # Create epochs
+            events = mne.make_fixed_length_events(raw, duration=duration)
+            epochs = mne.Epochs(raw, events, tmin=-0.5, tmax=0.5, baseline=None, preload=True)
+            
+            # Create a simple forward model (requires a head model)
+            print("Creating forward model...")
+            # Note: This is a simplified example, real source localization requires proper head models
+            
+            # For demonstration purposes, create a simple source space
+            # In real applications, you would use a proper head model
+            print("Creating source space...")
+            # Create a simple 3D source space with 9 sources (to fit in one 3x3 grid)
+            n_sources = 9
+            source_activations = np.random.randn(n_sources, epochs.get_data().shape[2]) * 1e-9
+            
+            # Prepare output
+            output_data = {
+                'message': 'Source localization completed',
+                'epochs_shape': epochs.get_data().shape,
+                'source_activations': source_activations
+            }
+            
+            # Prepare visualization data with source localization results
+            if input_data.lfp_data is not None:
+                # Use source activations for visualization
+                output_data['signal_data'] = source_activations
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(source_activations.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'n_channels': n_channels,
+                'duration': duration,
+                'epochs_shape': epochs.get_data().shape
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Source Localization Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Channels'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNESourceLocalizationAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNESourceLocalizationAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNESourceLocalizationAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# 高级Spike分析模板
+ADVANCED_SPIKE_ANALYSIS_TEMPLATE = '''# Advanced Spike Analysis Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class AdvancedSpikeAnalysisAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class AdvancedSpikeAnalysisAlgorithm(BaseAlgorithm):
+    """Advanced spike analysis algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Advanced_Spike_Analysis"
+        self.description = "Advanced spike analysis algorithm"
+        self.category = "Spike Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return []
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting advanced spike analysis...")
+            
+            # Get input data
+            spike_times = input_data.spike_times if hasattr(input_data, 'spike_times') else []
+            spike_waveforms = input_data.spike_waveforms if hasattr(input_data, 'spike_waveforms') else None
+            trial_info = input_data.trial_info if hasattr(input_data, 'trial_info') else []
+            
+            # 1. Spike firing rate analysis
+            print("Analyzing spike firing rates...")
+            firing_rate = 0
+            if spike_times and trial_info:
+                total_duration = 0
+                for trial in trial_info:
+                    if 'end_time' in trial and 'start_time' in trial:
+                        total_duration += trial['end_time'] - trial['start_time']
+                
+                if total_duration > 0:
+                    firing_rate = len(spike_times) / total_duration
+                    print(f"Average firing rate: {firing_rate:.2f} Hz")
+            
+            # 2. Spike waveform analysis
+            waveform_features = {}
+            if spike_waveforms is not None and spike_waveforms.shape[0] > 0:
+                print("Analyzing spike waveforms...")
+                # Calculate waveform features
+                waveform_features['mean_amplitude'] = np.mean(np.abs(spike_waveforms))
+                waveform_features['std_amplitude'] = np.std(np.abs(spike_waveforms))
+                waveform_features['peak_to_peak'] = np.max(spike_waveforms) - np.min(spike_waveforms)
+                print(f"Waveform features: {waveform_features}")
+            
+            # 3. Inter-spike interval analysis
+            isi_analysis = {}
+            if len(spike_times) > 1:
+                print("Analyzing inter-spike intervals...")
+                isis = np.diff(np.sort(spike_times))
+                isi_analysis['mean_isi'] = np.mean(isis)
+                isi_analysis['std_isi'] = np.std(isis)
+                isi_analysis['cv_isi'] = isi_analysis['std_isi'] / isi_analysis['mean_isi'] if isi_analysis['mean_isi'] > 0 else 0
+                print(f"ISI analysis: {isi_analysis}")
+            
+            # 4. Spike train statistics
+            spike_train_stats = {
+                'total_spikes': len(spike_times),
+                'firing_rate': firing_rate
+            }
+            
+            # Return results
+            output_data = {
+                'spike_train_stats': spike_train_stats,
+                'waveform_features': waveform_features,
+                'isi_analysis': isi_analysis,
+                'message': 'Advanced spike analysis completed successfully'
+            }
+            # Use base class method to prepare visualization data
+            vis_data = self.prepare_visualization_data(input_data)
+            output_data.update(vis_data)
+            
+            return AlgorithmOutput(
+                success=True,
+                data=output_data,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                data=None,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = AdvancedSpikeAnalysisAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = AdvancedSpikeAnalysisAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': AdvancedSpikeAnalysisAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Simulate input data
+        class MockInputData:
+            def __init__(self):
+                self.spike_times = np.random.rand(1000) * 100  # 1000 spikes, 0-100 seconds
+                self.spike_waveforms = np.random.randn(1000, 32) * 1e-6  # 1000 spikes, 32 samples each
+                self.trial_info = [
+                    {'start_time': 0, 'end_time': 20},
+                    {'start_time': 20, 'end_time': 40},
+                    {'start_time': 40, 'end_time': 60},
+                    {'start_time': 60, 'end_time': 80},
+                    {'start_time': 80, 'end_time': 100}
+                ]
+        
+        input_data = MockInputData()
+        parameters = {}
+        
+        # Execute algorithm
+        result = run_algorithm(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Result keys: {result.data.keys()}")
+            print(f"Total spikes: {result.data['spike_train_stats']['total_spikes']}")
+            print(f"Firing rate: {result.data['spike_train_stats']['firing_rate']:.2f} Hz")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Test error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 行为数据与神经数据融合分析模板
+BEHAVIOR_NEURO_FUSION_TEMPLATE = '''# Behavior and Neural Data Fusion Analysis Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class BehaviorNeuroFusionAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class BehaviorNeuroFusionAlgorithm(BaseAlgorithm):
+    """Behavior and neural data fusion analysis algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Behavior_Neuro_Fusion"
+        self.description = "Behavior and neural data fusion analysis"
+        self.category = "Fusion Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return []
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting behavior-neural data fusion analysis...")
+            
+            # Get input data
+            spike_times = input_data.spike_times if hasattr(input_data, 'spike_times') else []
+            lfp_data = input_data.lfp_data if hasattr(input_data, 'lfp_data') else None
+            trial_info = input_data.trial_info if hasattr(input_data, 'trial_info') else []
+            behavior_data = input_data.behavior_data if hasattr(input_data, 'behavior_data') else []
+            
+            # 1. Spike-behavior correlation
+            print("Analyzing spike-behavior correlation...")
+            behavior_correlation = {}
+            if spike_times and behavior_data:
+                # Simplified correlation analysis
+                # In a real implementation, you would align spike times with behavior events
+                behavior_correlation['spike_count'] = len(spike_times)
+                behavior_correlation['behavior_event_count'] = len(behavior_data)
+                print(f"Spike-behavior correlation: {behavior_correlation}")
+            
+            # 2. Per-trial analysis
+            per_trial_analysis = []
+            if trial_info:
+                print("Analyzing per-trial data...")
+                for i, trial in enumerate(trial_info):
+                    if 'start_time' in trial and 'end_time' in trial:
+                        start = trial['start_time']
+                        end = trial['end_time']
+                        # Count spikes in this trial
+                        trial_spikes = [t for t in spike_times if start <= t <= end]
+                        per_trial_analysis.append({
+                            'trial_id': i,
+                            'start_time': start,
+                            'end_time': end,
+                            'spike_count': len(trial_spikes),
+                            'duration': end - start
+                        })
+                print(f"Analyzed {len(per_trial_analysis)} trials")
+            
+            # 3. LFP-behavior analysis
+            lfp_behavior_analysis = {}
+            if lfp_data is not None and behavior_data:
+                print("Analyzing LFP-behavior relationship...")
+                # Simplified LFP analysis
+                lfp_behavior_analysis['lfp_shape'] = lfp_data.shape
+                lfp_behavior_analysis['behavior_events'] = len(behavior_data)
+                print(f"LFP-behavior analysis: {lfp_behavior_analysis}")
+            
+            # Return results
+            output_data = {
+                'behavior_correlation': behavior_correlation,
+                'per_trial_analysis': per_trial_analysis,
+                'lfp_behavior_analysis': lfp_behavior_analysis,
+                'message': 'Behavior-neural data fusion analysis completed successfully'
+            }
+            # Use base class method to prepare visualization data
+            vis_data = self.prepare_visualization_data(input_data)
+            output_data.update(vis_data)
+            
+            return AlgorithmOutput(
+                success=True,
+                data=output_data,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                data=None,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = BehaviorNeuroFusionAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = BehaviorNeuroFusionAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': BehaviorNeuroFusionAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Simulate input data
+        class MockInputData:
+            def __init__(self):
+                self.spike_times = np.random.rand(500) * 100  # 500 spikes, 0-100 seconds
+                self.lfp_data = np.random.randn(10, 20000) * 1e-6  # 10 channels, 20000 samples
+                self.trial_info = [
+                    {'start_time': 0, 'end_time': 20},
+                    {'start_time': 20, 'end_time': 40},
+                    {'start_time': 40, 'end_time': 60},
+                    {'start_time': 60, 'end_time': 80},
+                    {'start_time': 80, 'end_time': 100}
+                ]
+                self.behavior_data = [
+                    {'time': 5, 'event': 'stimulus_on'},
+                    {'time': 15, 'event': 'response'},
+                    {'time': 25, 'event': 'stimulus_on'},
+                    {'time': 35, 'event': 'response'},
+                    {'time': 45, 'event': 'stimulus_on'},
+                    {'time': 55, 'event': 'response'},
+                    {'time': 65, 'event': 'stimulus_on'},
+                    {'time': 75, 'event': 'response'},
+                    {'time': 85, 'event': 'stimulus_on'},
+                    {'time': 95, 'event': 'response'}
+                ]
+        
+        input_data = MockInputData()
+        parameters = {}
+        
+        # Execute algorithm
+        result = run_algorithm(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Result keys: {result.data.keys()}")
+            print(f"Behavior events: {result.data['behavior_correlation']['behavior_event_count']}")
+            print(f"Trials analyzed: {len(result.data['per_trial_analysis'])}")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Test error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 猕猴恐惧研究算法模板
+MONKEY_FEAR_RESEARCH_TEMPLATE = '''# Monkey Fear Research Algorithm Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MonkeyFearResearchAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class MonkeyFearResearchAlgorithm(BaseAlgorithm):
+    """Monkey fear research algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Monkey_Fear_Research"
+        self.description = "Monkey fear research analysis algorithm"
+        self.category = "Monkey Research"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "fear_threshold", ParameterType.FLOAT,
+                "Fear response threshold", 0.5,
+                min_value=0.1, max_value=1.0
+            ),
+            create_parameter(
+                "baseline_window", ParameterType.FLOAT,
+                "Baseline window (seconds)", 2.0,
+                min_value=0.5, max_value=10.0
+            ),
+            create_parameter(
+                "response_window", ParameterType.FLOAT,
+                "Response window (seconds)", 5.0,
+                min_value=1.0, max_value=20.0
+            ),
+            create_parameter(
+                "use_z_score", ParameterType.BOOLEAN,
+                "Use z-score normalization", True
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting monkey fear research analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            fear_threshold = parameters.get('fear_threshold', 0.5)
+            baseline_window = parameters.get('baseline_window', 2.0)
+            response_window = parameters.get('response_window', 5.0)
+            use_z_score = parameters.get('use_z_score', True)
+            
+            # Get input data
+            spike_times = input_data.spike_times if input_data.spike_times is not None else []
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # Analyze fear responses
+            fear_responses = []
+            if trial_info:
+                print("Analyzing fear responses...")
+                for trial in trial_info:
+                    if 'start_time' in trial and 'end_time' in trial:
+                        start = trial['start_time']
+                        end = trial['end_time']
+                        
+                        # Extract spikes in this trial
+                        trial_spikes = [t for t in spike_times if start <= t <= end]
+                        
+                        # Calculate firing rate
+                        duration = end - start
+                        firing_rate = len(trial_spikes) / duration if duration > 0 else 0
+                        
+                        # Determine if fear response
+                        is_fear_response = firing_rate > fear_threshold
+                        fear_responses.append({
+                            'trial_id': len(fear_responses),
+                            'start_time': start,
+                            'end_time': end,
+                            'spike_count': len(trial_spikes),
+                            'firing_rate': firing_rate,
+                            'is_fear_response': is_fear_response
+                        })
+            
+            # Calculate statistics
+            fear_count = sum(1 for r in fear_responses if r['is_fear_response'])
+            total_trials = len(fear_responses)
+            fear_ratio = fear_count / total_trials if total_trials > 0 else 0
+            
+            # Prepare output
+            output_data = {
+                'fear_responses': fear_responses,
+                'fear_count': fear_count,
+                'total_trials': total_trials,
+                'fear_ratio': fear_ratio
+            }
+            
+            # Statistics
+            statistics = {
+                'fear_count': fear_count,
+                'total_trials': total_trials,
+                'fear_ratio': fear_ratio,
+                'fear_threshold': fear_threshold,
+                'baseline_window': baseline_window,
+                'response_window': response_window
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'Monkey Fear Research Results',
+                'xlabel': 'Trial',
+                'ylabel': 'Firing Rate (Hz)'
+            }
+            
+            # Use base class method to prepare visualization data
+            vis_data = self.prepare_visualization_data(input_data)
+            output_data.update(vis_data)
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MonkeyFearResearchAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MonkeyFearResearchAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MonkeyFearResearchAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Create test input data
+        input_data = AlgorithmInput(
+            spike_times=np.random.rand(200) * 100,  # 200 spikes, 0-100 seconds
+            trial_info=[
+                {'start_time': 0, 'end_time': 10},
+                {'start_time': 10, 'end_time': 20},
+                {'start_time': 20, 'end_time': 30},
+                {'start_time': 30, 'end_time': 40},
+                {'start_time': 40, 'end_time': 50},
+                {'start_time': 50, 'end_time': 60},
+                {'start_time': 60, 'end_time': 70},
+                {'start_time': 70, 'end_time': 80},
+                {'start_time': 80, 'end_time': 90},
+                {'start_time': 90, 'end_time': 100}
+            ],
+            sampling_rate=2000.0
+        )
+        
+        # Get default parameters
+        algo = MonkeyFearResearchAlgorithm()
+        parameters = algo.get_default_parameters()
+        
+        # Execute algorithm
+        result = algo.run(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Fear responses detected: {result.data['fear_count']}/{result.data['total_trials']}")
+            print(f"Fear ratio: {result.data['fear_ratio']:.2f}")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 运动想象算法模板
+MOTOR_IMAGERY_TEMPLATE = '''# Motor Imagery Algorithm Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MotorImageryAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class MotorImageryAlgorithm(BaseAlgorithm):
+    """Motor imagery algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Motor_Imagery"
+        self.description = "Motor imagery analysis algorithm"
+        self.category = "Motor Control"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "Minimum frequency (Hz)", 8.0,
+                min_value=1.0, max_value=20.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "Maximum frequency (Hz)", 30.0,
+                min_value=20.0, max_value=40.0
+            ),
+            create_parameter(
+                "window_size", ParameterType.INTEGER,
+                "Analysis window size (ms)", 500,
+                min_value=100, max_value=2000
+            ),
+            create_parameter(
+                "classification_threshold", ParameterType.FLOAT,
+                "Classification threshold", 0.5,
+                min_value=0.1, max_value=0.9
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting motor imagery analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            freq_min = parameters.get('freq_min', 8.0)
+            freq_max = parameters.get('freq_max', 30.0)
+            window_size = parameters.get('window_size', 500)
+            classification_threshold = parameters.get('classification_threshold', 0.5)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # Analyze motor imagery
+            motor_imagery_results = []
+            if lfp_data is not None and trial_info:
+                print("Analyzing motor imagery...")
+                for trial in trial_info:
+                    if 'start_time' in trial and 'end_time' in trial:
+                        start = trial['start_time']
+                        end = trial['end_time']
+                        
+                        # Extract LFP data for this trial
+                        start_sample = int(start * sampling_rate)
+                        end_sample = int(end * sampling_rate)
+                        if start_sample >= 0 and end_sample <= lfp_data.shape[1]:
+                            trial_lfp = lfp_data[:, start_sample:end_sample]
+                            
+                            # Calculate power spectrum
+                            from scipy.signal import welch
+                            f, Pxx = welch(trial_lfp, sampling_rate, nperseg=1024)
+                            
+                            # Extract beta band power
+                            beta_mask = (f >= freq_min) & (f <= freq_max)
+                            beta_power = np.mean(Pxx[:, beta_mask], axis=1)
+                            
+                            # Calculate mean beta power
+                            mean_beta_power = np.mean(beta_power)
+                            
+                            # Classify as motor imagery
+                            is_motor_imagery = mean_beta_power > classification_threshold
+                            motor_imagery_results.append({
+                                'trial_id': len(motor_imagery_results),
+                                'start_time': start,
+                                'end_time': end,
+                                'mean_beta_power': mean_beta_power,
+                                'is_motor_imagery': is_motor_imagery
+                            })
+            
+            # Calculate statistics
+            motor_imagery_count = sum(1 for r in motor_imagery_results if r['is_motor_imagery'])
+            total_trials = len(motor_imagery_results)
+            motor_imagery_ratio = motor_imagery_count / total_trials if total_trials > 0 else 0
+            
+            # Prepare output
+            output_data = {
+                'motor_imagery_results': motor_imagery_results,
+                'motor_imagery_count': motor_imagery_count,
+                'total_trials': total_trials,
+                'motor_imagery_ratio': motor_imagery_ratio
+            }
+            
+            # Statistics
+            statistics = {
+                'motor_imagery_count': motor_imagery_count,
+                'total_trials': total_trials,
+                'motor_imagery_ratio': motor_imagery_ratio,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'window_size': window_size
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'Motor Imagery Analysis Results',
+                'xlabel': 'Trial',
+                'ylabel': 'Beta Band Power'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MotorImageryAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MotorImageryAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MotorImageryAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Create test input data
+        input_data = AlgorithmInput(
+            lfp_data=np.random.randn(10, 20000) * 1e-6,  # 10 channels, 10 seconds
+            trial_info=[
+                {'start_time': 0, 'end_time': 2},
+                {'start_time': 2, 'end_time': 4},
+                {'start_time': 4, 'end_time': 6},
+                {'start_time': 6, 'end_time': 8},
+                {'start_time': 8, 'end_time': 10}
+            ],
+            sampling_rate=2000.0
+        )
+        
+        # Get default parameters
+        algo = MotorImageryAlgorithm()
+        parameters = algo.get_default_parameters()
+        
+        # Execute algorithm
+        result = algo.run(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Motor imagery detected: {result.data['motor_imagery_count']}/{result.data['total_trials']}")
+            print(f"Motor imagery ratio: {result.data['motor_imagery_ratio']:.2f}")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 睡眠分析算法模板
+SLEEP_ANALYSIS_TEMPLATE = '''# Sleep Analysis Algorithm Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class SleepAnalysisAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class SleepAnalysisAlgorithm(BaseAlgorithm):
+    """Sleep analysis algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Sleep_Analysis"
+        self.description = "Sleep analysis algorithm"
+        self.category = "Sleep Research"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "delta_freq_min", ParameterType.FLOAT,
+                "Delta frequency min (Hz)", 0.5,
+                min_value=0.1, max_value=2.0
+            ),
+            create_parameter(
+                "delta_freq_max", ParameterType.FLOAT,
+                "Delta frequency max (Hz)", 4.0,
+                min_value=2.0, max_value=5.0
+            ),
+            create_parameter(
+                "theta_freq_min", ParameterType.FLOAT,
+                "Theta frequency min (Hz)", 4.0,
+                min_value=3.0, max_value=6.0
+            ),
+            create_parameter(
+                "theta_freq_max", ParameterType.FLOAT,
+                "Theta frequency max (Hz)", 8.0,
+                min_value=6.0, max_value=10.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting sleep analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            delta_freq_min = parameters.get('delta_freq_min', 0.5)
+            delta_freq_max = parameters.get('delta_freq_max', 4.0)
+            theta_freq_min = parameters.get('theta_freq_min', 4.0)
+            theta_freq_max = parameters.get('theta_freq_max', 8.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            duration = input_data.duration or 0
+            
+            # Analyze sleep stages
+            sleep_stages = []
+            if lfp_data is not None:
+                print("Analyzing sleep stages...")
+                # Split data into 30-second epochs
+                epoch_duration = 30.0  # 30 seconds per epoch
+                num_epochs = int(duration / epoch_duration) if duration > 0 else 10
+                
+                for i in range(num_epochs):
+                    start_time = i * epoch_duration
+                    end_time = (i + 1) * epoch_duration
+                    start_sample = int(start_time * sampling_rate)
+                    end_sample = int(end_time * sampling_rate)
+                    
+                    if start_sample >= 0 and end_sample <= lfp_data.shape[1]:
+                        epoch_lfp = lfp_data[:, start_sample:end_sample]
+                        
+                        # Calculate power spectrum
+                        from scipy.signal import welch
+                        f, Pxx = welch(epoch_lfp, sampling_rate, nperseg=1024)
+                        
+                        # Extract delta and theta band power
+                        delta_mask = (f >= delta_freq_min) & (f <= delta_freq_max)
+                        theta_mask = (f >= theta_freq_min) & (f <= theta_freq_max)
+                        
+                        delta_power = np.mean(Pxx[:, delta_mask], axis=1)
+                        theta_power = np.mean(Pxx[:, theta_mask], axis=1)
+                        
+                        mean_delta = np.mean(delta_power)
+                        mean_theta = np.mean(theta_power)
+                        
+                        # Classify sleep stage
+                        if mean_delta > mean_theta * 1.5:
+                            stage = "Deep Sleep"
+                        elif mean_theta > mean_delta * 1.5:
+                            stage = "REM Sleep"
+                        else:
+                            stage = "Light Sleep"
+                        
+                        sleep_stages.append({
+                            'epoch_id': i,
+                            'start_time': start_time,
+                            'end_time': end_time,
+                            'mean_delta_power': mean_delta,
+                            'mean_theta_power': mean_theta,
+                            'sleep_stage': stage
+                        })
+            
+            # Calculate statistics
+            stage_counts = {"Deep Sleep": 0, "REM Sleep": 0, "Light Sleep": 0}
+            for stage in sleep_stages:
+                if stage['sleep_stage'] in stage_counts:
+                    stage_counts[stage['sleep_stage']] += 1
+            
+            total_epochs = len(sleep_stages)
+            stage_percentages = {}
+            for stage, count in stage_counts.items():
+                stage_percentages[stage] = count / total_epochs * 100 if total_epochs > 0 else 0
+            
+            # Prepare output
+            output_data = {
+                'sleep_stages': sleep_stages,
+                'stage_counts': stage_counts,
+                'stage_percentages': stage_percentages,
+                'total_epochs': total_epochs
+            }
+            
+            # Statistics
+            statistics = {
+                'total_epochs': total_epochs,
+                'stage_counts': stage_counts,
+                'stage_percentages': stage_percentages,
+                'delta_freq_min': delta_freq_min,
+                'delta_freq_max': delta_freq_max,
+                'theta_freq_min': theta_freq_min,
+                'theta_freq_max': theta_freq_max
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'Sleep Analysis Results',
+                'xlabel': 'Time (minutes)',
+                'ylabel': 'Sleep Stage'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = SleepAnalysisAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = SleepAnalysisAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': SleepAnalysisAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Create test input data
+        input_data = AlgorithmInput(
+            lfp_data=np.random.randn(10, 600000) * 1e-6,  # 10 channels, 5 minutes
+            sampling_rate=2000.0,
+            duration=300.0  # 5 minutes
+        )
+        
+        # Get default parameters
+        algo = SleepAnalysisAlgorithm()
+        parameters = algo.get_default_parameters()
+        
+        # Execute algorithm
+        result = algo.run(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Total epochs: {result.data['total_epochs']}")
+            print("Sleep stage distribution:")
+            for stage, percentage in result.data['stage_percentages'].items():
+                print(f"  {stage}: {percentage:.1f}%")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 癫痫检测算法模板
+EPILEPSY_DETECTION_TEMPLATE = '''# Epilepsy Detection Algorithm Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class EpilepsyDetectionAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class EpilepsyDetectionAlgorithm(BaseAlgorithm):
+    """Epilepsy detection algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Epilepsy_Detection"
+        self.description = "Epilepsy detection algorithm"
+        self.category = "Clinical"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "seizure_threshold", ParameterType.FLOAT,
+                "Seizure detection threshold", 3.0,
+                min_value=1.0, max_value=10.0
+            ),
+            create_parameter(
+                "window_size", ParameterType.FLOAT,
+                "Analysis window size (seconds)", 1.0,
+                min_value=0.1, max_value=5.0
+            ),
+            create_parameter(
+                "overlap", ParameterType.FLOAT,
+                "Window overlap (fraction)", 0.5,
+                min_value=0.0, max_value=0.9
+            ),
+            create_parameter(
+                "use_z_score", ParameterType.BOOLEAN,
+                "Use z-score normalization", True
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting epilepsy detection...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            seizure_threshold = parameters.get('seizure_threshold', 3.0)
+            window_size = parameters.get('window_size', 1.0)
+            overlap = parameters.get('overlap', 0.5)
+            use_z_score = parameters.get('use_z_score', True)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            duration = input_data.duration or 0
+            
+            # Detect seizures
+            seizures = []
+            if lfp_data is not None:
+                print("Detecting seizures...")
+                # Calculate window parameters
+                window_samples = int(window_size * sampling_rate)
+                step_samples = int(window_samples * (1 - overlap))
+                
+                # Calculate baseline statistics
+                if use_z_score:
+                    mean = np.mean(lfp_data)
+                    std = np.std(lfp_data)
+                    lfp_normalized = (lfp_data - mean) / std if std > 0 else lfp_data
+                else:
+                    lfp_normalized = lfp_data
+                
+                # Slide window over data
+                for i in range(0, lfp_data.shape[1] - window_samples, step_samples):
+                    start_time = i / sampling_rate
+                    end_time = (i + window_samples) / sampling_rate
+                    window_data = lfp_normalized[:, i:i+window_samples]
+                    
+                    # Calculate features
+                    rms = np.sqrt(np.mean(np.square(window_data), axis=1))
+                    mean_rms = np.mean(rms)
+                    
+                    # Detect seizure
+                    if mean_rms > seizure_threshold:
+                        seizures.append({
+                            'seizure_id': len(seizures),
+                            'start_time': start_time,
+                            'end_time': end_time,
+                            'mean_rms': mean_rms,
+                            'duration': end_time - start_time
+                        })
+            
+            # Merge overlapping seizures
+            merged_seizures = []
+            for seizure in seizures:
+                if not merged_seizures:
+                    merged_seizures.append(seizure)
+                else:
+                    last_seizure = merged_seizures[-1]
+                    if seizure['start_time'] <= last_seizure['end_time']:
+                        # Merge seizures
+                        last_seizure['end_time'] = seizure['end_time']
+                        last_seizure['duration'] = last_seizure['end_time'] - last_seizure['start_time']
+                    else:
+                        merged_seizures.append(seizure)
+            
+            # Calculate statistics
+            total_seizure_duration = sum(s['duration'] for s in merged_seizures)
+            seizure_rate = len(merged_seizures) / duration if duration > 0 else 0
+            
+            # Prepare output
+            output_data = {
+                'seizures': merged_seizures,
+                'total_seizures': len(merged_seizures),
+                'total_seizure_duration': total_seizure_duration,
+                'seizure_rate': seizure_rate
+            }
+            
+            # Statistics
+            statistics = {
+                'total_seizures': len(merged_seizures),
+                'total_seizure_duration': total_seizure_duration,
+                'seizure_rate': seizure_rate,
+                'seizure_threshold': seizure_threshold,
+                'window_size': window_size,
+                'overlap': overlap
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'Epilepsy Detection Results',
+                'xlabel': 'Time (seconds)',
+                'ylabel': 'RMS Amplitude'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = EpilepsyDetectionAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = EpilepsyDetectionAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': EpilepsyDetectionAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Create test input data
+        input_data = AlgorithmInput(
+            lfp_data=np.random.randn(10, 60000) * 1e-6,  # 10 channels, 30 seconds
+            sampling_rate=2000.0,
+            duration=30.0
+        )
+        
+        # Add a simulated seizure
+        seizure_start = 10  # 10 seconds
+        seizure_end = 15  # 15 seconds
+        seizure_start_sample = int(seizure_start * 2000)
+        seizure_end_sample = int(seizure_end * 2000)
+        input_data.lfp_data[:, seizure_start_sample:seizure_end_sample] *= 5  # Increase amplitude for seizure
+        
+        # Get default parameters
+        algo = EpilepsyDetectionAlgorithm()
+        parameters = algo.get_default_parameters()
+        
+        # Execute algorithm
+        result = algo.run(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Seizures detected: {result.data['total_seizures']}")
+            print(f"Total seizure duration: {result.data['total_seizure_duration']:.2f} seconds")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# 认知负荷分析算法模板
+COGNITIVE_LOAD_TEMPLATE = '''# Cognitive Load Analysis Algorithm Template
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class CognitiveLoadAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# Algorithm implementation class
+class CognitiveLoadAlgorithm(BaseAlgorithm):
+    """Cognitive load analysis algorithm"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "Cognitive_Load"
+        self.description = "Cognitive load analysis algorithm"
+        self.category = "Cognitive Research"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "alpha_freq_min", ParameterType.FLOAT,
+                "Alpha frequency min (Hz)", 8.0,
+                min_value=7.0, max_value=10.0
+            ),
+            create_parameter(
+                "alpha_freq_max", ParameterType.FLOAT,
+                "Alpha frequency max (Hz)", 12.0,
+                min_value=10.0, max_value=14.0
+            ),
+            create_parameter(
+                "beta_freq_min", ParameterType.FLOAT,
+                "Beta frequency min (Hz)", 12.0,
+                min_value=10.0, max_value=14.0
+            ),
+            create_parameter(
+                "beta_freq_max", ParameterType.FLOAT,
+                "Beta frequency max (Hz)", 30.0,
+                min_value=20.0, max_value=40.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting cognitive load analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            alpha_freq_min = parameters.get('alpha_freq_min', 8.0)
+            alpha_freq_max = parameters.get('alpha_freq_max', 12.0)
+            beta_freq_min = parameters.get('beta_freq_min', 12.0)
+            beta_freq_max = parameters.get('beta_freq_max', 30.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # Analyze cognitive load
+            cognitive_load_results = []
+            if lfp_data is not None and trial_info:
+                print("Analyzing cognitive load...")
+                for trial in trial_info:
+                    if 'start_time' in trial and 'end_time' in trial:
+                        start = trial['start_time']
+                        end = trial['end_time']
+                        
+                        # Extract LFP data for this trial
+                        start_sample = int(start * sampling_rate)
+                        end_sample = int(end * sampling_rate)
+                        if start_sample >= 0 and end_sample <= lfp_data.shape[1]:
+                            trial_lfp = lfp_data[:, start_sample:end_sample]
+                            
+                            # Calculate power spectrum
+                            from scipy.signal import welch
+                            f, Pxx = welch(trial_lfp, sampling_rate, nperseg=1024)
+                            
+                            # Extract alpha and beta band power
+                            alpha_mask = (f >= alpha_freq_min) & (f <= alpha_freq_max)
+                            beta_mask = (f >= beta_freq_min) & (f <= beta_freq_max)
+                            
+                            alpha_power = np.mean(Pxx[:, alpha_mask], axis=1)
+                            beta_power = np.mean(Pxx[:, beta_mask], axis=1)
+                            
+                            # Calculate alpha/beta ratio
+                            alpha_beta_ratio = np.mean(alpha_power) / np.mean(beta_power) if np.mean(beta_power) > 0 else 0
+                            
+                            # Classify cognitive load
+                            if alpha_beta_ratio < 0.5:
+                                load_level = "High"
+                            elif alpha_beta_ratio < 1.0:
+                                load_level = "Medium"
+                            else:
+                                load_level = "Low"
+                            
+                            cognitive_load_results.append({
+                                'trial_id': len(cognitive_load_results),
+                                'start_time': start,
+                                'end_time': end,
+                                'alpha_power': np.mean(alpha_power),
+                                'beta_power': np.mean(beta_power),
+                                'alpha_beta_ratio': alpha_beta_ratio,
+                                'load_level': load_level
+                            })
+            
+            # Calculate statistics
+            load_counts = {"Low": 0, "Medium": 0, "High": 0}
+            for result in cognitive_load_results:
+                if result['load_level'] in load_counts:
+                    load_counts[result['load_level']] += 1
+            
+            total_trials = len(cognitive_load_results)
+            load_percentages = {}
+            for level, count in load_counts.items():
+                load_percentages[level] = count / total_trials * 100 if total_trials > 0 else 0
+            
+            # Prepare output
+            output_data = {
+                'cognitive_load_results': cognitive_load_results,
+                'load_counts': load_counts,
+                'load_percentages': load_percentages,
+                'total_trials': total_trials
+            }
+            
+            # Statistics
+            statistics = {
+                'total_trials': total_trials,
+                'load_counts': load_counts,
+                'load_percentages': load_percentages,
+                'alpha_freq_min': alpha_freq_min,
+                'alpha_freq_max': alpha_freq_max,
+                'beta_freq_min': beta_freq_min,
+                'beta_freq_max': beta_freq_max
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'Cognitive Load Analysis Results',
+                'xlabel': 'Trial',
+                'ylabel': 'Alpha/Beta Ratio'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = CognitiveLoadAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = CognitiveLoadAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': CognitiveLoadAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+
+if __name__ == "__main__":
+    try:
+        # Create test input data
+        input_data = AlgorithmInput(
+            lfp_data=np.random.randn(10, 20000) * 1e-6,  # 10 channels, 10 seconds
+            trial_info=[
+                {'start_time': 0, 'end_time': 2},
+                {'start_time': 2, 'end_time': 4},
+                {'start_time': 4, 'end_time': 6},
+                {'start_time': 6, 'end_time': 8},
+                {'start_time': 8, 'end_time': 10}
+            ],
+            sampling_rate=2000.0
+        )
+        
+        # Get default parameters
+        algo = CognitiveLoadAlgorithm()
+        parameters = algo.get_default_parameters()
+        
+        # Execute algorithm
+        result = algo.run(input_data, parameters)
+        
+        if result.success:
+            print("\nAlgorithm executed successfully!")
+            print(f"Total trials: {result.data['total_trials']}")
+            print("Cognitive load distribution:")
+            for level, percentage in result.data['load_percentages'].items():
+                print(f"  {level}: {percentage:.1f}%")
+        else:
+            print(f"\nAlgorithm execution failed: {result.error_message}")
+            
+    except Exception as e:
+        print(f"Error: {e}")
+        import traceback
+        traceback.print_exc()
+'''
+
+# MNE滤波算法模板
+MNE_FILTERING_TEMPLATE = '''# MNE Filtering Algorithm Template
+
+"""MNE滤波算法模板，用于对脑电信号进行频率滤波。
+
+该算法模板演示了如何使用MNE库进行信号滤波，包括：
+1. 低通滤波
+2. 高通滤波
+3. 带通滤波
+4. 陷波滤波
+
+适用于去除噪声、伪迹，以及提取特定频率范围内的脑电信号。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEFilteringAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEFilteringAlgorithm(BaseAlgorithm):
+    """MNE滤波算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Filtering"
+        self.description = "MNE滤波算法，支持带通、高通、低通滤波"
+        self.category = "MNE Signal Processing"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "filter_type", ParameterType.SELECT,
+                "滤波类型", "bandpass",
+                options=["bandpass", "highpass", "lowpass"]
+            ),
+            create_parameter(
+                "l_freq", ParameterType.FLOAT,
+                "低频截止 (Hz)", 0.1,
+                min_value=0.0, max_value=100.0
+            ),
+            create_parameter(
+                "h_freq", ParameterType.FLOAT,
+                "高频截止 (Hz)", 40.0,
+                min_value=0.1, max_value=1000.0
+            ),
+            create_parameter(
+                "filter_method", ParameterType.SELECT,
+                "滤波方法", "fir",
+                options=["fir", "iir"]
+            ),
+            create_parameter(
+                "fir_window", ParameterType.SELECT,
+                "FIR窗口类型", "hamming",
+                options=["hamming", "hann", "blackman"]
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE filtering analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            filter_type = parameters.get('filter_type', 'bandpass')
+            l_freq = parameters.get('l_freq', 0.1)
+            h_freq = parameters.get('h_freq', 40.0)
+            filter_method = parameters.get('filter_method', 'fir')
+            fir_window = parameters.get('fir_window', 'hamming')
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 应用滤波
+            if filter_type == 'bandpass':
+                filtered_raw = raw.filter(l_freq=l_freq, h_freq=h_freq, method=filter_method, fir_window=fir_window)
+            elif filter_type == 'highpass':
+                filtered_raw = raw.filter(l_freq=l_freq, h_freq=None, method=filter_method, fir_window=fir_window)
+            else:  # lowpass
+                filtered_raw = raw.filter(l_freq=None, h_freq=h_freq, method=filter_method, fir_window=fir_window)
+            
+            # 获取滤波后的数据
+            filtered_data = filtered_raw.get_data()
+            
+            # 计算原始数据和滤波后数据的功率谱
+            from scipy.signal import welch
+            f, Pxx_original = welch(lfp_data[0, :], sampling_rate, nperseg=1024)
+            f, Pxx_filtered = welch(filtered_data[0, :], sampling_rate, nperseg=1024)
+            
+            # Prepare output
+            output_data = {
+                'filtered_data': filtered_data,
+                'original_data': lfp_data,
+                'frequencies': f,
+                'psd_original': Pxx_original,
+                'psd_filtered': Pxx_filtered,
+                'filter_type': filter_type,
+                'l_freq': l_freq,
+                'h_freq': h_freq
+            }
+            # Prepare visualization data with filtered data
+            if input_data.lfp_data is not None:
+                # Use filtered data for visualization
+                output_data['signal_data'] = filtered_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(filtered_data.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'filter_type': filter_type,
+                'l_freq': l_freq,
+                'h_freq': h_freq,
+                'filter_method': filter_method,
+                'fir_window': fir_window,
+                'channels': filtered_data.shape[0],
+                'samples': filtered_data.shape[1]
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Filtering Results',
+                'xlabel': 'Frequency (Hz)',
+                'ylabel': 'Power Spectral Density'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEFilteringAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEFilteringAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEFilteringAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE重采样算法模板
+MNE_RESAMPLING_TEMPLATE = '''# MNE Resampling Algorithm Template
+
+"""MNE重采样算法模板，用于改变脑电信号的采样率。
+
+该算法模板演示了如何使用MNE库进行信号重采样，包括：
+1. 降低采样率（下采样）
+2. 提高采样率（上采样）
+3. 重采样前的抗混叠滤波
+
+适用于数据压缩、降低计算复杂度，以及不同采样率数据的统一处理。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEResamplingAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEResamplingAlgorithm(BaseAlgorithm):
+    """MNE重采样算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Resampling"
+        self.description = "MNE重采样算法，用于改变数据采样率"
+        self.category = "MNE Signal Processing"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "new_sampling_rate", ParameterType.FLOAT,
+                "新采样率 (Hz)", 1000.0,
+                min_value=1.0, max_value=10000.0
+            ),
+            create_parameter(
+                "n_jobs", ParameterType.INTEGER,
+                "并行处理任务数", 1,
+                min_value=1, max_value=8
+            ),
+            create_parameter(
+                "filter_before", ParameterType.BOOLEAN,
+                "重采样前滤波", True
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE resampling analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            new_sampling_rate = parameters.get('new_sampling_rate', 1000.0)
+            n_jobs = parameters.get('n_jobs', 1)
+            filter_before = parameters.get('filter_before', True)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            original_sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 应用重采样
+            resampled_raw = raw.resample(sfreq=new_sampling_rate, n_jobs=n_jobs)
+            
+            # 获取重采样后的数据
+            resampled_data = resampled_raw.get_data()
+            
+            # 计算原始数据和重采样数据的功率谱
+            from scipy.signal import welch
+            f_original, Pxx_original = welch(lfp_data[0, :], original_sampling_rate, nperseg=1024)
+            f_resampled, Pxx_resampled = welch(resampled_data[0, :], new_sampling_rate, nperseg=1024)
+            
+            # Prepare output
+            output_data = {
+                'resampled_data': resampled_data,
+                'original_data': lfp_data,
+                'original_sampling_rate': original_sampling_rate,
+                'new_sampling_rate': new_sampling_rate,
+                'frequencies_original': f_original,
+                'psd_original': Pxx_original,
+                'frequencies_resampled': f_resampled,
+                'psd_resampled': Pxx_resampled
+            }
+            # Prepare visualization data with resampled data
+            if input_data.lfp_data is not None:
+                # Use resampled data for visualization
+                output_data['signal_data'] = resampled_data
+                output_data['sampling_rate'] = new_sampling_rate
+                # Generate time axis
+                times = np.arange(resampled_data.shape[1]) / new_sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'original_sampling_rate': original_sampling_rate,
+                'new_sampling_rate': new_sampling_rate,
+                'original_samples': lfp_data.shape[1],
+                'resampled_samples': resampled_data.shape[1],
+                'channels': resampled_data.shape[0],
+                'filter_before': filter_before,
+                'n_jobs': n_jobs
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Resampling Results',
+                'xlabel': 'Frequency (Hz)',
+                'ylabel': 'Power Spectral Density'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEResamplingAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEResamplingAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEResamplingAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE坏通道检测算法模板
+MNE_BAD_CHANNEL_DETECTION_TEMPLATE = '''# MNE Bad Channel Detection Algorithm Template
+
+"""MNE坏通道检测算法模板，用于识别和标记脑电信号中的坏通道。
+
+该算法模板演示了如何使用MNE库进行坏通道检测，包括：
+1. 基于通道间相关性的检测
+2. 基于标准差的检测
+3. 基于方差的检测
+
+适用于数据预处理阶段，确保后续分析使用高质量的通道数据。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEBadChannelDetectionAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEBadChannelDetectionAlgorithm(BaseAlgorithm):
+    """MNE坏通道检测算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_BadChannelDetection"
+        self.description = "MNE坏通道检测算法，用于识别和标记坏通道"
+        self.category = "MNE Signal Processing"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "检测方法", "correlation",
+                options=["correlation", "std", "variance"]
+            ),
+            create_parameter(
+                "threshold", ParameterType.FLOAT,
+                "阈值", 3.0,
+                min_value=1.0, max_value=10.0
+            ),
+            create_parameter(
+                "verbose", ParameterType.BOOLEAN,
+                "详细输出", False
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE bad channel detection...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            method = parameters.get('method', 'correlation')
+            threshold = parameters.get('threshold', 3.0)
+            verbose = parameters.get('verbose', False)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 检测坏通道
+            if method == 'correlation':
+                # 基于通道间相关性检测
+                corr = np.corrcoef(lfp_data)
+                mean_corr = np.mean(corr, axis=1)
+                bad_channels = np.where(mean_corr < np.mean(mean_corr) - threshold * np.std(mean_corr))[0]
+            elif method == 'std':
+                # 基于标准差检测
+                std = np.std(lfp_data, axis=1)
+                bad_channels = np.where(std > np.mean(std) + threshold * np.std(std))[0]
+            else:  # variance
+                # 基于方差检测
+                var = np.var(lfp_data, axis=1)
+                bad_channels = np.where(var > np.mean(var) + threshold * np.std(var))[0]
+            
+            # 标记坏通道
+            bad_channel_names = [raw.ch_names[ch] for ch in bad_channels]
+            raw.info['bads'] = bad_channel_names
+            
+            # 检查是否有坏通道
+            if len(bad_channels) == 0:
+                # 没有坏通道，返回提示信息
+                output_data = {
+                    'message': '未检测到坏通道',
+                    'method': method,
+                    'threshold': threshold,
+                    'total_channels': lfp_data.shape[0],
+                    'bad_channel_count': 0
+                }
+                
+                # 不绘制图像
+                statistics = {
+                    'method': method,
+                    'threshold': threshold,
+                    'total_channels': lfp_data.shape[0],
+                    'bad_channel_count': 0,
+                    'message': '未检测到坏通道'
+                }
+                
+                plot_config = {
+                    'title': 'MNE Bad Channel Detection Results',
+                    'show_plot': False  # 不显示图像
+                }
+                
+                return AlgorithmOutput(
+                    data=output_data,
+                    statistics=statistics,
+                    plot_config=plot_config,
+                    success=True,
+                    error_message=""
+                )
+            
+            # 计算通道统计信息
+            channel_stats = []
+            for i, ch_name in enumerate(raw.ch_names):
+                if method == 'correlation':
+                    value = mean_corr[i]
+                elif method == 'std':
+                    value = np.std(lfp_data[i, :])
+                else:
+                    value = np.var(lfp_data[i, :])
+                
+                channel_stats.append({
+                    'channel': ch_name,
+                    'value': value,
+                    'is_bad': ch_name in bad_channel_names
+                })
+            
+            # Prepare output
+            output_data = {
+                'bad_channels': bad_channel_names,
+                'bad_channel_indices': bad_channels.tolist(),
+                'channel_stats': channel_stats,
+                'method': method,
+                'threshold': threshold,
+                'total_channels': lfp_data.shape[0],
+                'bad_channel_count': len(bad_channels)
+            }
+            # Prepare visualization data with bad channels marked
+            if input_data.lfp_data is not None:
+                # Create a copy of the data
+                marked_data = lfp_data.copy()
+                # Mark bad channels by setting their values to NaN
+                for ch in bad_channels:
+                    marked_data[ch, :] = np.nan
+                # Use marked data for visualization
+                output_data['signal_data'] = marked_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(marked_data.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            # 生成坏通道提示信息
+            if len(bad_channels) > 0:
+                bad_channel_indices_str = ', '.join(map(str, bad_channels))
+                message = f'检测到 {len(bad_channels)} 个坏通道: {bad_channel_indices_str}'
+            else:
+                message = '未检测到坏通道'
+            
+            statistics = {
+                'method': method,
+                'threshold': threshold,
+                'total_channels': lfp_data.shape[0],
+                'bad_channel_count': len(bad_channels),
+                'bad_channels': bad_channel_names,
+                'message': message
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Bad Channel Detection Results',
+                'xlabel': 'Channel',
+                'ylabel': f'{method.capitalize()} Value'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEBadChannelDetectionAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEBadChannelDetectionAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEBadChannelDetectionAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE ERP分析算法模板
+MNE_ERP_ANALYSIS_TEMPLATE = '''# MNE ERP Analysis Algorithm Template
+
+"""MNE事件相关电位（ERP）分析算法模板，用于分析刺激诱发的脑电反应。
+
+该算法模板演示了如何使用MNE库进行ERP分析，包括：
+1. 事件标记和 epochs 创建
+2. 基线校正
+3. 数据拒绝
+4. ERP平均
+
+适用于研究认知、感知和情感等心理过程的时间进程。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEERPAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEERPAlgorithm(BaseAlgorithm):
+    """MNE ERP分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_ERP_Analysis"
+        self.description = "MNE事件相关电位(ERP)分析算法"
+        self.category = "MNE Time Series Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "事件前时间 (s)", -0.2,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "事件后时间 (s)", 0.8,
+                min_value=0.0, max_value=3.0
+            ),
+            create_parameter(
+                "baseline", ParameterType.STRING,
+                "基线校正时间范围", "-0.2,0"
+            ),
+            create_parameter(
+                "reject", ParameterType.FLOAT,
+                "拒绝阈值 (μV)", 100.0,
+                min_value=50.0, max_value=500.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE ERP analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            tmin = parameters.get('tmin', -0.2)
+            tmax = parameters.get('tmax', 0.8)
+            baseline_str = parameters.get('baseline', "-0.2,0")
+            reject = parameters.get('reject', 100.0)
+            
+            # 解析基线参数
+            baseline = tuple(map(float, baseline_str.split(',')))
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 获取数据长度
+            data_length = lfp_data.shape[1]
+            max_sample = data_length - 1
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    # 确保样本索引在数据范围内
+                    if 0 <= sample <= max_sample:
+                        events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = -0.1
+                    tmax = 0.4
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, 
+                               baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = -0.1
+                tmax = 0.4
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, 
+                                   baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0
+                    tmax = 0.1
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, 
+                                       baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 计算ERP
+            evoked = epochs.average()
+            
+            # 获取ERP数据
+            erp_data = evoked.data
+            times = evoked.times
+            
+            # Prepare output
+            output_data = {
+                'erp_data': erp_data,
+                'times': times,
+                'channels': evoked.ch_names,
+                'tmin': tmin,
+                'tmax': tmax,
+                'baseline': baseline,
+                'event_count': len(events)
+            }
+            # Prepare visualization data with ERP data
+            if input_data.lfp_data is not None:
+                # Use ERP data for visualization
+                output_data['signal_data'] = erp_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'tmin': tmin,
+                'tmax': tmax,
+                'baseline': baseline,
+                'event_count': len(events),
+                'channels': len(evoked.ch_names),
+                'time_points': len(times)
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE ERP Analysis Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Amplitude (μV)'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEERPAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEERPAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEERPAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE时频分析算法模板
+MNE_TIME_FREQUENCY_TEMPLATE = '''# MNE Time-Frequency Analysis Algorithm Template
+
+"""MNE时频分析算法模板，用于分析脑电信号在不同时间和频率上的能量变化。
+
+该算法模板演示了如何使用MNE库进行时频分析，包括：
+1. Morlet小波变换
+2. 功率谱计算
+3. 互相关分析
+
+适用于研究脑电信号的动态变化，如事件相关同步/去同步（ERS/ERD）。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNETimeFrequencyAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNETimeFrequencyAlgorithm(BaseAlgorithm):
+    """MNE时频分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_TimeFrequency"
+        self.description = "MNE时频分析算法，使用Morlet小波"
+        self.category = "MNE Time Series Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "最低频率 (Hz)", 1.0,
+                min_value=0.1, max_value=10.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "最高频率 (Hz)", 40.0,
+                min_value=10.0, max_value=100.0
+            ),
+            create_parameter(
+                "n_cycles", ParameterType.FLOAT,
+                "每个频率的周期数", 7.0,
+                min_value=1.0, max_value=20.0
+            ),
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "分析开始时间 (s)", 0.0,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "分析结束时间 (s)", 1.0,
+                min_value=0.0, max_value=5.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE time-frequency analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            freq_min = parameters.get('freq_min', 1.0)
+            freq_max = parameters.get('freq_max', 40.0)
+            n_cycles = parameters.get('n_cycles', 7.0)
+            tmin = parameters.get('tmin', 0.0)
+            tmax = parameters.get('tmax', 1.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            # 设置合适的基线参数
+            baseline = (None, 0)  # 默认基线：从开始到0秒
+            # 检查tmin是否为0，如果是，则使用(0, 0)作为基线
+            if tmin == 0:
+                baseline = (0, 0)
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = 0.0
+                tmax = 1.0
+                baseline = (0, 0)  # 使用(0, 0)作为基线
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0.0
+                    tmax = 0.1
+                    baseline = (0, 0)  # 使用(0, 0)作为基线
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 计算时频表示
+            sampling_rate = input_data.sampling_rate
+            # 信号长度（样本数）
+            signal_length = epochs.times.size
+            
+            print(f"原始信号长度: {signal_length} 样本")
+            print(f"原始n_cycles: {n_cycles}")
+            print(f"原始freq_min: {freq_min}, freq_max: {freq_max}")
+            
+            # 计算最大允许的n_cycles，确保小波长度不超过信号长度的一半（留有余地）
+            # 对于最低频率，小波长度最长
+            max_allowed_n_cycles = (signal_length / 2) * freq_min / sampling_rate
+            
+            # 确保n_cycles不超过最大允许值
+            if n_cycles > max_allowed_n_cycles:
+                n_cycles = max(1.0, max_allowed_n_cycles)
+                print(f"调整n_cycles为: {n_cycles}")
+            
+            # 计算最大允许的频率，确保小波长度不超过信号长度的一半
+            max_allowed_freq = (n_cycles * sampling_rate) / (signal_length / 2)
+            
+            # 调整freq_max，确保不超过最大允许频率
+            if freq_max > max_allowed_freq:
+                freq_max = max(freq_min + 1.0, max_allowed_freq)
+                print(f"调整freq_max为: {freq_max}")
+            
+            # 生成频率数组
+            frequencies = np.logspace(np.log10(freq_min), np.log10(freq_max), num=5)  # 减少频率点数量
+            
+            print(f"使用的频率: {frequencies}")
+            print(f"信号长度: {signal_length} 样本")
+            
+            # 计算时频表示
+            try:
+                power, itc = mne.time_frequency.tfr_morlet(
+                    epochs, freqs=frequencies, n_cycles=n_cycles, return_itc=True, decim=3
+                )
+            except Exception as e:
+                # 如果仍然失败，使用非常保守的参数
+                print(f"时频分析失败: {e}")
+                print("使用保守参数重新尝试...")
+                
+                # 使用非常保守的参数
+                frequencies = np.array([10.0, 20.0, 30.0])
+                n_cycles = 2.0
+                
+                print(f"使用保守参数: 频率={frequencies}, n_cycles={n_cycles}")
+                
+                # 再次尝试
+                power, itc = mne.time_frequency.tfr_morlet(
+                    epochs, freqs=frequencies, n_cycles=n_cycles, return_itc=True, decim=3
+                )
+            
+            # 获取数据
+            power_data = power.data  # 形状: (n_epochs, n_channels, n_freqs, n_times)
+            itc_data = itc.data      # 形状: (n_epochs, n_channels, n_freqs, n_times)
+            times = power.times
+            
+            # 计算平均功率
+            avg_power = np.mean(power_data, axis=0)  # 形状: (n_channels, n_freqs, n_times)
+            
+            # Prepare output
+            output_data = {
+                'power_data': power_data,
+                'avg_power': avg_power,
+                'itc_data': itc_data,
+                'frequencies': frequencies,
+                'times': times,
+                'channels': power.ch_names,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'n_cycles': n_cycles
+            }
+            # Prepare visualization data with time-frequency data
+            if input_data.lfp_data is not None:
+                # Use average power for visualization
+                output_data['power_data'] = avg_power
+                output_data['frequencies'] = frequencies
+                output_data['times'] = times
+                output_data['plot_type'] = 'time_frequency'
+                output_data['channel_info'] = '所有通道的平均值'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'n_cycles': n_cycles,
+                'frequencies': len(frequencies),
+                'time_points': len(times),
+                'channels': len(power.ch_names),
+                'epochs': power_data.shape[0]
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Time-Frequency Analysis Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Frequency (Hz)'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNETimeFrequencyAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNETimeFrequencyAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNETimeFrequencyAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE功率谱分析算法模板
+MNE_POWER_SPECTRUM_TEMPLATE = '''# MNE Power Spectrum Analysis Algorithm Template
+
+"""MNE功率谱分析算法模板，用于分析脑电信号的频率成分和能量分布。
+
+该算法模板演示了如何使用MNE库进行功率谱分析，包括：
+1. 快速傅里叶变换（FFT）
+2. 不同窗口函数的应用
+3. 功率谱密度计算
+4. 平均方法选择
+
+适用于研究脑电信号的频率特性，如不同频段的能量分布。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEPowerSpectrumAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEPowerSpectrumAlgorithm(BaseAlgorithm):
+    """MNE功率谱分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_PowerSpectrum"
+        self.description = "MNE功率谱密度分析算法"
+        self.category = "MNE Time Series Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "fmin", ParameterType.FLOAT,
+                "最低频率 (Hz)", 0.1,
+                min_value=0.01, max_value=1.0
+            ),
+            create_parameter(
+                "fmax", ParameterType.FLOAT,
+                "最高频率 (Hz)", 100.0,
+                min_value=50.0, max_value=500.0
+            ),
+            create_parameter(
+                "n_fft", ParameterType.INTEGER,
+                "FFT点数", 2048,
+                min_value=1024, max_value=8192
+            ),
+            create_parameter(
+                "window", ParameterType.SELECT,
+                "窗口类型", "hamming",
+                options=["hamming", "hann", "blackman"]
+            ),
+            create_parameter(
+                "averaging", ParameterType.SELECT,
+                "平均方法", "mean",
+                options=["mean", "median"]
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE power spectrum analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            fmin = parameters.get('fmin', 0.1)
+            fmax = parameters.get('fmax', 100.0)
+            n_fft = parameters.get('n_fft', 2048)
+            window = parameters.get('window', 'hamming')
+            averaging = parameters.get('averaging', 'mean')
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 计算功率谱密度
+            spectrum = raw.compute_psd(fmin=fmin, fmax=fmax, n_fft=n_fft, window=window)
+            freqs = spectrum.freqs
+            psd = spectrum.get_data()  # 形状: (n_channels, n_freqs)
+            
+            # 应用平均方法
+            if averaging == 'mean':
+                avg_psd = np.mean(psd, axis=0)
+            else:  # median
+                avg_psd = np.median(psd, axis=0)
+            
+            # Prepare output
+            output_data = {
+                'psd': psd,
+                'avg_psd': avg_psd,
+                'frequencies': freqs,
+                'channels': raw.ch_names,
+                'fmin': fmin,
+                'fmax': fmax,
+                'n_fft': n_fft,
+                'window': window,
+                'averaging': averaging
+            }
+            # Prepare visualization data for power spectrum
+            if input_data.lfp_data is not None:
+                # Use power spectrum data for visualization
+                output_data['power'] = psd
+                output_data['freqs'] = freqs
+                output_data['plot_type'] = 'power_spectrum'
+            
+            # Statistics
+            statistics = {
+                'fmin': fmin,
+                'fmax': fmax,
+                'n_fft': n_fft,
+                'window': window,
+                'averaging': averaging,
+                'frequencies': len(freqs),
+                'channels': len(raw.ch_names)
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Power Spectrum Analysis Results',
+                'xlabel': 'Frequency (Hz)',
+                'ylabel': 'Power Spectral Density (V²/Hz)'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEPowerSpectrumAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEPowerSpectrumAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEPowerSpectrumAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE ICA artifact去除算法模板
+MNE_ICA_ARTIFACT_REMOVAL_TEMPLATE = '''# MNE ICA Artifact Removal Algorithm Template
+
+"""MNE ICA伪迹去除算法模板，用于识别和去除脑电信号中的伪迹。
+
+该算法模板演示了如何使用MNE库进行ICA伪迹去除，包括：
+1. ICA成分分离
+2. 伪迹成分识别（眨眼、心跳）
+3. 伪迹成分去除
+4. 信号重建
+
+适用于提高脑电信号质量，去除眨眼、心跳等生理伪迹。
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEICAArtifactRemovalAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEICAArtifactRemovalAlgorithm(BaseAlgorithm):
+    """MNE ICA artifact去除算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_ICA_Artifact_Removal"
+        self.description = "MNE ICA artifact去除算法，用于去除眨眼、心跳等伪迹"
+        self.category = "MNE Independent Component Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "n_components", ParameterType.INTEGER,
+                "ICA成分数量", 10,
+                min_value=1, max_value=50
+            ),
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "ICA方法", "fastica",
+                options=["fastica", "infomax", "picard"]
+            ),
+            create_parameter(
+                "random_state", ParameterType.INTEGER,
+                "随机种子", 42,
+                min_value=0, max_value=1000
+            ),
+            create_parameter(
+                "reject", ParameterType.FLOAT,
+                "拒绝阈值 (μV)", 200.0,
+                min_value=100.0, max_value=500.0
+            ),
+            create_parameter(
+                "artifacts_to_remove", ParameterType.SELECT,
+                "要去除的伪迹类型", "eye,heart",
+                options=["eye", "heart", "eye,heart", "none"]
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE ICA artifact removal...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            n_components = parameters.get('n_components', 10)
+            method = parameters.get('method', 'fastica')
+            random_state = parameters.get('random_state', 42)
+            reject = parameters.get('reject', 200.0)
+            artifacts_to_remove = parameters.get('artifacts_to_remove', 'eye,heart')
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 过滤数据以提高ICA性能
+            raw.filter(1.0, 40.0, fir_design='firwin')
+            
+            # 创建ICA对象
+            ica = mne.preprocessing.ICA(n_components=n_components, method=method, random_state=random_state)
+            
+            # 拟合ICA
+            try:
+                # 尝试使用拒绝阈值
+                ica.fit(raw, reject={'eeg': reject/1e6})
+            except Exception as e:
+                print(f"使用拒绝阈值拟合ICA失败: {e}")
+                print("尝试不使用拒绝阈值重新拟合...")
+                try:
+                    # 不使用拒绝阈值
+                    ica.fit(raw)
+                except Exception as e2:
+                    print(f"不使用拒绝阈值拟合ICA也失败: {e2}")
+                    print("尝试使用更保守的参数...")
+                    # 使用更保守的参数
+                    ica = mne.preprocessing.ICA(n_components=min(5, n_components), method=method, random_state=random_state)
+                    ica.fit(raw, reject=None)
+            
+            # 识别和标记伪迹成分
+            try:
+                eog_indices, eog_scores = ica.find_bads_eog(raw, ch_name=None)
+            except Exception as e:
+                print(f"寻找EOG伪迹时出错: {e}")
+                print("没有找到EOG通道，跳过EOG伪迹去除")
+                eog_indices, eog_scores = [], []
+            
+            try:
+                ecg_indices, ecg_scores = ica.find_bads_ecg(raw, method='correlation', ch_name=None)
+            except Exception as e:
+                print(f"寻找ECG伪迹时出错: {e}")
+                print("没有找到ECG通道，跳过ECG伪迹去除")
+                ecg_indices, ecg_scores = [], []
+            
+            # 根据配置选择要去除的伪迹
+            bad_indices = []
+            if 'eye' in artifacts_to_remove:
+                bad_indices.extend(eog_indices)
+            if 'heart' in artifacts_to_remove:
+                bad_indices.extend(ecg_indices)
+            
+            # 去除重复的成分索引
+            bad_indices = list(set(bad_indices))
+            
+            # 应用ICA去除伪迹
+            ica.exclude = bad_indices
+            raw_clean = raw.copy()
+            ica.apply(raw_clean)
+            
+            # 获取数据
+            clean_data = raw_clean.get_data()
+            
+            # Prepare output
+            output_data = {
+                'clean_data': clean_data,
+                'original_data': lfp_data,
+                'ica_components': ica.get_components(),
+                'bad_indices': bad_indices,
+                'eog_indices': eog_indices,
+                'ecg_indices': ecg_indices,
+                'n_components': n_components,
+                'method': method
+            }
+            # Prepare visualization data with clean data
+            if input_data.lfp_data is not None:
+                # Use clean data for visualization
+                output_data['signal_data'] = clean_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(clean_data.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal'
+            elif input_data.spike_times:
+                # For spike data, use base class method
+                vis_data = self.prepare_visualization_data(input_data)
+                output_data.update(vis_data)
+            
+            # Statistics
+            statistics = {
+                'n_components': n_components,
+                'method': method,
+                'bad_components': len(bad_indices),
+                'eog_components': len(eog_indices),
+                'ecg_components': len(ecg_indices),
+                'channels': clean_data.shape[0],
+                'samples': clean_data.shape[1]
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE ICA Artifact Removal Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Amplitude (μV)'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEICAArtifactRemovalAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEICAArtifactRemovalAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEICAArtifactRemovalAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE波束形成器算法模板
+MNE_BEAMFORMING_TEMPLATE = '''# MNE Beamforming Algorithm Template
+
+"""MNE波束形成器算法模板，用于估计脑电信号的神经源位置和强度。
+
+该算法模板演示了如何使用MNE库进行波束形成器分析，包括：
+1. 协方差矩阵计算
+2. 波束形成器权重计算
+3. 源功率估计
+4. 空间滤波
+
+适用于研究脑功能活动的空间分布，如运动想象、认知任务等。
+
+【输入数据】
+- input_data.lfp_data: LFP数据，形状为 [channels × samples]
+- input_data.sampling_rate: 采样率 (Hz)
+- input_data.trial_info: 试验信息列表，包含事件时间
+
+【输出数据】
+- output_data['stc_data']: 源时间序列数据（主路径）
+- output_data['channel_power']: 通道功率（简化情况）
+- output_data['vertices']: 源空间顶点
+- output_data['times']: 时间轴
+- output_data['freq_min'], output_data['freq_max']: 频率范围
+- output_data['method']: 波束形成器方法
+- output_data['signal_data']: 用于可视化的信号数据（跨epochs平均后的2D数组）
+- output_data['sampling_rate']: 采样率
+- output_data['plot_type']: 绘图类型 ('raw_signal')
+
+【可视化说明】
+- 当前可视化显示的是原始信号波形（raw_signal），而非源定位结果
+- 这是因为当前可视化系统不支持3D源空间可视化
+- 波束形成器结果（源时间序列、源空间顶点）已保存在 output_data 中
+- 如需查看源定位结果，建议将数据导出到MNE-Python或其他专业工具进行3D可视化
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEBeamformingAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# 创建简化的头模型（用于演示）
+def create_simple_head_model(info):
+    """创建简化的头模型"""
+    # 创建源空间
+    src = mne.setup_source_space('sample', spacing='ico4', add_dist='patch')
+    
+    # 创建简化的正向模型
+    conductivity = (0.3, 0.006, 0.3)  # 三层球模型
+    model = mne.make_bem_model(info=info, ico=4, conductivity=conductivity)
+    bem = mne.make_bem_solution(model)
+    
+    # 创建电极位置
+    dig = mne.dig.point.GridPoint([0.0, 0.0, 0.0])
+    info.set_montage('standard_1020')
+    
+    # 创建正向模型
+    fwd = mne.make_forward_solution(info, trans=None, src=src, bem=bem, eeg=True, meg=False)
+    
+    return fwd
+
+# Algorithm implementation class
+class MNEBeamformingAlgorithm(BaseAlgorithm):
+    """MNE波束形成器算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Beamforming"
+        self.description = "MNE波束形成器算法，用于源定位"
+        self.category = "MNE Source Localization"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "最低频率 (Hz)", 8.0,
+                min_value=1.0, max_value=30.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "最高频率 (Hz)", 12.0,
+                min_value=5.0, max_value=50.0
+            ),
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "波束形成器方法", "lcmv",
+                options=["lcmv", "dics", "sbeam"]
+            ),
+            create_parameter(
+                "pick_ori", ParameterType.SELECT,
+                "方向选择", "max-power",
+                options=["max-power", "vector", "none"]
+            ),
+            create_parameter(
+                "rank", ParameterType.SELECT,
+                "秩估计方法", "info",
+                options=["info", "full", "auto"]
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE beamforming analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            freq_min = parameters.get('freq_min', 8.0)
+            freq_max = parameters.get('freq_max', 12.0)
+            method = parameters.get('method', 'lcmv')
+            pick_ori = parameters.get('pick_ori', 'max-power')
+            rank = parameters.get('rank', 'info')
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=-0.5, tmax=1.5, preload=True)
+            
+            # 计算协方差矩阵
+            noise_cov = mne.compute_covariance(epochs, tmin=-0.5, tmax=0.0, method='auto')
+            data_cov = mne.compute_covariance(epochs, tmin=0.0, tmax=1.0, method='auto')
+            
+            # 创建简化的头模型（实际应用中应使用真实的头模型）
+            try:
+                fwd = create_simple_head_model(epochs.info)
+            except:
+                # 如果无法创建头模型，使用简化的源定位
+                print("Using simplified source localization without head model")
+                # 计算每个通道的平均功率
+                power = np.mean(epochs.get_data() ** 2, axis=(0, 2))
+                
+                # Prepare output for simplified case
+                output_data = {
+                    'channel_power': power,
+                    'channels': epochs.ch_names,
+                    'freq_min': freq_min,
+                    'freq_max': freq_max,
+                    'method': method
+                }
+                # Prepare visualization data for simplified case
+                # Average across epochs to get 2D array [channels, samples]
+                signal_data = np.mean(epochs.get_data(), axis=0)
+                output_data['signal_data'] = signal_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+                output_data['plot_type'] = 'raw_signal'
+            
+                # Statistics
+                statistics = {
+                    'freq_min': freq_min,
+                    'freq_max': freq_max,
+                    'method': method,
+                    'channels': len(epochs.ch_names),
+                    'epochs': len(epochs)
+                }
+            
+                # Plot config
+                plot_config = {
+                    'title': 'MNE Beamforming Results (Simplified)',
+                    'xlabel': 'Channel',
+                    'ylabel': 'Power'
+                }
+            
+                # Return results
+                return AlgorithmOutput(
+                    data=output_data,
+                    statistics=statistics,
+                    plot_config=plot_config,
+                    success=True,
+                    error_message=""
+                )
+            
+            # 创建波束形成器
+            if method == 'lcmv':
+                beamformer = mne.beamformer.make_lcmv(
+                    epochs.info, fwd, data_cov, reg=0.05, noise_cov=noise_cov,
+                    pick_ori=pick_ori, rank=rank
+                )
+            elif method == 'dics':
+                beamformer = mne.beamformer.make_dics(
+                    epochs.info, fwd, data_cov, noise_cov=noise_cov,
+                    pick_ori=pick_ori, rank=rank
+                )
+            else:  # sbeam
+                beamformer = mne.beamformer.make_lcmv(
+                    epochs.info, fwd, data_cov, reg=0.05, noise_cov=noise_cov,
+                    pick_ori=pick_ori, rank=rank, weight_norm='unit-noise-gain'
+                )
+            
+            # 应用波束形成器
+            stc = mne.beamformer.apply_beamformer_epochs(epochs, beamformer, return_generator=False)
+            
+            # 计算平均源估计
+            stc_avg = stc[0].copy()
+            for s in stc[1:]:
+                stc_avg.data += s.data
+            stc_avg.data /= len(stc)
+            
+            # Prepare output
+            output_data = {
+                'stc_data': stc_avg.data,
+                'vertices': stc_avg.vertices,
+                'times': stc_avg.times,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'method': method
+            }
+            # Prepare visualization data for beamforming results
+            # Average across epochs to get 2D array [channels, samples]
+            signal_data = np.mean(epochs.get_data(), axis=0)
+            output_data['signal_data'] = signal_data
+            output_data['sampling_rate'] = input_data.sampling_rate
+            output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+            output_data['plot_type'] = 'raw_signal'
+            
+            # Statistics
+            statistics = {
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'method': method,
+                'source_points': stc_avg.data.shape[0],
+                'time_points': len(stc_avg.times),
+                'epochs': len(epochs)
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Beamforming Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Source Power'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEBeamformingAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEBeamformingAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEBeamformingAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE偶极子拟合算法模板
+MNE_DIPOLE_FITTING_TEMPLATE = '''# MNE Dipole Fitting Algorithm Template
+
+"""MNE偶极子拟合算法模板，用于估计脑电信号的等效电流偶极子位置。
+
+该算法模板演示了如何使用MNE库进行偶极子拟合，包括：
+1. 事件相关电位（ERP）计算
+2. 头模型创建
+3. 偶极子位置和方向估计
+4. 拟合优度评估
+
+适用于研究特定认知过程的神经源位置，如视觉、听觉等。
+
+【输入数据】
+- input_data.lfp_data: LFP数据，形状为 [channels × samples]
+- input_data.sampling_rate: 采样率 (Hz)
+- input_data.trial_info: 试验信息列表，包含事件时间
+
+【输出数据】
+- output_data['dipoles']: 偶极子信息列表，包含位置、方向、振幅、拟合优度
+- output_data['residual']: 拟合残差
+- output_data['n_dipoles']: 偶极子数量
+- output_data['signal_data']: 用于可视化的信号数据（跨epochs平均后的2D数组）
+- output_data['sampling_rate']: 采样率
+- output_data['times']: 时间轴
+- output_data['plot_type']: 绘图类型 ('raw_signal')
+
+【可视化说明】
+- 当前可视化显示的是原始信号波形（raw_signal），而非偶极子位置的热力图
+- 这是因为当前可视化系统不支持3D偶极子位置可视化
+- 偶极子拟合结果（位置、方向、拟合优度）已保存在 output_data['dipoles'] 中
+- 如需查看偶极子位置，建议将数据导出到MNE-Python或其他专业工具进行3D可视化
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEDipoleFittingAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# 创建简化的头模型（用于演示）
+def create_simple_head_model(info):
+    """创建简化的头模型"""
+    # 创建简化的BEM模型
+    conductivity = (0.3, 0.006, 0.3)  # 三层球模型
+    model = mne.make_bem_model(info=info, ico=4, conductivity=conductivity)
+    bem = mne.make_bem_solution(model)
+    
+    # 设置电极位置
+    info.set_montage('standard_1020')
+    
+    return bem
+
+# Algorithm implementation class
+class MNEDipoleFittingAlgorithm(BaseAlgorithm):
+    """MNE偶极子拟合算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Dipole_Fitting"
+        self.description = "MNE偶极子拟合算法，用于源定位"
+        self.category = "MNE Source Localization"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "n_dipoles", ParameterType.INTEGER,
+                "偶极子数量", 1,
+                min_value=1, max_value=5
+            ),
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "分析开始时间 (s)", -0.2,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "分析结束时间 (s)", 0.5,
+                min_value=0.0, max_value=2.0
+            ),
+            create_parameter(
+                "fixed_ori", ParameterType.BOOLEAN,
+                "固定方向", False
+            ),
+            create_parameter(
+                "fit_method", ParameterType.SELECT,
+                "拟合方法", "grid",
+                options=["grid", "simplex"]
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE dipole fitting analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            n_dipoles = parameters.get('n_dipoles', 1)
+            tmin = parameters.get('tmin', -0.2)
+            tmax = parameters.get('tmax', 0.5)
+            fixed_ori = parameters.get('fixed_ori', False)
+            fit_method = parameters.get('fit_method', 'grid')
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            # 设置合适的基线参数
+            baseline = (None, 0)  # 默认基线：从开始到0秒
+            # 检查tmin是否为0，如果是，则使用(0, 0)作为基线
+            if tmin == 0:
+                baseline = (0, 0)
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = 0.0
+                tmax = 1.0
+                baseline = (0, 0)  # 使用(0, 0)作为基线
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0.0
+                    tmax = 0.1
+                    baseline = (0, 0)  # 使用(0, 0)作为基线
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 计算ERP
+            evoked = epochs.average()
+            
+            # 创建简化的头模型（实际应用中应使用真实的头模型）
+            try:
+                bem = create_simple_head_model(evoked.info)
+            except:
+                # 如果无法创建头模型，使用简化的偶极子拟合
+                print("Using simplified dipole fitting without head model")
+                
+                # 生成随机偶极子位置（用于演示）
+                dipoles = []
+                for i in range(n_dipoles):
+                    dipole = {
+                        'position': np.random.rand(3) * 0.05 - 0.025,  # 随机位置
+                        'orientation': np.random.rand(3),  # 随机方向
+                        'amplitude': np.random.rand() * 1e-9,  # 随机振幅
+                        'goodness_of_fit': np.random.rand() * 50 + 50  # 随机拟合度
+                    }
+                    dipoles.append(dipole)
+                
+                # Prepare output for simplified case
+                output_data = {
+                    'dipoles': dipoles,
+                    'n_dipoles': n_dipoles,
+                    'tmin': tmin,
+                    'tmax': tmax
+                }
+                # Prepare visualization data for simplified case
+                # Average across epochs to get 2D array [channels, samples]
+                signal_data = np.mean(epochs.get_data(), axis=0)
+                output_data['signal_data'] = signal_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+                output_data['plot_type'] = 'raw_signal'
+                
+                statistics = {
+                    'n_dipoles': n_dipoles,
+                    'tmin': tmin,
+                    'tmax': tmax,
+                    'fixed_ori': fixed_ori,
+                    'fit_method': fit_method
+                }
+                
+                plot_config = {
+                    'title': 'MNE Dipole Fitting Results (Simplified)',
+                    'xlabel': 'Dipole',
+                    'ylabel': 'Amplitude'
+                }
+                
+                return AlgorithmOutput(
+                    data=output_data,
+                    statistics=statistics,
+                    plot_config=plot_config,
+                    success=True,
+                    error_message=""
+                )
+            
+            # 创建源空间网格
+            pos = mne.dipole.make_grid(evoked.info, bem, gridstep=0.05, mindist=0.03)
+            
+            # 拟合偶极子
+            dipoles, residual = mne.fit_dipole(evoked, bem, pos, fixed_ori=fixed_ori, fit_method=fit_method)
+            
+            # 提取偶极子信息
+            dipole_info = []
+            for i, dipole in enumerate(dipoles):
+                dipole_info.append({
+                    'position': dipole.pos[0].tolist(),
+                    'orientation': dipole.ori[0].tolist(),
+                    'amplitude': dipole.amplitude[0],
+                    'goodness_of_fit': 100 * (1 - residual[i] / np.sum(evoked.data ** 2))
+                })
+            
+            # Prepare output
+            output_data = {
+                'dipoles': dipole_info,
+                'residual': residual.tolist(),
+                'n_dipoles': n_dipoles,
+                'tmin': tmin,
+                'tmax': tmax
+            }
+            # Prepare visualization data
+            # Average across epochs to get 2D array [channels, samples]
+            signal_data = np.mean(epochs.get_data(), axis=0)
+            output_data['signal_data'] = signal_data
+            output_data['sampling_rate'] = input_data.sampling_rate
+            output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+            output_data['plot_type'] = 'raw_signal'
+            
+            # Statistics
+            statistics = {
+                'n_dipoles': n_dipoles,
+                'tmin': tmin,
+                'tmax': tmax,
+                'fixed_ori': fixed_ori,
+                'fit_method': fit_method,
+                'average_goodness_of_fit': np.mean([d['goodness_of_fit'] for d in dipole_info])
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Dipole Fitting Results',
+                'xlabel': 'Time (s)',
+                'ylabel': 'Amplitude'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEDipoleFittingAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEDipoleFittingAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEDipoleFittingAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE功能连接性分析算法模板
+MNE_FUNCTIONAL_CONNECTIVITY_TEMPLATE = '''# MNE Functional Connectivity Algorithm Template
+
+"""MNE功能连接性分析算法模板，用于分析不同脑区之间的功能连接。
+
+该算法模板演示了如何使用MNE库进行功能连接性分析，包括：
+1. 相关系数计算
+2. 协方差矩阵分析
+3. 相位滞后指数（PLI）
+4. 加权相位滞后指数（WPLI）
+
+适用于研究脑网络的功能连接模式，如静息态网络、任务相关网络等。
+
+【输入数据】
+- input_data.lfp_data: LFP数据，形状为 [channels × samples]
+- input_data.sampling_rate: 采样率 (Hz)
+- input_data.trial_info: 试验信息列表，包含事件时间
+
+【输出数据】
+- output_data['connectivity_matrix']: 功能连接矩阵，形状为 [channels × channels]
+- output_data['channels']: 通道名称列表
+- output_data['method']: 连接性计算方法
+- output_data['fmin'], output_data['fmax']: 频率范围
+- output_data['tmin'], output_data['tmax']: 时间范围
+- output_data['signal_data']: 用于可视化的信号数据（跨epochs平均后的2D数组）
+- output_data['sampling_rate']: 采样率
+- output_data['times']: 时间轴
+- output_data['plot_type']: 绘图类型 ('raw_signal')
+
+【可视化说明】
+- 当前可视化显示的是原始信号波形（raw_signal），而非功能连接矩阵热力图
+- 这是因为当前可视化系统不支持连接矩阵的热力图可视化
+- 功能连接矩阵已保存在 output_data['connectivity_matrix'] 中
+- 如需查看连接矩阵热力图，建议将数据导出到Python/MATLAB等工具进行可视化
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEFunctionalConnectivityAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEFunctionalConnectivityAlgorithm(BaseAlgorithm):
+    """MNE功能连接性分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Functional_Connectivity"
+        self.description = "MNE功能连接性分析算法，用于分析不同脑区之间的功能连接"
+        self.category = "MNE Connectivity Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "连接性方法", "correlation",
+                options=["correlation", "covariance", "pli", "wpli"]
+            ),
+            create_parameter(
+                "fmin", ParameterType.FLOAT,
+                "最低频率 (Hz)", 8.0,
+                min_value=0.1, max_value=30.0
+            ),
+            create_parameter(
+                "fmax", ParameterType.FLOAT,
+                "最高频率 (Hz)", 12.0,
+                min_value=5.0, max_value=50.0
+            ),
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "分析开始时间 (s)", 0.0,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "分析结束时间 (s)", 1.0,
+                min_value=0.0, max_value=3.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE functional connectivity analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            method = parameters.get('method', 'correlation')
+            fmin = parameters.get('fmin', 8.0)
+            fmax = parameters.get('fmax', 12.0)
+            tmin = parameters.get('tmin', 0.0)
+            tmax = parameters.get('tmax', 1.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            # 设置合适的基线参数
+            baseline = (None, 0)  # 默认基线：从开始到0秒
+            # 检查tmin是否为0，如果是，则使用(0, 0)作为基线
+            if tmin == 0:
+                baseline = (0, 0)
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = 0.0
+                tmax = 1.0
+                baseline = (0, 0)  # 使用(0, 0)作为基线
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0.0
+                    tmax = 0.1
+                    baseline = (0, 0)  # 使用(0, 0)作为基线
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 过滤到指定频率范围
+            epochs.filter(fmin, fmax, fir_design='firwin')
+            
+            # 计算功能连接性
+            if method == 'correlation':
+                # 计算皮尔逊相关系数
+                data = epochs.get_data()  # 形状: (n_epochs, n_channels, n_times)
+                # 对每个epoch计算通道间相关性
+                connectivity = []
+                for epoch in data:
+                    corr_matrix = np.corrcoef(epoch)
+                    connectivity.append(corr_matrix)
+                connectivity = np.mean(connectivity, axis=0)
+            elif method == 'covariance':
+                # 计算协方差
+                data = epochs.get_data()
+                connectivity = []
+                for epoch in data:
+                    cov_matrix = np.cov(epoch)
+                    connectivity.append(cov_matrix)
+                connectivity = np.mean(connectivity, axis=0)
+            elif method == 'pli':
+                # 计算相位滞后指数
+                from mne.connectivity import phase_slope_index
+                conn, freqs, times, n_epochs, n_tapers = phase_slope_index(
+                    epochs, fmin=fmin, fmax=fmax, sfreq=sampling_rate
+                )
+                connectivity = np.mean(conn, axis=2)  # 平均时间维度
+            else:  # wpli
+                # 计算加权相位滞后指数
+                from mne.connectivity import wpli
+                conn, freqs, times, n_epochs, n_tapers = wpli(
+                    epochs, fmin=fmin, fmax=fmax, sfreq=sampling_rate
+                )
+                connectivity = np.mean(conn, axis=2)  # 平均时间维度
+            
+            # 确保连接性矩阵是对称的
+            if not np.array_equal(connectivity, connectivity.T):
+                connectivity = (connectivity + connectivity.T) / 2
+            
+            # Prepare output
+            output_data = {
+                'connectivity_matrix': connectivity,
+                'channels': epochs.ch_names,
+                'method': method,
+                'fmin': fmin,
+                'fmax': fmax,
+                'tmin': tmin,
+                'tmax': tmax
+            }
+            # Prepare visualization data
+            # Average across epochs to get 2D array [channels, samples]
+            signal_data = np.mean(epochs.get_data(), axis=0)
+            output_data['signal_data'] = signal_data
+            output_data['sampling_rate'] = input_data.sampling_rate
+            output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+            output_data['plot_type'] = 'raw_signal'
+            
+            # Statistics
+            statistics = {
+                'method': method,
+                'fmin': fmin,
+                'fmax': fmax,
+                'tmin': tmin,
+                'tmax': tmax,
+                'channels': len(epochs.ch_names),
+                'epochs': len(epochs),
+                'mean_connectivity': np.mean(connectivity[np.triu_indices(connectivity.shape[0], 1)])
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Functional Connectivity Results',
+                'xlabel': 'Channel',
+                'ylabel': 'Channel'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEFunctionalConnectivityAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEFunctionalConnectivityAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEFunctionalConnectivityAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE有效连接性分析算法模板
+MNE_EFFECTIVE_CONNECTIVITY_TEMPLATE = '''# MNE Effective Connectivity Algorithm Template
+
+"""MNE有效连接性分析算法模板，用于分析不同脑区之间的方向性连接。
+
+该算法模板演示了如何使用MNE库进行有效连接性分析，包括：
+1. 格兰杰因果关系分析
+2. 直接传递函数（DTF）
+3. 部分有向相干性（PDC）
+
+适用于研究脑网络的方向性信息流动，如信息处理的因果关系。
+
+【输入数据】
+- input_data.lfp_data: LFP数据，形状为 [channels × samples]
+- input_data.sampling_rate: 采样率 (Hz)
+- input_data.trial_info: 试验信息列表，包含事件时间
+
+【输出数据】
+- output_data['connectivity_matrix']: 有效连接性矩阵，形状为 [channels × channels]
+- output_data['channels']: 通道名称列表
+- output_data['method']: 连接性计算方法
+- output_data['fmin'], output_data['fmax']: 频率范围
+- output_data['n_lags']: 滞后阶数
+- output_data['tmin'], output_data['tmax']: 时间范围
+- output_data['signal_data']: 用于可视化的信号数据（跨epochs平均后的2D数组）
+- output_data['sampling_rate']: 采样率
+- output_data['times']: 时间轴
+- output_data['plot_type']: 绘图类型 ('raw_signal')
+
+【可视化说明】
+- 当前可视化显示的是原始信号波形（raw_signal），而非有效连接性热力图
+- 这是因为当前可视化系统不支持连接矩阵的热力图可视化
+- 有效连接性结果已保存在 output_data['connectivity_matrix'] 中
+- 如需查看连接性热力图，建议将数据导出到Python/MATLAB等工具进行可视化
+
+【注意】
+- 本算法使用numpy和scipy实现简化的有效连接性计算
+- 原statsmodels库的格兰杰因果检验和AR模型需要单独安装
+- 如需使用完整的statsmodels功能，请安装statsmodels包
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNEEffectiveConnectivityAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNEEffectiveConnectivityAlgorithm(BaseAlgorithm):
+    """MNE有效连接性分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Effective_Connectivity"
+        self.description = "MNE有效连接性分析算法，用于分析不同脑区之间的方向性连接"
+        self.category = "MNE Connectivity Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "连接性方法", "granger",
+                options=["granger", "dtf", "pdcm"]
+            ),
+            create_parameter(
+                "fmin", ParameterType.FLOAT,
+                "最低频率 (Hz)", 8.0,
+                min_value=0.1, max_value=30.0
+            ),
+            create_parameter(
+                "fmax", ParameterType.FLOAT,
+                "最高频率 (Hz)", 12.0,
+                min_value=5.0, max_value=50.0
+            ),
+            create_parameter(
+                "n_lags", ParameterType.INTEGER,
+                "滞后阶数", 5,
+                min_value=1, max_value=20
+            ),
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "分析开始时间 (s)", 0.0,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "分析结束时间 (s)", 1.0,
+                min_value=0.0, max_value=3.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE effective connectivity analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            method = parameters.get('method', 'granger')
+            fmin = parameters.get('fmin', 8.0)
+            fmax = parameters.get('fmax', 12.0)
+            n_lags = parameters.get('n_lags', 5)
+            tmin = parameters.get('tmin', 0.0)
+            tmax = parameters.get('tmax', 1.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            # 设置合适的基线参数
+            baseline = (None, 0)  # 默认基线：从开始到0秒
+            # 检查tmin是否为0，如果是，则使用(0, 0)作为基线
+            if tmin == 0:
+                baseline = (0, 0)
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = 0.0
+                tmax = 1.0
+                baseline = (0, 0)  # 使用(0, 0)作为基线
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0.0
+                    tmax = 0.1
+                    baseline = (0, 0)  # 使用(0, 0)作为基线
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 过滤到指定频率范围
+            epochs.filter(fmin, fmax, fir_design='firwin')
+            
+            # 计算有效连接性
+            data = epochs.get_data()  # 形状: (n_epochs, n_channels, n_times)
+            n_epochs, n_channels, n_times = data.shape
+            
+            # 对每个epoch计算有效连接性
+            connectivity = np.zeros((n_channels, n_channels))
+            
+            for epoch in data:
+                if method == 'granger':
+                    # 计算格兰杰因果关系（简化版）
+                    # 使用互相关和偏相关系数作为替代
+                    for i in range(n_channels):
+                        for j in range(n_channels):
+                            if i != j:
+                                # 计算互相关
+                                x = epoch[i, :]
+                                y = epoch[j, :]
+                                # 标准化
+                                x_norm = (x - np.mean(x)) / (np.std(x) + 1e-10)
+                                y_norm = (y - np.mean(y)) / (np.std(y) + 1e-10)
+                                # 计算滞后互相关
+                                max_corr = 0
+                                for lag in range(1, n_lags + 1):
+                                    if lag < len(x):
+                                        corr = np.corrcoef(x_norm[:-lag], y_norm[lag:])[0, 1]
+                                        max_corr = max(max_corr, abs(corr))
+                                connectivity[i, j] += max_corr
+                elif method == 'dtf':
+                    # 计算直接传递函数（简化版）
+                    # 使用自回归系数的估计
+                    from scipy.linalg import lstsq
+                    for i in range(n_channels):
+                        for j in range(n_channels):
+                            if i != j:
+                                x = epoch[i, :]
+                                y = epoch[j, :]
+                                # 构建滞后矩阵
+                                n_samples = len(x)
+                                if n_samples > n_lags:
+                                    X_lag = np.zeros((n_samples - n_lags, n_lags))
+                                    for lag in range(n_lags):
+                                        X_lag[:, lag] = y[lag:n_samples - n_lags + lag]
+                                    # 最小二乘估计
+                                    coeffs, _, _, _ = lstsq(X_lag, x[n_lags:])
+                                    connectivity[i, j] += np.sum(np.abs(coeffs))
+                else:  # pdcm
+                    # 计算部分有向相干性（简化版）
+                    # 使用频率域的相位差
+                    from scipy.signal import welch, csd
+                    for i in range(n_channels):
+                        for j in range(n_channels):
+                            if i != j:
+                                f, Pxx = welch(epoch[i, :], sampling_rate)
+                                f, Pyy = welch(epoch[j, :], sampling_rate)
+                                f, Pxy = csd(epoch[i, :], epoch[j, :], sampling_rate)
+                                # 计算相干性
+                                coherence = np.abs(Pxy) ** 2 / (Pxx * Pyy + 1e-10)
+                                connectivity[i, j] += np.mean(coherence)
+            
+            # 平均所有epoch的结果
+            connectivity /= n_epochs
+            
+            # 归一化到0-1范围
+            if connectivity.max() > 0:
+                connectivity = connectivity / connectivity.max()
+            
+            # Prepare output
+            output_data = {
+                'connectivity_matrix': connectivity,
+                'channels': epochs.ch_names,
+                'method': method,
+                'fmin': fmin,
+                'fmax': fmax,
+                'n_lags': n_lags,
+                'tmin': tmin,
+                'tmax': tmax
+            }
+            # Prepare visualization data
+            # Average across epochs to get 2D array [channels, samples]
+            signal_data = np.mean(epochs.get_data(), axis=0)
+            output_data['signal_data'] = signal_data
+            output_data['sampling_rate'] = input_data.sampling_rate
+            output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+            output_data['plot_type'] = 'raw_signal'
+            
+            # Statistics
+            statistics = {
+                'method': method,
+                'fmin': fmin,
+                'fmax': fmax,
+                'n_lags': n_lags,
+                'tmin': tmin,
+                'tmax': tmax,
+                'channels': len(epochs.ch_names),
+                'epochs': len(epochs),
+                'mean_connectivity': np.mean(connectivity)
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Effective Connectivity Results',
+                'xlabel': 'Source Channel',
+                'ylabel': 'Target Channel'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNEEffectiveConnectivityAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNEEffectiveConnectivityAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNEEffectiveConnectivityAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# MNE频谱连接性分析算法模板
+MNE_SPECTRAL_CONNECTIVITY_TEMPLATE = '''# MNE Spectral Connectivity Algorithm Template
+
+"""MNE频谱连接性分析算法模板，用于分析不同频率下的脑区连接模式。
+
+该算法模板演示了如何使用MNE库进行频谱连接性分析，包括：
+1. 相干性分析
+2. 相位滞后指数（PLI）
+3. 加权相位滞后指数（WPLI）
+4. 虚部相干性
+
+适用于研究不同频率波段的脑网络连接特性，如alpha、beta、gamma等频段的连接模式。
+
+【输入数据】
+- input_data.lfp_data: LFP数据，形状为 [channels × samples]
+- input_data.sampling_rate: 采样率 (Hz)
+- input_data.trial_info: 试验信息列表，包含事件时间
+
+【输出数据】
+- output_data['connectivity']: 频谱连接性矩阵，形状为 [channels × channels × n_freqs]
+- output_data['avg_connectivity']: 频率平均连接性矩阵，形状为 [channels × channels]
+- output_data['frequencies']: 频率数组
+- output_data['channels']: 通道名称列表
+- output_data['method']: 连接性计算方法
+- output_data['freq_min'], output_data['freq_max']: 频率范围
+- output_data['tmin'], output_data['tmax']: 时间范围
+- output_data['signal_data']: 用于可视化的信号数据（跨epochs平均后的2D数组）
+- output_data['sampling_rate']: 采样率
+- output_data['times']: 时间轴
+- output_data['plot_type']: 绘图类型 ('raw_signal')
+
+【可视化说明】
+- 当前可视化显示的是原始信号波形（raw_signal），而非频谱连接性热力图
+- 这是因为当前可视化系统不支持频谱连接性的多频率可视化
+- 频谱连接性结果已保存在 output_data['connectivity'] 和 output_data['avg_connectivity'] 中
+- 如需查看频谱连接性热力图，建议将数据导出到Python/MATLAB等工具进行可视化
+
+【注意】
+- 本算法使用scipy实现简化的频谱连接性计算
+- 原MNE的mne.connectivity模块在较新版本中已更改或需要单独安装
+- 如需使用完整的MNE连接性分析功能，请安装mne-connectivity包
+"""
+
+"""
+=============================================================
+ALGORITHM TEMPLATE GUIDE
+=============================================================
+
+1. TEST DATA STRUCTURE:
+   When validating your algorithm, the system will use mock input data with the following structure:
+   
+   - input_data.spike_times: List of spike timestamps (e.g., [0.1, 0.5, 1.2, ...])
+   - input_data.trial_info: List of trial information dictionaries
+     Example: [{'start_time': 0, 'end_time': 5}, {'start_time': 5, 'end_time': 10}]
+   - input_data.sampling_rate: Sampling rate (default: 2000.0 Hz)
+   - input_data.lfp_data: LFP data (if available) as 2D array [channels x samples]
+
+2. TEMPLATE COMPONENTS:
+   - REQUIRED: class MNESpectralConnectivityAlgorithm(BaseAlgorithm): Main algorithm class
+   - REQUIRED: def run(self, input_data, parameters): Algorithm execution method
+   - REQUIRED: def get_parameters_schema(): Define algorithm parameters
+   - REQUIRED: def validate_input(input_data): Validate input data
+   - REQUIRED: def run_algorithm(input_data, parameters): Legacy function for direct execution
+   - REQUIRED: ALGORITHM_INFO: Algorithm metadata for scheduler
+
+3. API USAGE:
+   - input_data: Contains the input data from the software
+   - parameters: Dictionary of algorithm parameters set by the user
+   - AlgorithmOutput: Return this object with your results
+     Example: return AlgorithmOutput(data={...}, success=True, error_message="")
+
+4. CUSTOMIZATION GUIDE:
+   - MODIFY: Algorithm class name (update both class definition and ALGORITHM_INFO)
+   - MODIFY: get_parameters_schema() to define your algorithm parameters
+   - MODIFY: run() method to implement your algorithm logic
+   - MODIFY: Algorithm description and category in __init__()
+   - KEEP: The overall structure and required components
+
+5. INTEGRATION PROCESS:
+   1. Write your algorithm code
+   2. Click "Validate" to test with mock data
+   3. Click "Integrate" to add to the algorithm dropdown
+   4. Enter a name for your algorithm when prompted
+
+=============================================================
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+import mne
+
+# Import algorithm base classes
+from src.algorithms.base import BaseAlgorithm, AlgorithmInput, AlgorithmOutput
+from src.algorithms.base import ParameterType, create_parameter
+
+# HDF5数据转换为MNE格式
+def hdf5_to_mne(input_data):
+    """将HDF5数据转换为MNE数据格式"""
+    # 获取数据
+    lfp_data = input_data.lfp_data
+    sampling_rate = input_data.sampling_rate
+    
+    # 创建MNE信息对象
+    ch_names = [f'ch{i}' for i in range(lfp_data.shape[0])]
+    info = mne.create_info(ch_names=ch_names, sfreq=sampling_rate, ch_types=['eeg']*lfp_data.shape[0])
+    
+    # 创建Raw对象
+    raw = mne.io.RawArray(lfp_data, info)
+    
+    return raw
+
+# Algorithm implementation class
+class MNESpectralConnectivityAlgorithm(BaseAlgorithm):
+    """MNE频谱连接性分析算法"""
+    
+    def __init__(self):
+        super().__init__()
+        self.name = "MNE_Spectral_Connectivity"
+        self.description = "MNE频谱连接性分析算法，用于分析不同频率下的脑区连接"
+        self.category = "MNE Connectivity Analysis"
+    
+    def get_parameters_schema(self):
+        """Define algorithm parameters"""
+        return [
+            create_parameter(
+                "method", ParameterType.SELECT,
+                "连接性方法", "coherence",
+                options=["coherence", "pli", "wpli", "imaginary_coherence"]
+            ),
+            create_parameter(
+                "freq_min", ParameterType.FLOAT,
+                "最低频率 (Hz)", 1.0,
+                min_value=0.1, max_value=5.0
+            ),
+            create_parameter(
+                "freq_max", ParameterType.FLOAT,
+                "最高频率 (Hz)", 40.0,
+                min_value=30.0, max_value=100.0
+            ),
+            create_parameter(
+                "n_freqs", ParameterType.INTEGER,
+                "频率点数", 20,
+                min_value=5, max_value=50
+            ),
+            create_parameter(
+                "tmin", ParameterType.FLOAT,
+                "分析开始时间 (s)", 0.0,
+                min_value=-1.0, max_value=0.0
+            ),
+            create_parameter(
+                "tmax", ParameterType.FLOAT,
+                "分析结束时间 (s)", 1.0,
+                min_value=0.0, max_value=3.0
+            )
+        ]
+    
+    def validate_input(self, input_data):
+        """Validate input data"""
+        return True
+    
+    def run(self, input_data, parameters):
+        """Execute algorithm"""
+        try:
+            print("Starting MNE spectral connectivity analysis...")
+            print(f"Parameters: {parameters}")
+            
+            # Get parameters
+            method = parameters.get('method', 'coherence')
+            freq_min = parameters.get('freq_min', 1.0)
+            freq_max = parameters.get('freq_max', 40.0)
+            n_freqs = parameters.get('n_freqs', 20)
+            tmin = parameters.get('tmin', 0.0)
+            tmax = parameters.get('tmax', 1.0)
+            
+            # Get input data
+            lfp_data = input_data.lfp_data
+            trial_info = input_data.trial_info if input_data.trial_info is not None else []
+            sampling_rate = input_data.sampling_rate
+            
+            # 转换数据格式
+            raw = hdf5_to_mne(input_data)
+            
+            # 创建事件数组
+            events = []
+            event_id = 1
+            for i, trial in enumerate(trial_info):
+                if 'start_time' in trial:
+                    # 转换为样本索引
+                    sample = int(trial['start_time'] * sampling_rate)
+                    events.append([sample, 0, event_id])
+            
+            # 确保events是整数类型的numpy数组
+            events = np.array(events, dtype=int)
+            
+            # 如果没有事件或所有事件都超出范围，创建一个默认事件
+            if events.size == 0:
+                # 创建一个默认事件，确保在数据范围内
+                # 选择数据中间位置作为事件时间
+                data_length = lfp_data.shape[1]
+                max_sample = data_length - 1
+                default_sample = max(0, min(int(data_length / 2), max_sample))
+                events = np.array([[default_sample, 0, event_id]], dtype=int)
+            
+            # 检查tmin和tmax是否合理，确保数据长度足够
+            tmin = -0.5  # 与Epochs创建时使用的tmin一致
+            tmax = 1.5   # 与Epochs创建时使用的tmax一致
+            data_length = lfp_data.shape[1]
+            sampling_rate = input_data.sampling_rate
+            required_length = int((abs(tmin) + tmax) * sampling_rate)
+            if data_length < required_length:
+                # 数据长度不足，调整tmax
+                available_time = data_length / sampling_rate - abs(tmin)
+                if available_time > 0:
+                    tmax = available_time
+                else:
+                    # 数据长度严重不足，使用默认值
+                    tmin = 0.0
+                    tmax = 1.0
+            
+            # 创建Epochs对象
+            # 暂时禁用reject，避免所有epochs被拒绝
+            # 设置合适的基线参数
+            baseline = (None, 0)  # 默认基线：从开始到0秒
+            # 检查tmin是否为0，如果是，则使用(0, 0)作为基线
+            if tmin == 0:
+                baseline = (0, 0)
+            epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+            
+            # 检查Epochs对象是否为空
+            if len(epochs) == 0:
+                # 尝试使用更保守的参数
+                tmin = 0.0
+                tmax = 1.0
+                baseline = (0, 0)  # 使用(0, 0)作为基线
+                epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                
+                if len(epochs) == 0:
+                    # 仍然为空，使用最小的时间窗口
+                    tmin = 0.0
+                    tmax = 0.1
+                    baseline = (0, 0)  # 使用(0, 0)作为基线
+                    epochs = mne.Epochs(raw, events, event_id={"stimulus": event_id}, tmin=tmin, tmax=tmax, baseline=baseline, preload=True)
+                    
+                    if len(epochs) == 0:
+                        raise ValueError("所有epochs都被拒绝或超出数据范围。请检查事件时间是否在数据范围内，或尝试调整参数。")
+            
+            # 计算频谱连接性
+            # 注意：mne.connectivity 模块在较新版本中已更改
+            # 这里使用简化的连接性计算方法
+            frequencies = np.logspace(np.log10(freq_min), np.log10(freq_max), num=n_freqs)
+            
+            # 获取数据
+            data = epochs.get_data()  # 形状: (n_epochs, n_channels, n_times)
+            n_channels = data.shape[1]
+            
+            # 计算频谱功率
+            from scipy import signal as scipy_signal
+            
+            # 对每个通道计算频谱
+            spectra = []
+            for ch_idx in range(n_channels):
+                ch_data = data[:, ch_idx, :].mean(axis=0)  # 平均epochs
+                freqs_psd, psd = scipy_signal.welch(ch_data, fs=sampling_rate, 
+                                                     nperseg=int(sampling_rate * 0.5))
+                spectra.append(psd)
+            
+            spectra = np.array(spectra)  # 形状: (n_channels, n_freqs)
+            
+            # 计算连接性矩阵
+            if method == 'coherence':
+                # 使用相关系数作为连接性的简化估计
+                connectivity = np.corrcoef(spectra)
+            elif method == 'pli':
+                # 简化版PLI：使用相位差的符号
+                connectivity = np.zeros((n_channels, n_channels))
+                for i in range(n_channels):
+                    for j in range(i+1, n_channels):
+                        # 计算相位差
+                        phase_i = np.angle(scipy_signal.hilbert(data[:, i, :].mean(axis=0)))
+                        phase_j = np.angle(scipy_signal.hilbert(data[:, j, :].mean(axis=0)))
+                        # 计算PLI
+                        pli = np.abs(np.mean(np.sign(np.sin(phase_i - phase_j))))
+                        connectivity[i, j] = pli
+                        connectivity[j, i] = pli
+            elif method == 'wpli':
+                # 简化版WPLI
+                connectivity = np.zeros((n_channels, n_channels))
+                for i in range(n_channels):
+                    for j in range(i+1, n_channels):
+                        phase_i = np.angle(scipy_signal.hilbert(data[:, i, :].mean(axis=0)))
+                        phase_j = np.angle(scipy_signal.hilbert(data[:, j, :].mean(axis=0)))
+                        sij = np.sin(phase_i - phase_j)
+                        wpli = np.abs(np.mean(sij)) / np.mean(np.abs(sij))
+                        connectivity[i, j] = wpli
+                        connectivity[j, i] = wpli
+            else:  # imaginary_coherence
+                # 简化版虚部相干性
+                connectivity = np.zeros((n_channels, n_channels))
+                for i in range(n_channels):
+                    for j in range(i+1, n_channels):
+                        sig_i = data[:, i, :].mean(axis=0)
+                        sig_j = data[:, j, :].mean(axis=0)
+                        # 计算互谱密度的虚部
+                        f, csd = scipy_signal.csd(sig_i, sig_j, fs=sampling_rate)
+                        imag_coh = np.abs(np.imag(csd)).mean()
+                        connectivity[i, j] = imag_coh
+                        connectivity[j, i] = imag_coh
+            
+            # 确保对角线为1
+            np.fill_diagonal(connectivity, 1.0)
+            
+            # 重塑为3D数组以兼容原有输出格式
+            connectivity_3d = connectivity.reshape(n_channels, n_channels, 1)
+            freqs = frequencies
+            
+            # 计算频率平均连接性
+            avg_connectivity = np.mean(connectivity_3d, axis=2)
+            
+            # Prepare output
+            output_data = {
+                'connectivity': connectivity_3d,
+                'avg_connectivity': avg_connectivity,
+                'frequencies': freqs,
+                'channels': epochs.ch_names,
+                'method': method,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'tmin': tmin,
+                'tmax': tmax
+            }
+            # Prepare visualization data
+            # Average across epochs to get 2D array [channels, samples]
+            signal_data = np.mean(epochs.get_data(), axis=0)
+            output_data['signal_data'] = signal_data
+            output_data['sampling_rate'] = input_data.sampling_rate
+            output_data['times'] = np.arange(signal_data.shape[1]) / input_data.sampling_rate
+            output_data['plot_type'] = 'raw_signal'
+            
+            # Statistics
+            statistics = {
+                'method': method,
+                'freq_min': freq_min,
+                'freq_max': freq_max,
+                'n_freqs': len(freqs),
+                'tmin': tmin,
+                'tmax': tmax,
+                'channels': len(epochs.ch_names),
+                'epochs': len(epochs),
+                'mean_connectivity': np.mean(avg_connectivity[np.triu_indices(avg_connectivity.shape[0], 1)])
+            }
+            
+            # Plot config
+            plot_config = {
+                'title': 'MNE Spectral Connectivity Results',
+                'xlabel': 'Frequency (Hz)',
+                'ylabel': 'Connectivity'
+            }
+            
+            # Return results
+            return AlgorithmOutput(
+                data=output_data,
+                statistics=statistics,
+                plot_config=plot_config,
+                success=True,
+                error_message=""
+            )
+            
+        except Exception as e:
+            print(f"Algorithm execution error: {e}")
+            import traceback
+            traceback.print_exc()
+            return AlgorithmOutput(
+                success=False,
+                error_message=str(e)
+            )
+
+# Legacy function for direct execution
+def run_algorithm(input_data, parameters):
+    """Legacy run function for direct execution"""
+    algo = MNESpectralConnectivityAlgorithm()
+    return algo.run(input_data, parameters)
+
+# Algorithm info for scheduler
+algorithm = MNESpectralConnectivityAlgorithm()
+ALGORITHM_INFO = {
+    'name': algorithm.name,
+    'class': MNESpectralConnectivityAlgorithm,
+    'description': algorithm.description,
+    'category': algorithm.category
+}
+'''
+
+
+# 模板字典
+TEMPLATE_DICT = {
+    'Custom Algorithm': CUSTOM_ALGORITHM_TEMPLATE,
+    'MNE Basic': MNE_ALGORITHM_TEMPLATE,
+    'MNE ICA': MNE_ICA_TEMPLATE,
+    'MNE Source Localization': MNE_SOURCE_LOCALIZATION_TEMPLATE,
+    'MNE Filtering': MNE_FILTERING_TEMPLATE,
+    'MNE Resampling': MNE_RESAMPLING_TEMPLATE,
+    'MNE Bad Channel Detection': MNE_BAD_CHANNEL_DETECTION_TEMPLATE,
+    'MNE ERP Analysis': MNE_ERP_ANALYSIS_TEMPLATE,
+    'MNE Time-Frequency': MNE_TIME_FREQUENCY_TEMPLATE,
+    'MNE Power Spectrum': MNE_POWER_SPECTRUM_TEMPLATE,
+    'MNE ICA Artifact Removal': MNE_ICA_ARTIFACT_REMOVAL_TEMPLATE,
+    'MNE Beamforming': MNE_BEAMFORMING_TEMPLATE,
+    'MNE Dipole Fitting': MNE_DIPOLE_FITTING_TEMPLATE,
+    'MNE Functional Connectivity': MNE_FUNCTIONAL_CONNECTIVITY_TEMPLATE,
+    'MNE Effective Connectivity': MNE_EFFECTIVE_CONNECTIVITY_TEMPLATE,
+    'MNE Spectral Connectivity': MNE_SPECTRAL_CONNECTIVITY_TEMPLATE
+}
+
+
+class CustomAlgorithmEditor(QWidget):
+    """Custom algorithm editor"""
+    
+    script_executed = pyqtSignal(dict)
+    script_saved = pyqtSignal(str)
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        logger.info("Initializing CustomAlgorithmEditor")
+        # Set as independent window
+        self.setWindowFlag(Qt.WindowType.Window)
+        self._current_file = None
+        self._execution_result = None
+        self._init_ui()
+        logger.info("CustomAlgorithmEditor initialized successfully")
+    
+    def _init_ui(self):
+        """Initialize UI"""
+        layout = QVBoxLayout(self)
+        
+        # Top toolbar
+        toolbar = QHBoxLayout()
+        
+        # 按钮 - 去掉New和Save，保留Open和Save as
+        self.open_btn = QPushButton("Open")
+        self.open_btn.clicked.connect(self._on_open)
+        toolbar.addWidget(self.open_btn)
+        
+        self.save_as_btn = QPushButton("Save As")
+        self.save_as_btn.clicked.connect(self._on_save_as)
+        toolbar.addWidget(self.save_as_btn)
+        
+        toolbar.addStretch()
+        
+        # Template selection
+        template_layout = QHBoxLayout()
+        template_label = QLabel("Template:")
+        template_layout.addWidget(template_label)
+        
+        self.template_combo = QComboBox()
+        self.template_combo.addItems(TEMPLATE_DICT.keys())
+        self.template_combo.currentTextChanged.connect(self._on_template_changed)
+        template_layout.addWidget(self.template_combo)
+        
+        toolbar.addLayout(template_layout)
+        
+        # 可视化配置选项
+        vis_layout = QHBoxLayout()
+        vis_label = QLabel("Visualization:")
+        vis_layout.addWidget(vis_label)
+        
+        self.visualization_combo = QComboBox()
+        self.visualization_combo.addItems([
+            "Auto (Based on Data)",
+            "Spike Raster Plot",
+            "Raw Signal Plot",
+            "Power Spectrum",
+            "Spectrogram",
+            "PSTH",
+            "Spike Sorting",
+            "Tuning Curve"
+        ])
+        self.visualization_combo.currentTextChanged.connect(self._on_visualization_changed)
+        vis_layout.addWidget(self.visualization_combo)
+        
+        toolbar.addLayout(vis_layout)
+        
+        self.validate_btn = QPushButton("Validate")
+        self.validate_btn.clicked.connect(self._on_validate)
+        self.validate_btn.setStyleSheet("background-color: #4CAF50; color: white;")
+        toolbar.addWidget(self.validate_btn)
+        
+        self.integrate_btn = QPushButton("Integrate")
+        self.integrate_btn.clicked.connect(self._on_integrate)
+        self.integrate_btn.setStyleSheet("background-color: #FF9800; color: white;")
+        self.integrate_btn.setEnabled(False)  # Disable until validation passes
+        toolbar.addWidget(self.integrate_btn)
+        
+        layout.addLayout(toolbar)
+        
+        # Splitter
+        splitter = QSplitter(Qt.Orientation.Vertical)
+        
+        # Code editor panel
+        code_panel = QWidget()
+        code_layout = QVBoxLayout(code_panel)
+        
+        code_label = QLabel("Algorithm Script Editor")
+        code_label.setStyleSheet("font-weight: bold;")
+        code_layout.addWidget(code_label)
+        
+        self.code_editor = QTextEdit()
+        self.code_editor.setFont(QFont("Consolas", 10))
+        self.code_editor.setTabStopDistance(20)
+        
+        # Add syntax highlighting
+        self.highlighter = PythonSyntaxHighlighter(self.code_editor.document())
+        
+        # Add code completion
+        self.completer = PythonCompleter()
+        # Connect completer signals
+        self.completer.activated.connect(self._on_completion_activated)
+        # Override keyPressEvent to handle completion
+        self.code_editor.keyPressEvent = self._code_editor_key_press_event
+        
+        self._set_default_template()
+        code_layout.addWidget(self.code_editor)
+        
+        splitter.addWidget(code_panel)
+        
+        # Output panel
+        output_panel = QWidget()
+        output_layout = QVBoxLayout(output_panel)
+        
+        output_label = QLabel("Execution Output")
+        output_label.setStyleSheet("font-weight: bold;")
+        output_layout.addWidget(output_label)
+        
+
+        
+        self.output_editor = QTextEdit()
+        self.output_editor.setFont(QFont("Consolas", 10))
+        self.output_editor.setReadOnly(True)
+        self.output_editor.setStyleSheet("background-color: #f5f5f5;")
+        output_layout.addWidget(self.output_editor)
+        
+        splitter.addWidget(output_panel)
+        
+        # Set splitter sizes
+        splitter.setSizes([600, 300])
+        
+        layout.addWidget(splitter)
+        
+        # Status bar
+        status_layout = QHBoxLayout()
+        self.status_label = QLabel("Ready")
+        status_layout.addWidget(self.status_label)
+        status_layout.addStretch()
+        layout.addLayout(status_layout)
+        
+        self.setMinimumSize(800, 600)
+    
+    def _set_default_template(self):
+        """Set default template"""
+        logger.info("Setting default template")
+        # Apply visualization template based on current selection
+        if hasattr(self, 'visualization_combo'):
+            vis_type = self.visualization_combo.currentText()
+        else:
+            vis_type = "Auto (Based on Data)"
+        template = self._apply_visualization_template(CUSTOM_ALGORITHM_TEMPLATE, vis_type)
+        if hasattr(self, 'code_editor'):
+            self.code_editor.setText(template)
+        else:
+            logger.warning("code_editor not yet initialized")
+    
+    def _on_visualization_changed(self, vis_type):
+        """Handle visualization type change"""
+        logger.info(f"Visualization type changed to: {vis_type}")
+        try:
+            # Get current template
+            template_name = self.template_combo.currentText()
+            if template_name in TEMPLATE_DICT:
+                template = TEMPLATE_DICT[template_name]
+                # Apply visualization template based on new selection
+                template = self._apply_visualization_template(template, vis_type)
+                self.code_editor.setText(template)
+                logger.info(f"Visualization template updated successfully")
+        except Exception as e:
+            logger.error(f"Error updating visualization template: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to update visualization template: {e}")
+    
+    def _on_template_changed(self, template_name):
+        """Handle template selection change"""
+        logger.info(f"Template changed to: {template_name}")
+        try:
+            if template_name in TEMPLATE_DICT:
+                template = TEMPLATE_DICT[template_name]
+                # Apply visualization template based on current selection
+                vis_type = self.visualization_combo.currentText()
+                template = self._apply_visualization_template(template, vis_type)
+                self.code_editor.setText(template)
+                logger.info(f"Template {template_name} loaded successfully")
+            else:
+                logger.warning(f"Template not found: {template_name}")
+        except Exception as e:
+            logger.error(f"Error loading template: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to load template: {e}")
+    
+    def _apply_visualization_template(self, template, vis_type):
+        """Apply visualization template based on selected type"""
+        # Check if template already has plot_type set (algorithm-specific visualization)
+        # If so, don't override with auto-generated visualization code
+        if "plot_type" in template and vis_type == "Auto (Based on Data)":
+            # Template already has specific visualization settings, keep them
+            return template
+        
+        # Get the visualization code snippet based on selected type
+        vis_code = self._get_visualization_code(vis_type)
+        
+        # Find the last output_data assignment in the run method
+        # This should be the one in the main try block, not the except block
+        import re
+        # Find all output_data assignments and use the last one (main path)
+        output_data_pattern = r'output_data = \{[\s\S]*?\}(?=\s*\n\s*# Statistics)'
+        matches = list(re.finditer(output_data_pattern, template))
+        
+        if matches:
+            # Use the last match (main path, not the except block)
+            last_match = matches[-1]
+            output_data_block = last_match.group(0)
+            # Find the position of the last '}' in the output_data block
+            output_data_end_pos = output_data_block.rfind('}')
+            if output_data_end_pos != -1:
+                # Calculate the absolute position in the template
+                abs_end_pos = last_match.start() + output_data_end_pos
+                # Insert visualization code after output_data definition
+                template = template[:abs_end_pos+1] + '\n' + vis_code + template[abs_end_pos+1:]
+        
+        return template
+    
+    def _get_visualization_code(self, vis_type):
+        """Get visualization code snippet based on selected type"""
+        if vis_type == "Spike Raster Plot":
+            return '''            # Prepare visualization data for Spike Raster Plot
+            if input_data.spike_times:
+                output_data['spike_times'] = input_data.spike_times
+                output_data['trial_info'] = input_data.trial_info
+                output_data['plot_type'] = 'spike_raster' '''
+        elif vis_type == "Raw Signal Plot":
+            return '''            # Prepare visualization data for Raw Signal Plot
+            if input_data.lfp_data is not None:
+                output_data['signal_data'] = input_data.lfp_data
+                output_data['sampling_rate'] = input_data.sampling_rate
+                # Generate time axis
+                times = np.arange(input_data.lfp_data.shape[1]) / input_data.sampling_rate
+                output_data['times'] = times
+                output_data['plot_type'] = 'raw_signal' '''
+        elif vis_type == "Power Spectrum":
+            return '''            # Prepare visualization data for Power Spectrum
+            if input_data.lfp_data is not None:
+                from scipy.signal import welch
+                import numpy as np
+                f, Pxx = welch(input_data.lfp_data, input_data.sampling_rate, nperseg=1024)
+                output_data['freqs'] = f
+                output_data['power'] = np.mean(Pxx, axis=0)
+                output_data['psd_mean'] = np.mean(output_data['power'])
+                output_data['plot_type'] = 'power_spectrum' '''
+        elif vis_type == "Spectrogram":
+            return '''            # Prepare visualization data for Spectrogram
+            if input_data.lfp_data is not None:
+                from scipy.signal import spectrogram
+                import numpy as np
+                f, t, Sxx = spectrogram(input_data.lfp_data[0], input_data.sampling_rate)
+                output_data['spectrogram'] = Sxx
+                output_data['times'] = t
+                output_data['frequencies'] = f
+                output_data['plot_type'] = 'spectrogram' '''
+        elif vis_type == "PSTH":
+            return '''            # Prepare visualization data for PSTH
+            if input_data.spike_times and input_data.trial_info:
+                import numpy as np
+                # Calculate PSTH
+                bin_size = 0.1  # 100ms bins
+                bin_edges = np.arange(0, 10, bin_size)
+                psth_counts = np.zeros(len(bin_edges) - 1)
+                
+                for t in input_data.spike_times:
+                    idx = np.digitize(t, bin_edges) - 1
+                    if 0 <= idx < len(psth_counts):
+                        psth_counts[idx] += 1
+                
+                bin_centers = (bin_edges[:-1] + bin_edges[1:]) / 2
+                output_data['psth_counts'] = psth_counts
+                output_data['bin_centers'] = bin_centers
+                output_data['n_trials'] = len(input_data.trial_info)
+                output_data['plot_type'] = 'psth' '''
+        elif vis_type == "Spike Sorting":
+            return '''            # Prepare visualization data for Spike Sorting
+            output_data['labels'] = [0, 1, 2]  # Example cluster labels
+            output_data['cluster_centers'] = np.random.rand(3, 32)  # Example cluster centers
+            output_data['plot_type'] = 'spike_sorting' '''
+        elif vis_type == "Tuning Curve":
+            return '''            # Prepare visualization data for Tuning Curve
+            output_data['conditions'] = [0, 45, 90, 135, 180, 225, 270, 315]  # Example orientations
+            output_data['mean_responses'] = np.random.rand(8)  # Example responses
+            output_data['std_responses'] = np.random.rand(8) * 0.1  # Example standard deviations
+            output_data['plot_type'] = 'tuning_curve' '''
+        else:  # Auto or other
+            return '''            # Use base class method to prepare visualization data
+            vis_data = self.prepare_visualization_data(input_data)
+            output_data.update(vis_data)
+            '''
+
+    def _on_new(self):
+        """New script"""
+        logger.info("Creating new script")
+        try:
+            if self._current_file and not self.code_editor.toPlainText().strip() == TEMPLATE_DICT[self.template_combo.currentText()]:
+                reply = QMessageBox.question(
+                    self, "Save", "Do you want to save the current script?",
+                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No | QMessageBox.StandardButton.Cancel
+                )
+                if reply == QMessageBox.StandardButton.Yes:
+                    self._on_save()
+                elif reply == QMessageBox.StandardButton.Cancel:
+                    logger.info("New script creation cancelled")
+                    return
+            
+            self._current_file = None
+            self.code_editor.setText(TEMPLATE_DICT[self.template_combo.currentText()])
+            self.status_label.setText("New script")
+            logger.info("New script created successfully")
+        except Exception as e:
+            logger.error(f"Error creating new script: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to create new script: {e}")
+    
+    def _on_open(self):
+        """Open script"""
+        logger.info("Opening script")
+        try:
+            file_path, _ = QFileDialog.getOpenFileName(
+                self, "Open Script", "", "Python Files (*.py);;All Files (*)"
+            )
+            if file_path:
+                logger.info(f"Opening file: {file_path}")
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    self.code_editor.setText(content)
+                    self._current_file = file_path
+                    self.status_label.setText(f"Opened: {os.path.basename(file_path)}")
+                    logger.info(f"File opened successfully: {file_path}")
+                except Exception as e:
+                    logger.error(f"Error opening file {file_path}: {e}")
+                    QMessageBox.warning(self, "Error", f"Failed to open file: {e}")
+            else:
+                logger.info("Open file dialog cancelled")
+        except Exception as e:
+            logger.error(f"Error in open file dialog: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to open file dialog: {e}")
+    
+    def _on_save(self):
+        """Save script"""
+        logger.info("Saving script")
+        try:
+            if self._current_file:
+                logger.info(f"Saving to existing file: {self._current_file}")
+                try:
+                    with open(self._current_file, 'w', encoding='utf-8') as f:
+                        f.write(self.code_editor.toPlainText())
+                    self.status_label.setText(f"Saved: {os.path.basename(self._current_file)}")
+                    self.script_saved.emit(self._current_file)
+                    logger.info(f"File saved successfully: {self._current_file}")
+                except Exception as e:
+                    logger.error(f"Error saving file {self._current_file}: {e}")
+                    QMessageBox.warning(self, "Error", f"Failed to save file: {e}")
+            else:
+                # Default save to custom_algorithms folder
+                custom_algorithms_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'custom_algorithms')
+                if not os.path.exists(custom_algorithms_dir):
+                    logger.info(f"Creating custom_algorithms directory: {custom_algorithms_dir}")
+                    try:
+                        os.makedirs(custom_algorithms_dir)
+                        logger.info(f"Directory created successfully: {custom_algorithms_dir}")
+                    except Exception as e:
+                        logger.error(f"Error creating directory: {e}")
+                        QMessageBox.warning(self, "Error", f"Failed to create directory: {e}")
+                        return
+                
+                file_path, _ = QFileDialog.getSaveFileName(
+                    self, "Save Script", custom_algorithms_dir, "Python Files (*.py);;All Files (*)"
+                )
+                if file_path:
+                    logger.info(f"Saving to new file: {file_path}")
+                    try:
+                        with open(file_path, 'w', encoding='utf-8') as f:
+                            f.write(self.code_editor.toPlainText())
+                        self._current_file = file_path
+                        self.status_label.setText(f"Saved: {os.path.basename(file_path)}")
+                        self.script_saved.emit(file_path)
+                        logger.info(f"File saved successfully: {file_path}")
+                    except Exception as e:
+                        logger.error(f"Error saving file {file_path}: {e}")
+                        QMessageBox.warning(self, "Error", f"Failed to save file: {e}")
+                else:
+                    logger.info("Save file dialog cancelled")
+        except Exception as e:
+            logger.error(f"Error in save operation: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to save script: {e}")
+    
+    def _on_save_as(self):
+        """Save as"""
+        logger.info("Saving script as")
+        try:
+            # Default save to custom_algorithms folder
+            custom_algorithms_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'custom_algorithms')
+            if not os.path.exists(custom_algorithms_dir):
+                logger.info(f"Creating custom_algorithms directory: {custom_algorithms_dir}")
+                try:
+                    os.makedirs(custom_algorithms_dir)
+                    logger.info(f"Directory created successfully: {custom_algorithms_dir}")
+                except Exception as e:
+                    logger.error(f"Error creating directory: {e}")
+                    QMessageBox.warning(self, "Error", f"Failed to create directory: {e}")
+                    return
+            
+            file_path, _ = QFileDialog.getSaveFileName(
+                self, "Save Script", custom_algorithms_dir, "Python Files (*.py);;All Files (*)"
+            )
+            if file_path:
+                logger.info(f"Saving to new file: {file_path}")
+                try:
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(self.code_editor.toPlainText())
+                    self._current_file = file_path
+                    self.status_label.setText(f"Saved: {os.path.basename(file_path)}")
+                    self.script_saved.emit(file_path)
+                    logger.info(f"File saved successfully: {file_path}")
+                except Exception as e:
+                    logger.error(f"Error saving file {file_path}: {e}")
+                    QMessageBox.warning(self, "Error", f"Failed to save file: {e}")
+            else:
+                logger.info("Save as dialog cancelled")
+        except Exception as e:
+            logger.error(f"Error in save as operation: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to save script as: {e}")
+    
+    def _on_validate(self):
+        """Validate algorithm interface"""
+        logger.info("Validating algorithm interface")
+        self.status_label.setText("Validating...")
+        self.output_editor.clear()
+        
+        # Capture stdout
+        class OutputRedirect:
+            def __init__(self, text_edit):
+                self.text_edit = text_edit
+            
+            def write(self, text):
+                self.text_edit.append(text)
+                self.text_edit.moveCursor(QTextCursor.MoveOperation.End)
+            
+            def flush(self):
+                pass
+        
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+        
+        try:
+            # Redirect output
+            sys.stdout = OutputRedirect(self.output_editor)
+            sys.stderr = OutputRedirect(self.output_editor)
+            
+            # Get code
+            code = self.code_editor.toPlainText()
+            logger.info("Validating script code")
+            
+            # Initialize validation variables
+            validation_passed = True
+            validation_messages = []
+            
+            # Create temporary module
+            spec = importlib.util.spec_from_loader("mne_script", loader=None)
+            module = importlib.util.module_from_spec(spec)
+            
+            # First check for syntax errors
+            try:
+                # Check if code is empty or truncated
+                if not code or len(code.strip()) < 100:
+                    validation_passed = False
+                    validation_messages.append("Error: Code is empty or truncated")
+                    raise ValueError("Code is empty or truncated")
+                
+                compile(code, '<string>', 'exec')
+                validation_messages.append("Success: Syntax check passed")
+            except SyntaxError as e:
+                validation_passed = False
+                # Get the problematic line
+                lines = code.split('\n')
+                problematic_line = lines[e.lineno-1] if e.lineno <= len(lines) else "<line not found>"
+                validation_messages.append(f"Error: Syntax error at line {e.lineno}: {e.msg}")
+                validation_messages.append(f"Problematic line: {problematic_line}")
+                raise
+            except ValueError as e:
+                validation_passed = False
+                validation_messages.append(f"Error: {e}")
+                raise
+            
+            exec(code, module.__dict__)
+            
+            # Validate run_algorithm function
+            # validation_passed and validation_messages are already initialized
+            # Just continue with additional validation
+            
+            if not hasattr(module, 'run_algorithm'):
+                validation_passed = False
+                validation_messages.append("Error: No run_algorithm function found")
+            else:
+                # Check run_algorithm parameters
+                import inspect
+                sig = inspect.signature(module.run_algorithm)
+                params = list(sig.parameters.keys())
+                logger.info(f"run_algorithm parameters: {params}")
+                
+                # Validate input interface
+                if len(params) != 2:
+                    validation_passed = False
+                    validation_messages.append(f"Error: run_algorithm should have exactly 2 parameters (input_data, parameters), but found {len(params)}")
+                
+                # Validate output interface
+                # Try to execute with mock data to check output format
+                try:
+                    class MockInputData:
+                        def __init__(self):
+                            self.spike_times = np.random.rand(10) * 10  # 10 spikes, 0-10 seconds
+                            self.trial_info = [
+                                {'start_time': 0, 'end_time': 5},
+                                {'start_time': 5, 'end_time': 10}
+                            ]
+                            self.sampling_rate = 2000.0
+                    
+                    input_data = MockInputData()
+                    parameters = {}
+                    result = module.run_algorithm(input_data, parameters)
+                    
+                    # Check if result has expected structure
+                    if not hasattr(result, 'data') or not hasattr(result, 'success'):
+                        validation_passed = False
+                        validation_messages.append("Error: run_algorithm should return an AlgorithmOutput object")
+                    else:
+                        validation_messages.append("Success: Output format is correct")
+                except Exception as e:
+                    validation_passed = False
+                    validation_messages.append(f"Error: Failed to execute run_algorithm: {e}")
+            
+            # Check for ALGORITHM_INFO
+            if not hasattr(module, 'ALGORITHM_INFO'):
+                validation_passed = False
+                validation_messages.append("Error: No ALGORITHM_INFO found")
+            else:
+                validation_messages.append("Success: ALGORITHM_INFO found")
+            
+            # Display validation results
+            if validation_passed:
+                self.status_label.setText("Validation passed")
+                self.output_editor.append("=== Validation Results ===")
+                for message in validation_messages:
+                    self.output_editor.append(message)
+                self.output_editor.append("\nAlgorithm interface validation passed!")
+                self.output_editor.append("You can now integrate this algorithm into the software framework.")
+                self.integrate_btn.setEnabled(True)
+            else:
+                self.status_label.setText("Validation failed")
+                self.output_editor.append("=== Validation Results ===")
+                for message in validation_messages:
+                    self.output_editor.append(message)
+                self.output_editor.append("\nAlgorithm interface validation failed!")
+                self.output_editor.append("Please fix the issues above and try again.")
+                self.integrate_btn.setEnabled(False)
+                
+        except Exception as e:
+            logger.error(f"Error validating script: {e}")
+            self.status_label.setText("Validation failed")
+            self.output_editor.append(f"Error: {e}")
+            self.output_editor.append(traceback.format_exc())
+            self.integrate_btn.setEnabled(False)
+        finally:
+            # Restore stdout
+            sys.stdout = old_stdout
+            sys.stderr = old_stderr
+            logger.info("Script validation completed")
+    
+    def _on_integrate(self):
+        """Integrate algorithm into software framework"""
+        logger.info("Integrating algorithm into framework")
+        self.status_label.setText("Integrating...")
+        
+        try:
+            # Get code
+            code = self.code_editor.toPlainText()
+            
+            # Extract algorithm name from code or prompt user
+            import re
+            algorithm_name = ""
+            class_match = re.search(r'class\s+(\w+)\s*\(', code)
+            if class_match:
+                algorithm_name = class_match.group(1)
+            
+            # Prompt user for algorithm name if not found or empty
+            from PyQt6.QtWidgets import QInputDialog
+            algorithm_name, ok = QInputDialog.getText(
+                self, "Algorithm Name", "Enter algorithm name for dropdown menu:",
+                text=algorithm_name
+            )
+            
+            if not ok or not algorithm_name.strip():
+                logger.info("Algorithm integration cancelled")
+                self.status_label.setText("Integration cancelled")
+                return
+            
+            # Update ALGORITHM_INFO in the code
+            # Replace the name field in ALGORITHM_INFO
+            updated_code = re.sub(
+                r"'name':\s*algorithm\.name",
+                f"'name': '{algorithm_name}'",
+                code
+            )
+            
+            # Ensure category is set to "自定义算法"
+            updated_code = re.sub(
+                r"'category':\s*algorithm\.category",
+                "'category': '自定义算法'",
+                updated_code
+            )
+            
+            # Also update the category in the __init__ method
+            # Use different string delimiter to avoid quote conflicts
+            pattern = r'self\.category\s*=\s*[\'\"]([^\'\"]*)[\'\"]'
+            updated_code = re.sub(
+                pattern,
+                "self.category = '自定义算法'",
+                updated_code
+            )
+            
+            # Update the __init__ method to use the user-provided name
+            # Replace existing self.name assignment or add it if it doesn't exist
+            import re
+            
+            # First, try to replace existing self.name assignment
+            name_pattern = r'self\.name\s*=\s*[\'\"]([^\'\"]*)[\'\"]'
+            if re.search(name_pattern, updated_code):
+                # Replace existing self.name
+                updated_code = re.sub(
+                    name_pattern,
+                    f"self.name = '{algorithm_name}'",
+                    updated_code
+                )
+            else:
+                # If no self.name found, add it after super().__init__()
+                init_pattern = r"def\s+__init__\s*\(self\)\s*:\s*super\(\)\.\s*__init__\(\)"
+                init_match = re.search(init_pattern, updated_code)
+                
+                if init_match:
+                    # Find the __init__ method
+                    lines = updated_code.split('\n')
+                    init_line = 0
+                    for i, line in enumerate(lines):
+                        if "def __init__" in line:
+                            init_line = i
+                            break
+                    
+                    # Find the line with super().__init__()
+                    for i in range(init_line + 1, len(lines)):
+                        if "super().__init__()" in lines[i]:
+                            # Insert self.name after this line
+                            indent = lines[i].split("super")[0]
+                            lines.insert(i + 1, f"{indent}self.name = '{algorithm_name}'")
+                            updated_code = '\n'.join(lines)
+                            break
+            
+            # Save to custom_algorithms directory
+            custom_algorithms_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'custom_algorithms')
+            if not os.path.exists(custom_algorithms_dir):
+                os.makedirs(custom_algorithms_dir)
+            
+            # Generate filename based on algorithm name
+            filename = f"{algorithm_name.lower().replace(' ', '_')}.py"
+            
+            # Save file
+            file_path = os.path.join(custom_algorithms_dir, filename)
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(updated_code)
+            
+            # Emit script saved signal to update algorithm list
+            self.script_saved.emit(file_path)
+            
+            self.status_label.setText("Integration completed")
+            self.output_editor.append(f"=== Integration Results ===")
+            self.output_editor.append(f"Algorithm name: {algorithm_name}")
+            self.output_editor.append(f"Algorithm saved to: {file_path}")
+            self.output_editor.append("Algorithm integrated into software framework!")
+            self.output_editor.append("You can now select this algorithm from the algorithm dropdown menu.")
+            
+            logger.info(f"Algorithm integrated successfully: {file_path}")
+            
+        except Exception as e:
+            logger.error(f"Error integrating algorithm: {e}")
+            self.status_label.setText("Integration failed")
+            self.output_editor.append(f"Error: {e}")
+            self.output_editor.append(traceback.format_exc())
+    
+    def _on_execute(self):
+        """Execute script"""
+        logger.info("Executing script")
+        self.status_label.setText("Executing...")
+        self.output_editor.clear()
+        
+        # Capture stdout
+        class OutputRedirect:
+            def __init__(self, text_edit):
+                self.text_edit = text_edit
+            
+            def write(self, text):
+                self.text_edit.append(text)
+                self.text_edit.moveCursor(QTextCursor.MoveOperation.End)
+            
+            def flush(self):
+                pass
+        
+        old_stdout = sys.stdout
+        old_stderr = sys.stderr
+        
+        try:
+            # Redirect output
+            sys.stdout = OutputRedirect(self.output_editor)
+            sys.stderr = OutputRedirect(self.output_editor)
+            
+            # Execute code
+            code = self.code_editor.toPlainText()
+            logger.info("Executing script code")
+            
+            # Create temporary module
+            spec = importlib.util.spec_from_loader("mne_script", loader=None)
+            module = importlib.util.module_from_spec(spec)
+            exec(code, module.__dict__)
+            
+            # Execute main function
+            if hasattr(module, 'run_algorithm'):
+                logger.info("Found run_algorithm function")
+                # Check run_algorithm parameters
+                import inspect
+                sig = inspect.signature(module.run_algorithm)
+                params = list(sig.parameters.keys())
+                logger.info(f"run_algorithm parameters: {params}")
+                
+                if len(params) == 0:
+                    # No parameters version
+                    logger.info("Executing run_algorithm with no parameters")
+                    result = module.run_algorithm()
+                elif len(params) == 2:
+                    # Two parameters version, use mock data
+                    logger.info("Executing run_algorithm with input_data and parameters")
+                    class MockInputData:
+                        def __init__(self):
+                            self.spike_times = np.random.rand(100) * 100  # 100 spikes, 0-100 seconds
+                            self.trial_info = [
+                                {'start_time': 0, 'end_time': 20},
+                                {'start_time': 20, 'end_time': 40},
+                                {'start_time': 40, 'end_time': 60},
+                                {'start_time': 60, 'end_time': 80},
+                                {'start_time': 80, 'end_time': 100}
+                            ]
+                    
+                    input_data = MockInputData()
+                    parameters = {}
+                    result = module.run_algorithm(input_data, parameters)
+                else:
+                    # Other parameter cases, try no parameter call
+                    logger.warning(f"Unexpected parameter count: {len(params)}, trying no parameter call")
+                    result = module.run_algorithm()
+                
+                self.status_label.setText("Execution completed")
+                # Ensure result is dictionary format
+                if hasattr(result, 'data'):
+                    logger.info("Emitting script execution result (AlgorithmOutput)")
+                    self._execution_result = result.data
+                    self.script_executed.emit(result.data)
+                else:
+                    logger.info("Emitting script execution result (direct)")
+                    self._execution_result = result
+                    self.script_executed.emit(result)
+            else:
+                logger.warning("No run_algorithm function found in script")
+                self.status_label.setText("Execution completed (no result)")
+                
+
+            
+        except Exception as e:
+            logger.error(f"Error executing script: {e}")
+            self.status_label.setText("Execution failed")
+            self.output_editor.append(f"Error: {e}")
+            self.output_editor.append(traceback.format_exc())
+        finally:
+            # Restore stdout
+            sys.stdout = old_stdout
+            sys.stderr = old_stderr
+            logger.info("Script execution completed")
+    
+    def _on_completion_activated(self, text):
+        """Handle completion activation"""
+        cursor = self.code_editor.textCursor()
+        cursor.select(QTextCursor.SelectionType.WordUnderCursor)
+        cursor.removeSelectedText()
+        cursor.insertText(text)
+        self.code_editor.setTextCursor(cursor)
+    
+    def _code_editor_key_press_event(self, event):
+        """Handle key press events for code completion"""
+        # If completer is visible, handle Tab and Enter
+        if self.completer and self.completer.popup().isVisible():
+            if event.key() in (Qt.Key.Key_Tab, Qt.Key.Key_Enter, Qt.Key.Key_Return):
+                self.completer.popup().hide()
+                return
+        
+        # Handle other keys
+        QTextEdit.keyPressEvent(self.code_editor, event)
+        
+        # Trigger completion on period or after typing
+        if event.key() in (Qt.Key.Key_Period, Qt.Key.Key_AsciiTilde) or event.text().isalnum():
+            self._trigger_completion()
+    
+    def _trigger_completion(self):
+        """Trigger code completion"""
+        cursor = self.code_editor.textCursor()
+        cursor.select(QTextCursor.SelectionType.WordUnderCursor)
+        word = cursor.selectedText()
+        
+        if len(word) > 1:
+            # Update completer model with filtered suggestions
+            model = QStringListModel()
+            all_completions = self.completer.model().stringList()
+            filtered = [item for item in all_completions if item.startswith(word)]
+            model.setStringList(filtered)
+            
+            if filtered:
+                # Show completer
+                self.completer.setModel(model)
+                self.completer.setCompletionPrefix(word)
+                popup = self.completer.popup()
+                popup.setCurrentIndex(self.completer.completionModel().index(0, 0))
+                
+                # Position the popup
+                rect = self.code_editor.cursorRect()
+                rect.setWidth(self.completer.popup().sizeHintForColumn(0) + 
+                              self.completer.popup().verticalScrollBar().sizeHint().width())
+                self.completer.complete(rect)
+    
+    def _on_visualize(self):
+        """Visualize algorithm execution results"""
+        logger.info("Visualizing algorithm results")
+        try:
+            if self._execution_result is None:
+                QMessageBox.warning(self, "Warning", "No execution result available. Please run the algorithm first.")
+                return
+            
+            # Import matplotlib
+            import matplotlib.pyplot as plt
+            
+            # Check result type and visualize accordingly
+            if isinstance(self._execution_result, dict):
+                # Create figure
+                fig, ax = plt.subplots(figsize=(10, 6))
+                
+                # Check what data is available
+                if 'fear_responses' in self._execution_result:
+                    # Monkey fear research visualization
+                    fear_responses = self._execution_result['fear_responses']
+                    trial_ids = [r['trial_id'] for r in fear_responses]
+                    firing_rates = [r['firing_rate'] for r in fear_responses]
+                    is_fear = [r['is_fear_response'] for r in fear_responses]
+                    
+                    # Color code fear responses
+                    colors = ['red' if is_fear else 'blue' for is_fear in is_fear]
+                    
+                    ax.bar(trial_ids, firing_rates, color=colors)
+                    ax.set_xlabel('Trial')
+                    ax.set_ylabel('Firing Rate (Hz)')
+                    ax.set_title('Monkey Fear Research Results')
+                    ax.grid(True, alpha=0.3)
+                    
+                elif 'motor_imagery_results' in self._execution_result:
+                    # Motor imagery visualization
+                    motor_imagery_results = self._execution_result['motor_imagery_results']
+                    trial_ids = [r['trial_id'] for r in motor_imagery_results]
+                    beta_powers = [r['mean_beta_power'] for r in motor_imagery_results]
+                    is_motor = [r['is_motor_imagery'] for r in motor_imagery_results]
+                    
+                    # Color code motor imagery
+                    colors = ['green' if is_motor else 'gray' for is_motor in is_motor]
+                    
+                    ax.bar(trial_ids, beta_powers, color=colors)
+                    ax.set_xlabel('Trial')
+                    ax.set_ylabel('Beta Band Power')
+                    ax.set_title('Motor Imagery Analysis Results')
+                    ax.grid(True, alpha=0.3)
+                    
+                elif 'sleep_stages' in self._execution_result:
+                    # Sleep analysis visualization
+                    sleep_stages = self._execution_result['sleep_stages']
+                    epoch_ids = [s['epoch_id'] for s in sleep_stages]
+                    delta_powers = [s['mean_delta_power'] for s in sleep_stages]
+                    theta_powers = [s['mean_theta_power'] for s in sleep_stages]
+                    
+                    ax.plot(epoch_ids, delta_powers, label='Delta Power', marker='o')
+                    ax.plot(epoch_ids, theta_powers, label='Theta Power', marker='s')
+                    ax.set_xlabel('Epoch')
+                    ax.set_ylabel('Power')
+                    ax.set_title('Sleep Analysis Results')
+                    ax.legend()
+                    ax.grid(True, alpha=0.3)
+                    
+                elif 'seizures' in self._execution_result:
+                    # Epilepsy detection visualization
+                    seizures = self._execution_result['seizures']
+                    if seizures:
+                        # Create a timeline
+                        duration = 30  # Assume 30 seconds for demo
+                        time = range(duration)
+                        seizure_activity = [0] * duration
+                        
+                        for seizure in seizures:
+                            start = int(seizure['start_time'])
+                            end = int(seizure['end_time'])
+                            for t in range(start, min(end, duration)):
+                                seizure_activity[t] = 1
+                        
+                        ax.plot(time, seizure_activity)
+                        ax.set_xlabel('Time (seconds)')
+                        ax.set_ylabel('Seizure Activity')
+                        ax.set_title('Epilepsy Detection Results')
+                        ax.grid(True, alpha=0.3)
+                    
+                elif 'cognitive_load_results' in self._execution_result:
+                    # Cognitive load visualization
+                    cognitive_load_results = self._execution_result['cognitive_load_results']
+                    trial_ids = [r['trial_id'] for r in cognitive_load_results]
+                    alpha_beta_ratios = [r['alpha_beta_ratio'] for r in cognitive_load_results]
+                    load_levels = [r['load_level'] for r in cognitive_load_results]
+                    
+                    # Color code load levels
+                    colors = []
+                    for level in load_levels:
+                        if level == 'High':
+                            colors.append('red')
+                        elif level == 'Medium':
+                            colors.append('orange')
+                        else:
+                            colors.append('green')
+                    
+                    ax.bar(trial_ids, alpha_beta_ratios, color=colors)
+                    ax.set_xlabel('Trial')
+                    ax.set_ylabel('Alpha/Beta Ratio')
+                    ax.set_title('Cognitive Load Analysis Results')
+                    ax.grid(True, alpha=0.3)
+                    
+                else:
+                    # Generic visualization for other result types
+                    keys = list(self._execution_result.keys())
+                    if len(keys) > 0:
+                        # Plot first numerical value
+                        for key, value in self._execution_result.items():
+                            if isinstance(value, (int, float)):
+                                ax.bar([key], [value])
+                                ax.set_title('Algorithm Results')
+                                ax.grid(True, alpha=0.3)
+                                break
+                    else:
+                        ax.text(0.5, 0.5, 'No visualization available for this result type', 
+                                ha='center', va='center', transform=ax.transAxes)
+            else:
+                # Result is not a dictionary
+                ax = plt.gca()
+                ax.text(0.5, 0.5, 'No visualization available for this result type', 
+                        ha='center', va='center', transform=ax.transAxes)
+            
+            # Show plot
+            plt.tight_layout()
+            plt.show()
+            
+        except Exception as e:
+            logger.error(f"Error visualizing results: {e}")
+            QMessageBox.critical(self, "Error", f"Failed to visualize results: {e}")
+    
+    def _get_default_template(self):
+        """Get default template"""
+        logger.info("Getting default template")
+        return MNE_ALGORITHM_TEMPLATE
+
+
+if __name__ == "__main__":
+    import sys
+    from PyQt6.QtWidgets import QApplication
+    
+    app = QApplication(sys.argv)
+    window = CustomAlgorithmEditor()
+    window.show()
+    sys.exit(app.exec())

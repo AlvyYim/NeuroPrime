@@ -1,0 +1,55 @@
+[22:18:42.721] [INFO] ============================================================
+[22:18:42.721] [INFO] NeuroPrime 调试日志
+[22:18:42.721] [INFO] 启动时间: 2026-04-12 22:18:42
+[22:18:42.721] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[22:18:42.721] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_221842.log
+[22:18:42.721] [INFO] ============================================================
+[22:18:44.331] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[22:18:44.331] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:18:44.331] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[22:18:44.334] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[22:18:44.334] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:18:44.334] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[22:18:44.334] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[22:18:44.341] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[22:18:44.341] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[22:18:44.341] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[22:19:49.111] [INFO] add_data_item 被调用
+[22:19:49.111] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:19:50.266] [INFO] add_data_item 被调用
+[22:19:50.266] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:19:57.278] [INFO] ============================================================
+[22:19:57.278] [INFO] _on_run_clicked 被调用
+[22:19:57.278] [INFO] _get_selected_data_items 被调用
+[22:19:57.278] [DEBUG] selected_data_items_len = 2 (type: int)
+[22:19:57.278] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:19:57.278] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:19:57.278] [INFO] 返回 2 个有效数据项
+[22:19:57.278] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:19:57.278] [DEBUG] selected_data_len = 2 (type: int)
+[22:19:57.278] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:19:57.278] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:19:57.278] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:19:57.278] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:19:57.278] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:19:57.278] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:19:57.278] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:19:57.278] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=2
+[22:19:57.278] [INFO] ============================================================
+[22:19:57.278] [INFO] _on_run_analysis 被调用
+[22:19:57.278] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:19:57.278] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:19:57.278] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:19:57.278] [DEBUG] data_items_len = 2 (type: int)
+[22:19:57.278] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:19:57.278] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[22:19:57.278] [INFO] data_items[0] type: <class 'dict'>
+[22:19:57.278] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:19:57.278] [INFO] ============================================================
+[22:19:57.278] [INFO] _run_analysis_async 被调用
+[22:19:57.278] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:19:57.278] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:19:57.278] [DEBUG] data_items_len = 2 (type: int)
+[22:19:57.278] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:19:57.278] [INFO] data_items[0] type: <class 'dict'>
+[22:19:57.278] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

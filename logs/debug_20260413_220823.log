@@ -1,0 +1,251 @@
+[22:08:23.777] [INFO] ============================================================
+[22:08:23.777] [INFO] NeuroPrime 调试日志
+[22:08:23.777] [INFO] 启动时间: 2026-04-13 22:08:23
+[22:08:23.777] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[22:08:23.777] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260413_220823.log
+[22:08:23.777] [INFO] ============================================================
+[22:08:24.901] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[22:08:24.901] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:08:24.901] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[22:08:24.901] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[22:08:24.901] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[22:08:24.901] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[22:08:24.901] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[22:08:24.905] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[22:08:24.905] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[22:08:24.905] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[22:08:45.460] [INFO] add_data_item 被调用
+[22:08:45.460] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:08:46.359] [INFO] add_data_item 被调用
+[22:08:46.359] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:08:48.861] [INFO] ============================================================
+[22:08:48.861] [INFO] _on_run_clicked 被调用
+[22:08:48.861] [INFO] _get_selected_data_items 被调用
+[22:08:48.861] [DEBUG] selected_data_items_len = 2 (type: int)
+[22:08:48.861] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:08:48.861] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:08:48.861] [INFO] 返回 2 个有效数据项
+[22:08:48.861] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:08:48.861] [DEBUG] selected_data_len = 2 (type: int)
+[22:08:48.861] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:08:48.861] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:08:48.861] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:08:48.861] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:08:48.861] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:08:48.861] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:08:48.861] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:08:48.861] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=2
+[22:08:48.861] [INFO] ============================================================
+[22:08:48.861] [INFO] _on_run_analysis 被调用
+[22:08:48.861] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:08:48.861] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:08:48.861] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:08:48.861] [DEBUG] data_items_len = 2 (type: int)
+[22:08:48.861] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:08:48.861] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[22:08:48.861] [INFO] data_items[0] type: <class 'dict'>
+[22:08:48.861] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:08:48.861] [INFO] ============================================================
+[22:08:48.861] [INFO] _run_analysis_async 被调用
+[22:08:48.861] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:08:48.861] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:08:48.861] [DEBUG] data_items_len = 2 (type: int)
+[22:08:48.861] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:08:48.861] [INFO] data_items[0] type: <class 'dict'>
+[22:08:48.861] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:09:54.276] [INFO] add_data_item 被调用
+[22:09:54.276] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:09:55.415] [INFO] add_data_item 被调用
+[22:09:55.415] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:09:58.228] [INFO] _get_selected_data_items 被调用
+[22:09:58.228] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:09:58.228] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:09:58.228] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:09:58.228] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:09:58.228] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:09:58.228] [INFO] 返回 4 个有效数据项
+[22:10:05.052] [INFO] ============================================================
+[22:10:05.052] [INFO] _on_run_clicked 被调用
+[22:10:05.052] [INFO] _get_selected_data_items 被调用
+[22:10:05.052] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:10:05.052] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:10:05.052] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:10:05.052] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:10:05.052] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] 返回 4 个有效数据项
+[22:10:05.052] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:10:05.052] [DEBUG] selected_data_len = 4 (type: int)
+[22:10:05.052] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:10:05.052] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:10:05.052] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:10:05.052] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:10:05.052] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:10:05.052] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:10:05.052] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:10:05.052] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:10:05.052] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=4
+[22:10:05.052] [INFO] ============================================================
+[22:10:05.052] [INFO] _on_run_analysis 被调用
+[22:10:05.052] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:10:05.052] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:10:05.052] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:10:05.052] [DEBUG] data_items_len = 4 (type: int)
+[22:10:05.052] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:10:05.052] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:10:05.052] [INFO] data_items[0] type: <class 'dict'>
+[22:10:05.052] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:10:05.052] [INFO] ============================================================
+[22:10:05.052] [INFO] _run_analysis_async 被调用
+[22:10:05.052] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:10:05.052] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:10:05.052] [DEBUG] data_items_len = 4 (type: int)
+[22:10:05.052] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline', 'time_alignment'] (type: list)
+[22:10:05.052] [INFO] data_items[0] type: <class 'dict'>
+[22:10:05.052] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:11:56.906] [INFO] add_data_item 被调用
+[22:11:56.906] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:11:57.891] [INFO] add_data_item 被调用
+[22:11:57.891] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:11:59.499] [INFO] ============================================================
+[22:11:59.499] [INFO] _on_run_clicked 被调用
+[22:11:59.499] [INFO] _get_selected_data_items 被调用
+[22:11:59.499] [DEBUG] selected_data_items_len = 2 (type: int)
+[22:11:59.499] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:11:59.499] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:11:59.499] [INFO] 返回 2 个有效数据项
+[22:11:59.500] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:11:59.500] [DEBUG] selected_data_len = 2 (type: int)
+[22:11:59.500] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:11:59.500] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:11:59.500] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:11:59.500] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:11:59.500] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:11:59.500] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:11:59.500] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:11:59.500] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:11:59.500] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=2
+[22:11:59.500] [INFO] ============================================================
+[22:11:59.500] [INFO] _on_run_analysis 被调用
+[22:11:59.500] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:11:59.500] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:11:59.500] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:11:59.500] [DEBUG] data_items_len = 2 (type: int)
+[22:11:59.500] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:11:59.500] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:11:59.500] [INFO] data_items[0] type: <class 'dict'>
+[22:11:59.500] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:11:59.500] [INFO] ============================================================
+[22:11:59.500] [INFO] _run_analysis_async 被调用
+[22:11:59.500] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:11:59.500] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:11:59.500] [DEBUG] data_items_len = 2 (type: int)
+[22:11:59.500] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline', 'time_alignment'] (type: list)
+[22:11:59.500] [INFO] data_items[0] type: <class 'dict'>
+[22:11:59.500] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:08.451] [INFO] add_data_item 被调用
+[22:12:08.451] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:09.461] [INFO] add_data_item 被调用
+[22:12:09.461] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:10.857] [INFO] ============================================================
+[22:12:10.857] [INFO] _on_run_clicked 被调用
+[22:12:10.857] [INFO] _get_selected_data_items 被调用
+[22:12:10.857] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:12:10.857] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:12:10.857] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:12:10.857] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:12:10.857] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] 返回 4 个有效数据项
+[22:12:10.859] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:12:10.859] [DEBUG] selected_data_len = 4 (type: int)
+[22:12:10.859] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:10.859] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:10.859] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:10.859] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:10.859] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:12:10.859] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:10.859] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:12:10.859] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:12:10.859] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=4
+[22:12:10.859] [INFO] ============================================================
+[22:12:10.859] [INFO] _on_run_analysis 被调用
+[22:12:10.859] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:12:10.859] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:10.859] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:12:10.859] [DEBUG] data_items_len = 4 (type: int)
+[22:12:10.859] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:12:10.859] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:12:10.859] [INFO] data_items[0] type: <class 'dict'>
+[22:12:10.859] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:10.859] [INFO] ============================================================
+[22:12:10.859] [INFO] _run_analysis_async 被调用
+[22:12:10.859] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:10.859] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:12:10.859] [DEBUG] data_items_len = 4 (type: int)
+[22:12:10.859] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline', 'time_alignment'] (type: list)
+[22:12:10.859] [INFO] data_items[0] type: <class 'dict'>
+[22:12:10.859] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:21.175] [INFO] add_data_item 被调用
+[22:12:21.175] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:22.316] [INFO] add_data_item 被调用
+[22:12:22.316] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:23.688] [INFO] add_data_item 被调用
+[22:12:23.688] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:24.908] [INFO] add_data_item 被调用
+[22:12:24.908] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[22:12:27.754] [INFO] _get_selected_data_items 被调用
+[22:12:27.754] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:12:27.754] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:12:27.754] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:12:27.754] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:12:27.754] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:12:27.754] [INFO] 返回 4 个有效数据项
+[22:12:34.364] [INFO] ============================================================
+[22:12:34.364] [INFO] _on_run_clicked 被调用
+[22:12:34.364] [INFO] _get_selected_data_items 被调用
+[22:12:34.364] [DEBUG] selected_data_items_len = 4 (type: int)
+[22:12:34.364] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[22:12:34.364] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[22:12:34.364] [DEBUG] selected_data_items_2_type = <class 'dict'> (type: type)
+[22:12:34.364] [DEBUG] selected_data_items_3_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] 返回 4 个有效数据项
+[22:12:34.364] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[22:12:34.364] [DEBUG] selected_data_len = 4 (type: int)
+[22:12:34.364] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:34.364] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:34.364] [DEBUG] item_2_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] item[2] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:34.364] [DEBUG] item_3_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] item[3] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:34.364] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline'] (type: list)
+[22:12:34.364] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:34.364] [DEBUG] current_algorithm = RasterPlotAnalysis (type: str)
+[22:12:34.364] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.372, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'FC_Grating_014_Events': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Spikes': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}, 'Fix_Grating_005_Events': {'original_range': (0.0, 83.372), 'start_time': 0.0, 'duration': 83.372}}}
+[22:12:34.364] [INFO] 发送请求: algorithm=RasterPlotAnalysis, data_items数量=4
+[22:12:34.364] [INFO] ============================================================
+[22:12:34.364] [INFO] _on_run_analysis 被调用
+[22:12:34.364] [DEBUG] params_type = <class 'dict'> (type: type)
+[22:12:34.364] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:34.364] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:12:34.364] [DEBUG] data_items_len = 4 (type: int)
+[22:12:34.364] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[22:12:34.364] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[22:12:34.364] [INFO] data_items[0] type: <class 'dict'>
+[22:12:34.364] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[22:12:34.364] [INFO] ============================================================
+[22:12:34.364] [INFO] _run_analysis_async 被调用
+[22:12:34.364] [DEBUG] algorithm_name = RasterPlotAnalysis (type: str)
+[22:12:34.364] [DEBUG] data_items_type = <class 'list'> (type: type)
+[22:12:34.364] [DEBUG] data_items_len = 4 (type: int)
+[22:12:34.364] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'sort_by', 'show_baseline', 'time_alignment'] (type: list)
+[22:12:34.364] [INFO] data_items[0] type: <class 'dict'>
+[22:12:34.364] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

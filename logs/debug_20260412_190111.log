@@ -1,0 +1,220 @@
+[19:01:11.354] [INFO] ============================================================
+[19:01:11.354] [INFO] NeuroPrime 调试日志
+[19:01:11.354] [INFO] 启动时间: 2026-04-12 19:01:11
+[19:01:11.354] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[19:01:11.354] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260412_190111.log
+[19:01:11.354] [INFO] ============================================================
+[19:01:13.042] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[19:01:13.065] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[19:01:13.065] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[19:01:13.065] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[19:01:13.065] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[19:01:13.065] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[19:01:13.067] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[19:01:13.085] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[19:01:13.085] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[19:01:13.085] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[19:01:27.576] [INFO] add_data_item 被调用
+[19:01:27.576] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[19:01:28.983] [INFO] ============================================================
+[19:01:28.983] [INFO] _populate_custom_algorithms started
+[19:01:28.983] [INFO] Attempting to reload custom algorithms...
+[19:01:28.983] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[19:01:28.983] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[19:01:28.983] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[19:01:28.983] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[19:01:28.983] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[19:01:28.983] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[19:01:28.983] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[19:01:28.983] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[19:01:28.983] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[19:01:28.983] [INFO] [Scheduler] Loaded custom algorithm: BaseAlgorithm
+[19:01:28.983] [INFO] Custom algorithms reload completed
+[19:01:28.983] [INFO] Total algorithms available: 9
+[19:01:28.983] [INFO] Algorithm list: ['SpikeDetectionThreshold:Spike', 'SpikeSortingPCA:Spike', 'LFPPowerSpectrum:LFP', 'LFPSpectrogram:LFP', 'PSTHAnalysis:Behavior', 'RasterPlotAnalysis:Behavior', 'TuningCurveAnalysis:Behavior', 'LDADecoder:Decoding', 'ViewRawLFPData:自定义算法']
+[19:01:28.986] [INFO] Added custom algorithm: ViewRawLFPData (category: 自定义算法)
+[19:01:28.986] [INFO] Total custom algorithms added: 1
+[19:01:28.986] [INFO] ============================================================
+[19:01:34.554] [INFO] ============================================================
+[19:01:34.554] [INFO] _on_run_clicked 被调用
+[19:01:34.554] [INFO] _get_selected_data_items 被调用
+[19:01:34.554] [DEBUG] selected_data_items_len = 1 (type: int)
+[19:01:34.554] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:01:34.554] [INFO] 返回 1 个有效数据项
+[19:01:34.554] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[19:01:34.554] [DEBUG] selected_data_len = 1 (type: int)
+[19:01:34.554] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[19:01:34.554] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:01:34.554] [INFO] 自定义算法使用默认参数: {}
+[19:01:34.554] [DEBUG] parameters_keys = [] (type: list)
+[19:01:34.554] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[19:01:34.554] [DEBUG] current_algorithm = ViewRawLFPData (type: str)
+[19:01:34.554] [INFO] 发送请求: algorithm=ViewRawLFPData, data_items数量=1
+[19:01:34.554] [INFO] ============================================================
+[19:01:34.554] [INFO] _on_run_analysis 被调用
+[19:01:34.554] [DEBUG] params_type = <class 'dict'> (type: type)
+[19:01:34.554] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[19:01:34.554] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:01:34.554] [DEBUG] data_items_len = 1 (type: int)
+[19:01:34.554] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[19:01:34.554] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[19:01:34.554] [INFO] data_items[0] type: <class 'dict'>
+[19:01:34.554] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:01:34.554] [INFO] ============================================================
+[19:01:34.554] [INFO] _run_analysis_async 被调用
+[19:01:34.554] [DEBUG] algorithm_name = ViewRawLFPData (type: str)
+[19:01:34.554] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:01:34.554] [DEBUG] data_items_len = 1 (type: int)
+[19:01:34.554] [DEBUG] parameters_keys = [] (type: list)
+[19:01:34.554] [INFO] data_items[0] type: <class 'dict'>
+[19:01:34.554] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:12:53.624] [INFO] ============================================================
+[19:12:53.626] [INFO] _on_run_clicked 被调用
+[19:12:53.626] [INFO] _get_selected_data_items 被调用
+[19:12:53.626] [DEBUG] selected_data_items_len = 1 (type: int)
+[19:12:53.626] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:12:53.626] [INFO] 返回 1 个有效数据项
+[19:12:53.626] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[19:12:53.626] [DEBUG] selected_data_len = 1 (type: int)
+[19:12:53.626] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[19:12:53.626] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:12:53.626] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:12:53.626] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:12:53.626] [DEBUG] current_algorithm = SpikeSortingPCA (type: str)
+[19:12:53.626] [INFO] 发送请求: algorithm=SpikeSortingPCA, data_items数量=1
+[19:12:53.626] [INFO] ============================================================
+[19:12:53.626] [INFO] _on_run_analysis 被调用
+[19:12:53.626] [DEBUG] params_type = <class 'dict'> (type: type)
+[19:12:53.626] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:12:53.626] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:12:53.626] [DEBUG] data_items_len = 1 (type: int)
+[19:12:53.626] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[19:12:53.626] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[19:12:53.626] [INFO] data_items[0] type: <class 'dict'>
+[19:12:53.627] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:12:53.627] [INFO] ============================================================
+[19:12:53.627] [INFO] _run_analysis_async 被调用
+[19:12:53.627] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:12:53.627] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:12:53.627] [DEBUG] data_items_len = 1 (type: int)
+[19:12:53.627] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:12:53.627] [INFO] data_items[0] type: <class 'dict'>
+[19:12:53.627] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:16:41.950] [INFO] add_data_item 被调用
+[19:16:41.950] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[19:16:44.096] [INFO] ============================================================
+[19:16:44.097] [INFO] _on_run_clicked 被调用
+[19:16:44.097] [INFO] _get_selected_data_items 被调用
+[19:16:44.097] [DEBUG] selected_data_items_len = 1 (type: int)
+[19:16:44.097] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:16:44.097] [INFO] 返回 1 个有效数据项
+[19:16:44.097] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[19:16:44.097] [DEBUG] selected_data_len = 1 (type: int)
+[19:16:44.097] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[19:16:44.097] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:16:44.097] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:16:44.097] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:16:44.097] [DEBUG] current_algorithm = SpikeSortingPCA (type: str)
+[19:16:44.097] [INFO] 发送请求: algorithm=SpikeSortingPCA, data_items数量=1
+[19:16:44.097] [INFO] ============================================================
+[19:16:44.097] [INFO] _on_run_analysis 被调用
+[19:16:44.097] [DEBUG] params_type = <class 'dict'> (type: type)
+[19:16:44.097] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:16:44.097] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:16:44.097] [DEBUG] data_items_len = 1 (type: int)
+[19:16:44.097] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[19:16:44.097] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[19:16:44.097] [INFO] data_items[0] type: <class 'dict'>
+[19:16:44.097] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:16:44.097] [INFO] ============================================================
+[19:16:44.097] [INFO] _run_analysis_async 被调用
+[19:16:44.097] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:16:44.097] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:16:44.097] [DEBUG] data_items_len = 1 (type: int)
+[19:16:44.097] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:16:44.097] [INFO] data_items[0] type: <class 'dict'>
+[19:16:44.097] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:14.233] [INFO] ============================================================
+[19:20:14.233] [INFO] _on_run_clicked 被调用
+[19:20:14.233] [INFO] _get_selected_data_items 被调用
+[19:20:14.233] [DEBUG] selected_data_items_len = 1 (type: int)
+[19:20:14.233] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:20:14.233] [INFO] 返回 1 个有效数据项
+[19:20:14.233] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[19:20:14.233] [DEBUG] selected_data_len = 1 (type: int)
+[19:20:14.233] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[19:20:14.233] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:14.233] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:20:14.233] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:14.233] [DEBUG] current_algorithm = SpikeSortingPCA (type: str)
+[19:20:14.233] [INFO] 发送请求: algorithm=SpikeSortingPCA, data_items数量=1
+[19:20:14.233] [INFO] ============================================================
+[19:20:14.233] [INFO] _on_run_analysis 被调用
+[19:20:14.233] [DEBUG] params_type = <class 'dict'> (type: type)
+[19:20:14.233] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:14.233] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:20:14.233] [DEBUG] data_items_len = 1 (type: int)
+[19:20:14.233] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[19:20:14.233] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[19:20:14.233] [INFO] data_items[0] type: <class 'dict'>
+[19:20:14.233] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:14.233] [INFO] ============================================================
+[19:20:14.233] [INFO] _run_analysis_async 被调用
+[19:20:14.233] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:14.233] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:20:14.233] [DEBUG] data_items_len = 1 (type: int)
+[19:20:14.233] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:20:14.233] [INFO] data_items[0] type: <class 'dict'>
+[19:20:14.233] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:26.993] [INFO] add_data_item 被调用
+[19:20:26.993] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[19:20:29.848] [INFO] _get_selected_data_items 被调用
+[19:20:29.848] [DEBUG] selected_data_items_len = 2 (type: int)
+[19:20:29.848] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:20:29.848] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[19:20:29.848] [INFO] 返回 2 个有效数据项
+[19:20:36.737] [INFO] ============================================================
+[19:20:36.737] [INFO] _on_run_clicked 被调用
+[19:20:36.737] [INFO] _get_selected_data_items 被调用
+[19:20:36.737] [DEBUG] selected_data_items_len = 2 (type: int)
+[19:20:36.737] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[19:20:36.737] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[19:20:36.737] [INFO] 返回 2 个有效数据项
+[19:20:36.737] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[19:20:36.737] [DEBUG] selected_data_len = 2 (type: int)
+[19:20:36.737] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[19:20:36.737] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:36.737] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[19:20:36.737] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:36.737] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state'] (type: list)
+[19:20:36.737] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:36.737] [DEBUG] current_algorithm = SpikeSortingPCA (type: str)
+[19:20:36.737] [INFO] 时间对齐配置: {'global_start': 0.0, 'global_duration': 83.996, 'sync_mode': 'global', 'data_configs': {'FC_Grating_014_Spikes': {'original_range': (0.0, 84.812), 'start_time': 0.0, 'duration': 83.996}, 'FC_Grating_015_Spikes': {'original_range': (0.0, 83.996), 'start_time': 0.0, 'duration': 83.996}}}
+[19:20:36.737] [INFO] 发送请求: algorithm=SpikeSortingPCA, data_items数量=2
+[19:20:36.737] [INFO] ============================================================
+[19:20:36.737] [INFO] _on_run_analysis 被调用
+[19:20:36.737] [DEBUG] params_type = <class 'dict'> (type: type)
+[19:20:36.737] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:36.737] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:20:36.737] [DEBUG] data_items_len = 2 (type: int)
+[19:20:36.737] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[19:20:36.737] [DEBUG] time_alignment_type = <class 'dict'> (type: type)
+[19:20:36.737] [INFO] data_items[0] type: <class 'dict'>
+[19:20:36.737] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:36.737] [INFO] ============================================================
+[19:20:36.737] [INFO] _run_analysis_async 被调用
+[19:20:36.737] [DEBUG] algorithm_name = SpikeSortingPCA (type: str)
+[19:20:36.737] [DEBUG] data_items_type = <class 'list'> (type: type)
+[19:20:36.737] [DEBUG] data_items_len = 2 (type: int)
+[19:20:36.737] [DEBUG] parameters_keys = ['n_components', 'n_clusters', 'max_iterations', 'random_state', 'time_alignment'] (type: list)
+[19:20:36.737] [INFO] data_items[0] type: <class 'dict'>
+[19:20:36.737] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[19:20:36.798] [ERROR] 运行分析时出错 异常: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 1, the array at index 0 has size 150496 and the array at index 1 has size 140703
+[19:20:36.798] [ERROR] 异常堆栈:
+[19:20:36.802] [ERROR]   Traceback (most recent call last):
+[19:20:36.803] [ERROR]     File "c:\Users\buaal\Desktop\NeuroPrime\src\ui\main_window.py", line 886, in _run_analysis_async
+[19:20:36.803] [ERROR]       waveforms = np.vstack([d for d in data_list if len(d) > 0])
+[19:20:36.803] [ERROR]     File "D:\Program Files\Python310\lib\site-packages\numpy\_core\shape_base.py", line 292, in vstack
+[19:20:36.803] [ERROR]       return _nx.concatenate(arrs, 0, dtype=dtype, casting=casting)
+[19:20:36.803] [ERROR]   ValueError: all the input array dimensions except for the concatenation axis must match exactly, but along dimension 1, the array at index 0 has size 150496 and the array at index 1 has size 140703
+[19:20:36.803] [ERROR]   

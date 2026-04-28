@@ -1,0 +1,27 @@
+name: frontend-design
+description: Guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics.
+author: anthropics
+version: 1.0.0
+tags:
+  - design
+  - frontend
+  - ui
+  - web
+  - css
+  - javascript
+  - html
+
+# Skill configuration
+tools:
+  - name: web_search
+    description: Search for design inspiration and best practices
+  - name: code_interpreter
+    description: Generate and test frontend code
+
+# Skill usage patterns
+usage_patterns:
+  - Create web components with specific aesthetic direction
+  - Design complete web pages with cohesive design systems
+  - Add animations and visual effects to enhance user experience
+  - Optimize existing frontend code for better performance and aesthetics
+  - Provide design system guidelines and best practices

@@ -1,0 +1,55 @@
+[23:07:51.570] [INFO] ============================================================
+[23:07:51.570] [INFO] NeuroPrime 调试日志
+[23:07:51.570] [INFO] 启动时间: 2026-04-13 23:07:51
+[23:07:51.570] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[23:07:51.570] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260413_230751.log
+[23:07:51.570] [INFO] ============================================================
+[23:07:52.700] [INFO] [Scheduler] NEUROPRIME_ROOT = c:\Users\buaal\Desktop\NeuroPrime
+[23:07:52.700] [INFO] [Scheduler] Looking for custom algorithms in: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:07:52.700] [INFO] [Scheduler] Current working directory: c:\Users\buaal\Desktop\NeuroPrime
+[23:07:52.700] [INFO] [Scheduler] Script directory: c:\Users\buaal\Desktop\NeuroPrime\src\algorithms
+[23:07:52.700] [INFO] [Scheduler] Custom algorithms directory exists: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms
+[23:07:52.700] [INFO] [Scheduler] Found 2 Python files: ['view_raw_lfp_data.py', '__init__.py']
+[23:07:52.700] [INFO] [Scheduler] Loading custom algorithm from: c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py
+[23:07:52.711] [INFO] [Scheduler] Loaded custom algorithm from ALGORITHM_INFO: ViewRawLFPData
+[23:07:52.711] [INFO] [Scheduler] Searching for algorithm classes in c:\Users\buaal\Desktop\NeuroPrime\custom_algorithms\view_raw_lfp_data.py...
+[23:07:52.711] [INFO] [Scheduler] Loaded custom algorithm: ViewRawLFPData
+[23:08:02.235] [INFO] add_data_item 被调用
+[23:08:02.235] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:08:03.110] [INFO] add_data_item 被调用
+[23:08:03.110] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[23:08:07.800] [INFO] ============================================================
+[23:08:07.800] [INFO] _on_run_clicked 被调用
+[23:08:07.800] [INFO] _get_selected_data_items 被调用
+[23:08:07.800] [DEBUG] selected_data_items_len = 2 (type: int)
+[23:08:07.800] [DEBUG] selected_data_items_0_type = <class 'dict'> (type: type)
+[23:08:07.800] [DEBUG] selected_data_items_1_type = <class 'dict'> (type: type)
+[23:08:07.800] [INFO] 返回 2 个有效数据项
+[23:08:07.800] [DEBUG] selected_data_type = <class 'list'> (type: type)
+[23:08:07.800] [DEBUG] selected_data_len = 2 (type: int)
+[23:08:07.800] [DEBUG] item_0_type = <class 'dict'> (type: type)
+[23:08:07.800] [INFO] item[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:08:07.800] [DEBUG] item_1_type = <class 'dict'> (type: type)
+[23:08:07.800] [INFO] item[1] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:08:07.800] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:08:07.800] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:08:07.800] [DEBUG] current_algorithm = ROCAnalysis (type: str)
+[23:08:07.800] [INFO] 发送请求: algorithm=ROCAnalysis, data_items数量=2
+[23:08:07.800] [INFO] ============================================================
+[23:08:07.800] [INFO] _on_run_analysis 被调用
+[23:08:07.800] [DEBUG] params_type = <class 'dict'> (type: type)
+[23:08:07.800] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:08:07.800] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:08:07.800] [DEBUG] data_items_len = 2 (type: int)
+[23:08:07.800] [DEBUG] parameters_type = <class 'dict'> (type: type)
+[23:08:07.800] [DEBUG] time_alignment_type = <class 'NoneType'> (type: type)
+[23:08:07.800] [INFO] data_items[0] type: <class 'dict'>
+[23:08:07.800] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']
+[23:08:07.800] [INFO] ============================================================
+[23:08:07.800] [INFO] _run_analysis_async 被调用
+[23:08:07.800] [DEBUG] algorithm_name = ROCAnalysis (type: str)
+[23:08:07.803] [DEBUG] data_items_type = <class 'list'> (type: type)
+[23:08:07.803] [DEBUG] data_items_len = 2 (type: int)
+[23:08:07.803] [DEBUG] parameters_keys = ['pre_time', 'post_time', 'positive_class'] (type: list)
+[23:08:07.803] [INFO] data_items[0] type: <class 'dict'>
+[23:08:07.803] [INFO] data_items[0] keys: ['id', 'display_name', 'trial_name', 'data_type', 'description', 'time_range']

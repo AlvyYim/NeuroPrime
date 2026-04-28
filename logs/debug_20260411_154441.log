@@ -1,0 +1,10 @@
+[15:44:41.758] [INFO] ============================================================
+[15:44:41.758] [INFO] NeuroPrime 调试日志
+[15:44:41.758] [INFO] 启动时间: 2026-04-11 15:44:41
+[15:44:41.759] [INFO] Python版本: 3.10.10 (tags/v3.10.10:aad5f6a, Feb  7 2023, 17:20:36) [MSC v.1929 64 bit (AMD64)]
+[15:44:41.759] [INFO] 日志文件: c:\Users\buaal\Desktop\NeuroPrime\logs\debug_20260411_154441.log
+[15:44:41.759] [INFO] ============================================================
+[15:45:08.727] [INFO] add_data_item 被调用
+[15:45:08.727] [DEBUG] data_item_type = <class 'dict'> (type: type)
+[15:45:12.355] [INFO] add_data_item 被调用
+[15:45:12.355] [DEBUG] data_item_type = <class 'dict'> (type: type)
