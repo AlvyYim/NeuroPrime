@@ -498,7 +498,7 @@ class MNEAlgorithmTab(RibbonTab):
 
 
 class CustomAlgorithmTab(RibbonTab):
-    """自定义算法标签页"""
+    """Custom Algorithm Tab"""
     
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -508,23 +508,23 @@ class CustomAlgorithmTab(RibbonTab):
         layout.setContentsMargins(10, 5, 10, 5)
         layout.setSpacing(10)
         
-        # 插件管理组
-        plugin_group = self._create_group("插件管理")
-        self.import_algo_btn = self._create_tool_button("导入自定义算法", tooltip="导入自定义Python算法文件")
+        # Plugin Management Group
+        plugin_group = self._create_group("Plugins")
+        self.import_algo_btn = self._create_tool_button("Import Algorithm", tooltip="Import custom Python algorithm file")
         self.import_algo_btn.clicked.connect(lambda: self.action_triggered.emit("import_custom_algorithm", {}))
         plugin_group.layout().addWidget(self.import_algo_btn)
         
-        self.manage_algo_btn = self._create_tool_button("管理自定义算法", tooltip="查看/启用/禁用已导入的算法")
+        self.manage_algo_btn = self._create_tool_button("Manage Algorithms", tooltip="View/enable/disable imported algorithms")
         self.manage_algo_btn.clicked.connect(lambda: self.action_triggered.emit("manage_custom_algorithms", {}))
         plugin_group.layout().addWidget(self.manage_algo_btn)
         
         layout.addWidget(plugin_group)
         layout.addWidget(self._create_separator())
         
-        # 工具组
-        tool_group = self._create_group("工具")
-        # 自定义算法编辑按钮
-        self.custom_algorithm_edit_btn = self._create_tool_button("自定义算法编辑", tooltip="打开算法脚本编辑器")
+        # Tools Group
+        tool_group = self._create_group("Tools")
+        # Custom Algorithm Editor button
+        self.custom_algorithm_edit_btn = self._create_tool_button("Algorithm Editor", tooltip="Open algorithm script editor")
         self.custom_algorithm_edit_btn.clicked.connect(lambda: self.action_triggered.emit("open_mne_terminal", {}))
         tool_group.layout().addWidget(self.custom_algorithm_edit_btn)
         
@@ -543,16 +543,16 @@ class CustomAlgorithmTab(RibbonTab):
 
 class RibbonBar(QWidget):
     """
-    Ribbon工具栏组件
+    Ribbon Toolbar Widget
     
-    提供标签页式工具栏，包含多个功能标签页：
-    - 数据加载（始终可用）
-    - Spike检测（数据加载后可用）
-    - Spike排序（数据加载后可用）
-    - LFP分析（数据加载后可用）
-    - 行为分析（数据加载后可用）
-    - 智能分析（数据加载后可用）
-    - 自定义算法（数据加载后可用）
+    Provides tab-based toolbar with multiple functional tabs:
+    - Data Loading (always available)
+    - Spike Detection (available after data loading)
+    - Spike Sorting (available after data loading)
+    - LFP Analysis (available after data loading)
+    - Behavior Analysis (available after data loading)
+    - Smart Analysis (available after data loading)
+    - Custom Algorithms (available after data loading)
     """
     
     action_triggered = pyqtSignal(str, dict)  # action_name, params

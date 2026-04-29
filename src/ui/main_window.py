@@ -224,13 +224,13 @@ class MainWindow(QMainWindow):
         # 更新参数面板显示模式
         self.parameter_panel.set_panel_mode(tab_name)
         
-        # 根据标签页类型更新状态栏提示
-        if tab_name == "数据加载":
-            self.status_label.setText("数据加载模式 - 请导入或管理数据")
-        elif tab_name == "自定义算法":
-            self.status_label.setText("自定义算法模式 - 请导入或管理自定义算法")
+        # Update status bar hint based on tab type
+        if tab_name == "Data Loading":
+            self.status_label.setText("Data Loading Mode - Please import or manage data")
+        elif tab_name == "Custom Algorithms":
+            self.status_label.setText("Custom Algorithms Mode - Please import or manage custom algorithms")
         else:
-            self.status_label.setText(f"{tab_name}模式 - 请配置参数并选择数据")
+            self.status_label.setText(f"{tab_name} Mode - Please configure parameters and select data")
     
     def _on_algorithm_selected(self, algorithm_name: str):
         """处理算法选择 - 更新参数配置"""
@@ -404,66 +404,66 @@ class MainWindow(QMainWindow):
             self._create_new_project(project_info)
 
     def _open_mne_terminal(self):
-        """打开自定义算法编辑器"""
+        """Open Custom Algorithm Editor"""
         from .mne_terminal import CustomAlgorithmEditor
         
         try:
             self.custom_algorithm_editor = CustomAlgorithmEditor(self)
-            self.custom_algorithm_editor.setWindowTitle("自定义算法编辑器")
+            self.custom_algorithm_editor.setWindowTitle("Algorithm Editor")
             self.custom_algorithm_editor.script_executed.connect(self._on_mne_script_executed)
             self.custom_algorithm_editor.script_saved.connect(self._on_algorithm_script_saved)
             self.custom_algorithm_editor.show()
         except Exception as e:
-            print(f"打开自定义算法编辑器错误: {e}")
+            print(f"Error opening Algorithm Editor: {e}")
             import traceback
             traceback.print_exc()
     
     def _on_mne_script_executed(self, result):
-        """算法脚本执行完成回调"""
-        print(f"算法脚本执行完成，结果: {result.keys() if result else '无'}")
-        # 这里可以处理脚本执行结果
-        # 例如：显示结果、保存结果等
+        """Callback when algorithm script execution completes"""
+        print(f"Algorithm script executed, result: {result.keys() if result else 'None'}")
+        # Handle script execution results here
+        # e.g., display results, save results, etc.
     
     def _on_algorithm_script_saved(self, file_path):
-        """算法脚本保存完成回调"""
-        print(f"算法脚本已保存: {file_path}")
-        # 刷新自定义算法列表
+        """Callback when algorithm script is saved"""
+        print(f"Algorithm script saved: {file_path}")
+        # Refresh custom algorithm list
         try:
-            # 重新创建scheduler实例，确保完全刷新
+            # Recreate scheduler instance to ensure complete refresh
             from src.algorithms.scheduler import AlgorithmScheduler
             self.parameter_panel.scheduler = AlgorithmScheduler()
             self.parameter_panel.scheduler.register_builtin_algorithms()
             
-            # 根据当前标签页更新算法选择框
+            # Update algorithm selection dropdown based on current tab
             if hasattr(self.parameter_panel, 'current_tab_name'):
                 current_tab = self.parameter_panel.current_tab_name
-                if current_tab == "自定义算法":
-                    # 在自定义算法标签页下，只更新自定义算法列表
+                if current_tab == "Custom Algorithms":
+                    # In Custom Algorithms tab, only update custom algorithm list
                     if hasattr(self.parameter_panel, '_populate_custom_algorithms'):
                         self.parameter_panel._populate_custom_algorithms()
-                        print("自定义算法选择下拉框已更新")
+                        print("Custom algorithm dropdown updated")
                 else:
-                    # 在其他标签页下，更新所有算法列表
+                    # In other tabs, update all algorithm lists
                     if hasattr(self.parameter_panel, '_populate_algorithms'):
                         self.parameter_panel._populate_algorithms()
-                        print("所有算法选择下拉框已更新")
+                        print("All algorithms dropdown updated")
             else:
-                # 如果无法获取当前标签页，同时更新两个列表
+                # If current tab cannot be determined, update both lists
                 if hasattr(self.parameter_panel, '_populate_custom_algorithms'):
                     self.parameter_panel._populate_custom_algorithms()
-                    print("自定义算法选择下拉框已更新")
+                    print("Custom algorithm dropdown updated")
                 if hasattr(self.parameter_panel, '_populate_algorithms'):
                     self.parameter_panel._populate_algorithms()
-                    print("所有算法选择下拉框已更新")
+                    print("All algorithms dropdown updated")
                 
-            print("自定义算法列表已更新")
+            print("Custom algorithm list updated")
         except Exception as e:
-            print(f"更新自定义算法列表错误: {e}")
+            print(f"Error updating custom algorithm list: {e}")
             import traceback
             traceback.print_exc()
     
     def _on_manage_custom_algorithms(self):
-        """管理自定义算法"""
+        """Manage Custom Algorithms"""
         from .dialogs.manage_algorithms_dialog import ManageAlgorithmsDialog
         
         try:
@@ -471,61 +471,61 @@ class MainWindow(QMainWindow):
             dialog.algorithms_updated.connect(self._on_algorithm_script_saved)
             dialog.exec()
         except Exception as e:
-            print(f"打开算法管理对话框错误: {e}")
+            print(f"Error opening algorithm management dialog: {e}")
             import traceback
             traceback.print_exc()
     
     def _on_import_custom_algorithm(self):
-        """导入自定义算法"""
-        # 打开文件对话框，选择算法脚本
+        """Import Custom Algorithm"""
+        # Open file dialog to select algorithm script
         default_dir = Path(__file__).parent.parent.parent / "custom_algorithms"
         if not default_dir.exists():
             default_dir = Path(__file__).parent.parent.parent
         
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "选择算法脚本", str(default_dir), "Python Files (*.py)"
+            self, "Select Algorithm Script", str(default_dir), "Python Files (*.py)"
         )
         
         if file_path:
             try:
-                # 导入算法
+                # Import algorithm
                 from src.algorithms.scheduler import AlgorithmScheduler
                 scheduler = AlgorithmScheduler()
                 
-                # 加载算法
+                # Load algorithm
                 scheduler._load_custom_algorithms()
                 
-                # 更新UI中的算法选择框
+                # Update algorithm selection dropdown in UI
                 if hasattr(self.parameter_panel, '_populate_custom_algorithms'):
                     self.parameter_panel._populate_custom_algorithms()
                 
                 if hasattr(self.parameter_panel, '_populate_algorithms'):
                     self.parameter_panel._populate_algorithms()
                 
-                QMessageBox.information(self, "成功", f"算法已导入: {Path(file_path).name}")
+                QMessageBox.information(self, "Success", f"Algorithm imported: {Path(file_path).name}")
                 
             except Exception as e:
-                QMessageBox.critical(self, "错误", f"导入算法失败: {str(e)}")
-                print(f"导入算法错误: {e}")
+                QMessageBox.critical(self, "Error", f"Failed to import algorithm: {str(e)}")
+                print(f"Error importing algorithm: {e}")
                 import traceback
                 traceback.print_exc()
     
     def _on_open_project(self):
-        """打开工程"""
-        # 获取软件根目录作为默认路径
+        """Open Project"""
+        # Get software root directory as default path
         default_path = Path(__file__).parent.parent.parent
         
         project_path = QFileDialog.getExistingDirectory(
-            self, "选择工程文件夹", str(default_path)
+            self, "Select Project Folder", str(default_path)
         )
         if project_path:
             self._open_project(project_path)
     
     def _on_import_data(self):
-        """导入数据"""
-        # 检查是否有工程已打开
+        """Import Data"""
+        # Check if a project is open
         if not self.project_manager or not self.project_manager.is_project_opened():
-            QMessageBox.warning(self, "警告", "请先打开或创建一个工程")
+            QMessageBox.warning(self, "Warning", "Please open or create a project first")
             return
         
         from .dialogs.import_dialog import ImportDialog
@@ -903,48 +903,48 @@ class MainWindow(QMainWindow):
         pass
     
     def _on_import_custom_algorithm(self):
-        """导入自定义算法
+        """Import Custom Algorithm
         
-        导入流程：
-        1. 选择算法文件
-        2. 验证算法（Validate）
-        3. 检查算法名称是否重复
-        4. 集成算法（Integrate）
+        Import workflow:
+        1. Select algorithm file
+        2. Validate algorithm
+        3. Check for duplicate algorithm name
+        4. Integrate algorithm
         """
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "选择自定义算法文件", "",
-            "Python文件 (*.py);;所有文件 (*)"
+            self, "Select Custom Algorithm File", "",
+            "Python Files (*.py);;All Files (*)"
         )
         if not file_path:
             return
         
         try:
-            # Step 1: 读取算法文件
+            # Step 1: Read algorithm file
             with open(file_path, 'r', encoding='utf-8') as f:
                 code = f.read()
             
-            # Step 2: 验证算法（Validate）
+            # Step 2: Validate algorithm
             validation_result = self._validate_algorithm_code(code)
             if not validation_result['success']:
-                # 验证失败，弹窗报错
+                # Validation failed, show error dialog
                 QMessageBox.critical(
                     self, 
-                    "验证失败", 
-                    f"算法验证失败，无法导入。\n\n错误信息:\n{validation_result['error']}"
+                    "Validation Failed", 
+                    f"Algorithm validation failed, cannot import.\n\nError:\n{validation_result['error']}"
                 )
                 return
             
-            # Step 3: 提取算法名称
+            # Step 3: Extract algorithm name
             algorithm_name = validation_result['algorithm_name']
             
-            # Step 4: 检查算法名称是否重复
+            # Step 4: Check for duplicate algorithm name
             existing_algorithms = self._get_existing_algorithm_names()
             if algorithm_name in existing_algorithms:
-                # 算法名称重复，询问用户是否覆盖
+                # Algorithm name exists, ask user if they want to overwrite
                 reply = QMessageBox.question(
                     self,
-                    "算法名称重复",
-                    f"算法 '{algorithm_name}' 已存在。\n\n是否用新算法覆盖原算法？",
+                    "Duplicate Algorithm Name",
+                    f"Algorithm '{algorithm_name}' already exists.\n\nOverwrite with new algorithm?",
                     QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
                     QMessageBox.StandardButton.No
                 )
@@ -1133,18 +1133,18 @@ class MainWindow(QMainWindow):
                 updated_code
             )
             
-            # 更新类别为 "自定义算法"
+            # Update category to "Custom Algorithm"
             updated_code = re.sub(
                 r"'category':\s*algorithm\.category",
-                "'category': '自定义算法'",
+                "'category': 'Custom Algorithm'",
                 updated_code
             )
             
-            # 更新 __init__ 中的 self.category
+            # Update self.category in __init__
             pattern = r'self\.category\s*=\s*[\'"]([^\'"]*)[\'"]'
             updated_code = re.sub(
                 pattern,
-                "self.category = '自定义算法'",
+                "self.category = 'Custom Algorithm'",
                 updated_code
             )
             
@@ -1179,9 +1179,9 @@ class MainWindow(QMainWindow):
             return result
     
     def _refresh_algorithm_list(self):
-        """刷新算法列表"""
+        """Refresh algorithm list"""
         try:
-            # 重新加载自定义算法
+            # Reload custom algorithms
             if hasattr(self, 'algorithm_manager') and self.algorithm_manager:
                 self.algorithm_manager.load_custom_algorithms()
             

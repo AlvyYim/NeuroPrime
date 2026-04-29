@@ -131,7 +131,7 @@ class AlgorithmScheduler:
             
             print(f"Registered {len(self._algorithms)} builtin algorithms")
             
-            # 加载自定义算法
+            # Load custom algorithms
             self._load_custom_algorithms()
             
         except Exception as e:
@@ -140,22 +140,22 @@ class AlgorithmScheduler:
             traceback.print_exc()
     
     def _load_custom_algorithms(self):
-        """加载自定义算法"""
+        """Load custom algorithms"""
         try:
-            # 清除模块缓存，确保删除的算法不会被重新加载
+            # Clear module cache to ensure deleted algorithms are not reloaded
             import sys
-            # 清除所有可能的自定义算法模块
+            # Clear all potential custom algorithm modules
             modules_to_remove = []
             for module_name in list(sys.modules.keys()):
-                # 清除所有可能的自定义算法模块
-                # 包括文件名模块和类名模块
+                # Clear all potential custom algorithm modules
+                # Including file name modules and class name modules
                 if (module_name in ['aaaa', 'bbbb', 'cccc', 'CustomAlgorithm', 'CustomAlgorithmTest', 'New', 'newnew', 'newnewnew', 'newnewnewnewnewn', 'ViewRawLFPData'] or 
                     module_name.startswith('customalgorithm') or 
                     module_name.startswith('new') or 
                     module_name.startswith('view_raw')):
                     modules_to_remove.append(module_name)
             
-            # 清除所有pycache文件
+            # Clear all pycache files
             import shutil
             pycache_dir = Path(__file__).parent.parent.parent / "custom_algorithms" / "__pycache__"
             if pycache_dir.exists():
@@ -167,20 +167,20 @@ class AlgorithmScheduler:
                     del sys.modules[module_name]
                     logger.info(f"[Scheduler] Removed module from cache: {module_name}")
             
-            # 获取自定义算法目录 - 使用绝对路径
-            # 尝试多种方式找到custom_algorithms目录
+            # Get custom algorithms directory - use absolute path
+            # Try multiple ways to find custom_algorithms directory
             possible_paths = []
             
-            # 首先尝试从环境变量获取项目根目录
+            # First try to get project root from environment variable
             import os
             neuroprime_root = os.environ.get('NEUROPRIME_ROOT')
             if neuroprime_root:
                 possible_paths.append(Path(neuroprime_root) / "custom_algorithms")
             
-            # 其他可能的路径
+            # Other possible paths
             possible_paths.extend([
-                Path(__file__).parent.parent.parent / "custom_algorithms",  # 相对于scheduler.py
-                Path.cwd() / "custom_algorithms",  # 相对于当前工作目录
+                Path(__file__).parent.parent.parent / "custom_algorithms",  # Relative to scheduler.py
+                Path.cwd() / "custom_algorithms",  # Relative to current working directory
             ])
             
             custom_algorithms_dir = None
@@ -189,7 +189,7 @@ class AlgorithmScheduler:
                     custom_algorithms_dir = path
                     break
             
-            # 如果都找不到，使用默认路径
+            # If none found, use default path
             if custom_algorithms_dir is None:
                 custom_algorithms_dir = Path(__file__).parent.parent.parent / "custom_algorithms"
             

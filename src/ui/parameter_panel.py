@@ -253,46 +253,46 @@ class ParameterPanel(QWidget):
         # 隐藏算法选择组（分析模式下通过Ribbon标签页选择算法类型）
         self.algo_group.setParent(None)
 
-        # 恢复算法列表（显示所有算法）
+        # Restore algorithm list (show all algorithms)
         self._populate_algorithms()
 
         self.current_mode = PanelMode.ANALYSIS
     
     def _setup_custom_algorithm_mode(self):
-        """设置自定义算法模式布局"""
+        """Set up custom algorithm mode layout"""
         self._clear_content_layout()
 
-        # 自定义算法模式显示：算法选择 + 数据选择 + 操作按钮（不显示参数配置）
-        # 由于没有参数配置面板，增加数据选择区域的高度以填充空间
-        self.selected_data_list.setMaximumHeight(350)  # 增加高度从200到350
+        # Custom algorithm mode shows: algorithm selection + data selection + action buttons (no parameter configuration)
+        # Since there's no parameter panel, increase height of data selection area to fill space
+        self.selected_data_list.setMaximumHeight(350)  # Increase height from 200 to 350
 
         self.content_layout.addWidget(self.algo_group)
         self.content_layout.addWidget(self.data_group)
         self.content_layout.addWidget(self.action_group)
 
-        # 隐藏参数配置组
+        # Hide parameter configuration group
         self.param_group.setParent(None)
 
-        # 重新填充算法列表，只显示自定义算法
+        # Repopulate algorithm list, showing only custom algorithms
         self._populate_custom_algorithms()
 
         self.current_mode = PanelMode.CUSTOM_ALGORITHM
     
     def set_panel_mode(self, tab_name: str):
         """
-        根据Ribbon标签页名称设置面板模式
+        Set panel mode based on Ribbon tab name
         
         Args:
-            tab_name: Ribbon标签页名称
+            tab_name: Ribbon tab name
         """
         self.current_tab_name = tab_name
         
-        # 自定义算法标签页使用特殊模式
-        if tab_name == "自定义算法":
+        # Custom Algorithms tab uses special mode
+        if tab_name == "Custom Algorithms":
             if self.current_mode != PanelMode.CUSTOM_ALGORITHM:
                 self._setup_custom_algorithm_mode()
         else:
-            # 其他所有分析标签页使用分析模式
+            # All other analysis tabs use analysis mode
             if self.current_mode != PanelMode.ANALYSIS:
                 self._setup_analysis_mode()
     
@@ -1403,16 +1403,16 @@ class ParameterPanel(QWidget):
             self.algo_combo.addItem(display_text, algo['name'])
     
     def _populate_custom_algorithms(self):
-        """填充自定义算法下拉列表 - 只显示自定义算法"""
+        """Populate custom algorithms dropdown - show only custom algorithms"""
         logger.info("=" * 60)
         logger.info("_populate_custom_algorithms started")
         
-        # 强制重新加载自定义算法
+        # Force reload custom algorithms
         try:
             logger.info("Attempting to reload custom algorithms...")
-            # 清除模块缓存
+            # Clear module cache
             import sys
-            # 清除所有可能的自定义算法模块
+            # Clear all potential custom algorithm modules
             modules_to_remove = []
             for module_name in list(sys.modules.keys()):
                 if (module_name.startswith('src.algorithms') or
@@ -1420,13 +1420,13 @@ class ParameterPanel(QWidget):
                     module_name.endswith('algorithm')):
                     modules_to_remove.append(module_name)
             
-            # 清除模块缓存
+            # Clear module cache
             for module_name in modules_to_remove:
                 if module_name in sys.modules:
                     del sys.modules[module_name]
                     logger.info(f"Removed module from cache: {module_name}")
             
-            # 重新加载自定义算法
+            # Reload custom algorithms
             self.scheduler._load_custom_algorithms()
             logger.info("Custom algorithms reload completed")
         except Exception as e:
@@ -1434,18 +1434,18 @@ class ParameterPanel(QWidget):
             import traceback
             logger.error(f"Traceback: {traceback.format_exc()}")
         
-        # 获取所有算法实例
+        # Get all algorithm instances
         algorithms = self.scheduler.get_algorithms()
         
         logger.info(f"Total algorithms available: {len(algorithms)}")
         
         self.algo_combo.clear()
-        self.algo_combo.addItem("-- 选择算法 --", None)
+        self.algo_combo.addItem("-- Select Algorithm --", None)
         
         custom_count = 0
         for algo_name, algo_class in algorithms.items():
-            # 只显示自定义算法，与管理自定义算法对话框保持一致
-            if hasattr(algo_class, 'category') and algo_class.category == "自定义算法":
+            # Show only custom algorithms, consistent with manage algorithms dialog
+            if hasattr(algo_class, 'category') and algo_class.category == "Custom Algorithm":
                 display_text = f"{algo_name}"
                 self.algo_combo.addItem(display_text, algo_name)
                 custom_count += 1
@@ -1602,30 +1602,30 @@ class ParameterPanel(QWidget):
         if self.current_algorithm and self.current_algorithm != "":
             algorithm_name = self.current_algorithm
         else:
-            # 根据标签页名称映射到默认算法
+            # Map tab name to default algorithm
             algorithm_name = self._get_default_algorithm_for_tab(self.current_tab_name)
         
-        # 获取参数
+        # Get parameters
         if self.current_mode == PanelMode.CUSTOM_ALGORITHM:
-            # 自定义算法模式：使用算法默认参数
+            # Custom algorithm mode: use algorithm default parameters
             parameters = self._get_default_parameters_for_algorithm(algorithm_name)
-            logger.info(f"自定义算法使用默认参数: {parameters}")
+            logger.info(f"Custom algorithm using default parameters: {parameters}")
         else:
-            # 分析模式：从参数面板获取参数
+            # Analysis mode: get parameters from parameter panel
             parameters = self._get_parameter_values()
         
         logger.log_vars(parameters_keys=list(parameters.keys()) if parameters else [])
         
         logger.log_vars(algorithm_name=algorithm_name, current_algorithm=self.current_algorithm)
         
-        # 处理时间对齐配置
+        # Handle time alignment configuration
         time_alignment_dict = None
         if self.time_alignment_config:
             try:
                 time_alignment_dict = self.time_alignment_config.to_dict()
-                logger.info(f"时间对齐配置: {time_alignment_dict}")
+                logger.info(f"Time alignment config: {time_alignment_dict}")
             except Exception as e:
-                logger.exception(e, "转换时间对齐配置时出错")
+                logger.exception(e, "Error converting time alignment config")
                 time_alignment_dict = None
         
         # 构建请求
@@ -1641,21 +1641,21 @@ class ParameterPanel(QWidget):
     
     def _get_default_algorithm_for_tab(self, tab_name: str) -> str:
         """
-        根据标签页名称获取默认算法
+        Get default algorithm based on tab name
         
         Args:
-            tab_name: 标签页名称
+            tab_name: Tab name
             
         Returns:
-            算法名称
+            Algorithm name
         """
         tab_algorithm_map = {
-            "Spike检测": "SpikeDetectionThreshold",
-            "Spike排序": "SpikeSortingPCA",
-            "LFP分析": "LFPPowerSpectrum",
-            "行为分析": "PSTHAnalysis",
-            "智能分析": "LDADecoder",
-            "自定义算法": ""
+            "Spike Detection": "SpikeDetectionThreshold",
+            "Spike Sorting": "SpikeSortingPCA",
+            "LFP Analysis": "LFPPowerSpectrum",
+            "Behavior Analysis": "PSTHAnalysis",
+            "Smart Analysis": "LDADecoder",
+            "Custom Algorithms": ""
         }
         return tab_algorithm_map.get(tab_name, "")
     
@@ -1690,20 +1690,20 @@ if __name__ == '__main__':
     layout.addWidget(panel)
     
     # 添加测试按钮
-    btn_analysis = QPushButton("切换到Spike检测")
-    btn_analysis.clicked.connect(lambda: panel.set_panel_mode("Spike检测"))
+    btn_analysis = QPushButton("Switch to Spike Detection")
+    btn_analysis.clicked.connect(lambda: panel.set_panel_mode("Spike Detection"))
     layout.addWidget(btn_analysis)
     
-    btn_sorting = QPushButton("切换到Spike排序")
-    btn_sorting.clicked.connect(lambda: panel.set_panel_mode("Spike排序"))
+    btn_sorting = QPushButton("Switch to Spike Sorting")
+    btn_sorting.clicked.connect(lambda: panel.set_panel_mode("Spike Sorting"))
     layout.addWidget(btn_sorting)
     
-    btn_lfp = QPushButton("切换到LFP分析")
-    btn_lfp.clicked.connect(lambda: panel.set_panel_mode("LFP分析"))
+    btn_lfp = QPushButton("Switch to LFP Analysis")
+    btn_lfp.clicked.connect(lambda: panel.set_panel_mode("LFP Analysis"))
     layout.addWidget(btn_lfp)
     
-    btn_custom = QPushButton("切换到自定义算法")
-    btn_custom.clicked.connect(lambda: panel.set_panel_mode("自定义算法"))
+    btn_custom = QPushButton("Switch to Custom Algorithms")
+    btn_custom.clicked.connect(lambda: panel.set_panel_mode("Custom Algorithms"))
     layout.addWidget(btn_custom)
     
     # 添加测试数据按钮

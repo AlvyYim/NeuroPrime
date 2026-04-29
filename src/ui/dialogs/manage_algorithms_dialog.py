@@ -1,7 +1,8 @@
 """
-ManageAlgorithmsDialog - 管理自定义算法对话框
+ManageAlgorithmsDialog - Manage Custom Algorithms Dialog
 
-显示已集成的算法列表，允许用户删除已集成的算法或添加custom_algorithms文件夹中的脚本。
+Displays the list of integrated algorithms, allowing users to delete integrated algorithms 
+or add scripts from the custom_algorithms folder.
 """
 
 from pathlib import Path
@@ -13,45 +14,45 @@ from PyQt6.QtCore import Qt, pyqtSignal
 
 
 class ManageAlgorithmsDialog(QDialog):
-    """管理自定义算法对话框"""
+    """Manage Custom Algorithms Dialog"""
     
-    algorithms_updated = pyqtSignal(str)  # 算法更新信号，传递更新的文件路径
+    algorithms_updated = pyqtSignal(str)  # Signal emitted when algorithms are updated, passing file path
     
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle("管理自定义算法")
+        self.setWindowTitle("Manage Custom Algorithms")
         self.setMinimumWidth(600)
         self.setMinimumHeight(400)
         self._init_ui()
         self._load_algorithms()
     
     def _init_ui(self):
-        """初始化UI"""
+        """Initialize UI"""
         layout = QVBoxLayout(self)
         
-        # 标题
-        title_label = QLabel("已集成的算法")
+        # Title
+        title_label = QLabel("Integrated Algorithms")
         title_label.setStyleSheet("font-size: 16px; font-weight: bold;")
         layout.addWidget(title_label)
         
-        # 算法列表
+        # Algorithm list
         self.algorithm_list = QListWidget()
         layout.addWidget(self.algorithm_list)
         
-        # 按钮布局
+        # Button layout
         button_layout = QHBoxLayout()
         
-        # 添加拉伸空间
+        # Add stretch
         button_layout.addStretch()
         
-        # 删除算法按钮
-        self.delete_button = QPushButton("删除算法")
+        # Delete algorithm button
+        self.delete_button = QPushButton("Delete Algorithm")
         self.delete_button.clicked.connect(self._on_delete_algorithm)
         self.delete_button.setFixedWidth(100)
         button_layout.addWidget(self.delete_button)
         
-        # 关闭按钮
-        self.close_button = QPushButton("关闭")
+        # Close button
+        self.close_button = QPushButton("Close")
         self.close_button.clicked.connect(self.close)
         self.close_button.setFixedWidth(100)
         button_layout.addWidget(self.close_button)
@@ -59,14 +60,14 @@ class ManageAlgorithmsDialog(QDialog):
         layout.addLayout(button_layout)
     
     def _load_algorithms(self):
-        """加载已集成的算法"""
+        """Load integrated algorithms"""
         self.algorithm_list.clear()
         
         try:
-            # 清除模块缓存，确保删除的算法不会被重新加载
+            # Clear module cache to ensure deleted algorithms are not reloaded
             import sys
             import importlib
-            # 清除所有可能的自定义算法模块
+            # Clear all potential custom algorithm modules
             modules_to_remove = []
             for module_name in list(sys.modules.keys()):
                 if (module_name in ['aaaa', 'bbbb', 'cccc', 'CustomAlgorithm', 'CustomAlgorithmTest', 'New', 'newnew', 'newnewnew', 'newnewnewnewnewn', 'ViewRawLFPData'] or 
@@ -75,138 +76,138 @@ class ManageAlgorithmsDialog(QDialog):
                     module_name.startswith('view_raw')):
                     modules_to_remove.append(module_name)
             
-            # 清除所有pycache文件
+            # Clear all pycache files
             import shutil
             import os
             pycache_dir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'custom_algorithms', '__pycache__')
             if os.path.exists(pycache_dir):
                 shutil.rmtree(pycache_dir)
-                print(f"已删除pycache目录: {pycache_dir}")
+                print(f"Deleted pycache directory: {pycache_dir}")
             
-            # 清除所有与自定义算法相关的模块
+            # Clear all modules related to custom algorithms
             for module_name in modules_to_remove:
                 if module_name in sys.modules:
                     del sys.modules[module_name]
-                    print(f"已从缓存中移除模块: {module_name}")
+                    print(f"Removed module from cache: {module_name}")
             
-            # 强制重新加载scheduler模块
+            # Force reload scheduler module
             if 'src.algorithms.scheduler' in sys.modules:
                 del sys.modules['src.algorithms.scheduler']
-                print("已从缓存中移除scheduler模块")
+                print("Removed scheduler module from cache")
             
-            # 导入AlgorithmScheduler
+            # Import AlgorithmScheduler
             from src.algorithms.scheduler import AlgorithmScheduler
             scheduler = AlgorithmScheduler()
             
-            # 注册内置算法和加载自定义算法
+            # Register built-in algorithms and load custom algorithms
             scheduler.register_builtin_algorithms()
             
-            # 获取所有算法
+            # Get all algorithms
             algorithms = scheduler.get_algorithms()
             
-            # 筛选自定义算法
+            # Filter custom algorithms
             custom_algorithms = []
             for algo_name, algo_class in algorithms.items():
-                if hasattr(algo_class, 'category') and algo_class.category == "自定义算法":
+                if hasattr(algo_class, 'category') and algo_class.category == "Custom Algorithm":
                     custom_algorithms.append((algo_name, algo_class))
             
-            # 添加到列表
+            # Add to list
             for algo_name, algo_class in custom_algorithms:
                 item = QListWidgetItem(algo_name)
                 item.setData(Qt.ItemDataRole.UserRole, algo_name)
                 self.algorithm_list.addItem(item)
             
-            # 显示算法数量
-            self.setWindowTitle(f"管理自定义算法 (共 {len(custom_algorithms)} 个算法)")
+            # Show algorithm count
+            self.setWindowTitle(f"Manage Custom Algorithms ({len(custom_algorithms)} algorithms)")
             
         except Exception as e:
-            print(f"加载算法列表错误: {e}")
+            print(f"Error loading algorithm list: {e}")
             import traceback
             traceback.print_exc()
     
     def _on_add_algorithm(self):
-        """添加算法"""
-        # 打开文件对话框，选择算法脚本
+        """Add algorithm"""
+        # Open file dialog to select algorithm script
         default_dir = Path(__file__).parent.parent.parent.parent / "custom_algorithms"
         if not default_dir.exists():
             default_dir = Path(__file__).parent.parent.parent.parent
         
         file_path, _ = QFileDialog.getOpenFileName(
-            self, "选择算法脚本", str(default_dir), "Python Files (*.py)"
+            self, "Select Algorithm Script", str(default_dir), "Python Files (*.py)"
         )
         
         if file_path:
             try:
-                # 导入算法
+                # Import algorithm
                 from src.algorithms.scheduler import AlgorithmScheduler
                 scheduler = AlgorithmScheduler()
                 
-                # 加载算法
+                # Load algorithm
                 scheduler._load_custom_algorithms()
                 
-                # 刷新列表
+                # Refresh list
                 self._load_algorithms()
                 
-                # 发送更新信号
+                # Emit update signal
                 self.algorithms_updated.emit(file_path)
                 
-                QMessageBox.information(self, "成功", f"算法已添加: {Path(file_path).name}")
+                QMessageBox.information(self, "Success", f"Algorithm added: {Path(file_path).name}")
                 
             except Exception as e:
-                QMessageBox.critical(self, "错误", f"添加算法失败: {str(e)}")
-                print(f"添加算法错误: {e}")
+                QMessageBox.critical(self, "Error", f"Failed to add algorithm: {str(e)}")
+                print(f"Error adding algorithm: {e}")
                 import traceback
                 traceback.print_exc()
     
     def _on_delete_algorithm(self):
-        """删除算法"""
+        """Delete algorithm"""
         selected_items = self.algorithm_list.selectedItems()
         if not selected_items:
-            QMessageBox.warning(self, "警告", "请选择要删除的算法")
+            QMessageBox.warning(self, "Warning", "Please select an algorithm to delete")
             return
         
-        # 获取选中的算法名称
+        # Get selected algorithm name
         algo_name = selected_items[0].data(Qt.ItemDataRole.UserRole)
         
-        # 确认删除
+        # Confirm deletion
         reply = QMessageBox.question(
-            self, "确认删除", f"确定要删除算法 '{algo_name}' 吗？",
+            self, "Confirm Delete", f"Are you sure you want to delete algorithm '{algo_name}'?",
             QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
         )
         
         if reply == QMessageBox.StandardButton.Yes:
             try:
-                # 查找并删除算法文件
+                # Find and delete algorithm file
                 import os
                 custom_algorithms_dir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'custom_algorithms')
-                print(f"自定义算法目录: {custom_algorithms_dir}")
+                print(f"Custom algorithms directory: {custom_algorithms_dir}")
                 
                 file_deleted = False
                 if os.path.exists(custom_algorithms_dir):
-                    # 查找匹配的文件
+                    # Find matching file
                     for file_name in os.listdir(custom_algorithms_dir):
                         if file_name.endswith('.py') and not file_name.startswith('__'):
                             file_path = os.path.join(custom_algorithms_dir, file_name)
-                            # 读取文件内容，检查是否包含算法名称
+                            # Read file content to check for algorithm name
                             try:
                                 with open(file_path, 'r', encoding='utf-8') as f:
                                     content = f.read()
-                                    # 更灵活的匹配方式
+                                    # More flexible matching
                                     if (f"class {algo_name}" in content or 
                                         f"'name': '{algo_name}'" in content or 
                                         f'"name": "{algo_name}"' in content or
                                         f"self.name = '{algo_name}'" in content or
                                         algo_name in content):
-                                        # 删除文件
+                                        # Delete file
                                         os.remove(file_path)
-                                        print(f"已删除算法文件: {file_path}")
+                                        print(f"Deleted algorithm file: {file_path}")
                                         file_deleted = True
                                         break
                             except Exception as e:
-                                print(f"读取文件错误: {e}")
+                                print(f"Error reading file: {e}")
                 
                 if not file_deleted:
-                    # 尝试根据文件名直接删除
+                    # Try to delete by file name directly
                     possible_file_names = [
                         f"{algo_name.lower()}.py",
                         f"{algo_name}.py",
@@ -217,20 +218,20 @@ class ManageAlgorithmsDialog(QDialog):
                         file_path = os.path.join(custom_algorithms_dir, file_name)
                         if os.path.exists(file_path):
                             os.remove(file_path)
-                            print(f"已根据文件名删除算法文件: {file_path}")
+                            print(f"Deleted algorithm file by name: {file_path}")
                             file_deleted = True
                             break
                 
-                # 清除所有pycache文件
+                # Clear all pycache files
                 import shutil
                 pycache_dir = os.path.join(custom_algorithms_dir, '__pycache__')
                 if os.path.exists(pycache_dir):
                     shutil.rmtree(pycache_dir)
-                    print(f"已删除pycache目录: {pycache_dir}")
+                    print(f"Deleted pycache directory: {pycache_dir}")
                 
-                # 清除模块缓存
+                # Clear module cache
                 import sys
-                # 清除所有可能的自定义算法模块
+                # Clear all potential custom algorithm modules
                 modules_to_remove = []
                 for module_name in list(sys.modules.keys()):
                     if (module_name in ['aaaa', 'bbbb', 'cccc', 'CustomAlgorithm', 'CustomAlgorithmTest', 'New', 'newnew', 'newnewnew', 'newnewnewnewnewn', 'ViewRawLFPData'] or 
@@ -243,13 +244,13 @@ class ManageAlgorithmsDialog(QDialog):
                         module_name.startswith('custom_algorithms')):
                         modules_to_remove.append(module_name)
                 
-                # 清除所有与自定义算法相关的模块
+                # Clear all modules related to custom algorithms
                 for module_name in modules_to_remove:
                     if module_name in sys.modules:
                         del sys.modules[module_name]
-                        print(f"已从缓存中移除模块: {module_name}")
+                        print(f"Removed module from cache: {module_name}")
                 
-                # 强制重新加载所有相关模块
+                # Force reload all related modules
                 modules_to_reload = [
                     'src.algorithms.scheduler',
                     'src.algorithms.base',
@@ -262,25 +263,25 @@ class ManageAlgorithmsDialog(QDialog):
                 for module_name in modules_to_reload:
                     if module_name in sys.modules:
                         del sys.modules[module_name]
-                        print(f"已从缓存中移除模块: {module_name}")
+                        print(f"Removed module from cache: {module_name}")
                 
-                # 重新加载算法
+                # Reload algorithms
                 from src.algorithms.scheduler import AlgorithmScheduler
                 
-                # 重新创建调度器并加载算法
+                # Recreate scheduler and load algorithms
                 scheduler = AlgorithmScheduler()
                 scheduler.register_builtin_algorithms()
                 
-                # 刷新列表
+                # Refresh list
                 self._load_algorithms()
                 
-                # 发送更新信号
+                # Emit update signal
                 self.algorithms_updated.emit("")
                 
-                QMessageBox.information(self, "成功", f"算法已删除: {algo_name}")
+                QMessageBox.information(self, "Success", f"Algorithm deleted: {algo_name}")
                 
             except Exception as e:
-                QMessageBox.critical(self, "错误", f"删除算法失败: {str(e)}")
-                print(f"删除算法错误: {e}")
+                QMessageBox.critical(self, "Error", f"Failed to delete algorithm: {str(e)}")
+                print(f"Error deleting algorithm: {e}")
                 import traceback
                 traceback.print_exc()

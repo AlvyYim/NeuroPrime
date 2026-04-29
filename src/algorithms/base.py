@@ -1,7 +1,40 @@
 """
-Algorithm Base - 算法基类
+Algorithm Base Module
+=====================
 
-定义所有分析算法的抽象基类和数据类
+This module defines the abstract base classes and data structures that form the
+foundation for all analysis algorithms in the NeuroPrime framework.
+
+Key Components:
+- ParameterType: Enum defining supported parameter types
+- AlgorithmParameter: Data class for parameter definitions
+- AlgorithmInput: Data class for algorithm input data
+- AlgorithmOutput: Data class for algorithm output results
+- BaseAlgorithm: Abstract base class for all analysis algorithms
+- create_parameter: Utility function for parameter creation
+
+Design Philosophy:
+- Provides a consistent interface for all algorithms
+- Enforces type safety and validation
+- Supports flexible data structures for electrophysiology data
+- Includes built-in execution tracking and error handling
+- Enables easy extension with new algorithms
+
+Usage Example:
+    from src.algorithms.base import BaseAlgorithm, create_parameter, ParameterType
+    
+    class MyAlgorithm(BaseAlgorithm):
+        def get_parameters_schema(self):
+            return [
+                create_parameter("threshold", ParameterType.FLOAT, "Detection threshold", 3.0)
+            ]
+        
+        def validate_input(self, input_data):
+            return input_data.spike_times is not None
+        
+        def run(self, input_data, parameters):
+            # Algorithm implementation
+            return AlgorithmOutput(success=True)
 """
 
 from abc import ABC, abstractmethod
@@ -12,7 +45,17 @@ import numpy as np
 
 
 class ParameterType(Enum):
-    """参数类型枚举"""
+    """
+    Enumeration of supported parameter types for algorithm configuration.
+    
+    Types:
+        INTEGER: Whole number values
+        FLOAT: Floating-point number values
+        STRING: Text values
+        BOOLEAN: True/False values
+        SELECT: Selection from predefined options
+        RANGE: Numeric range with min/max bounds
+    """
     INTEGER = "integer"
     FLOAT = "float"
     STRING = "string"
@@ -23,60 +66,111 @@ class ParameterType(Enum):
 
 @dataclass
 class AlgorithmParameter:
-    """算法参数定义"""
+    """
+    Data class defining an algorithm parameter.
+    
+    This class encapsulates all metadata needed to describe a parameter,
+    including its type, description, default value, and constraints.
+    
+    Attributes:
+        name: Parameter identifier used in code
+        param_type: Type of parameter (see ParameterType enum)
+        description: Human-readable description for UI
+        default_value: Default value when not specified
+        min_value: Minimum allowed value (for numeric types)
+        max_value: Maximum allowed value (for numeric types)
+        options: List of allowed values (for SELECT type)
+        required: Whether this parameter must be provided
+    """
     name: str
     param_type: ParameterType
     description: str
     default_value: Any
     min_value: Optional[float] = None
     max_value: Optional[float] = None
-    options: Optional[List[str]] = None  # 用于SELECT类型
+    options: Optional[List[str]] = None  # Used for SELECT type
     required: bool = True
 
 
 @dataclass
 class AlgorithmInput:
-    """算法输入数据类"""
-    # 信号数据
-    lfp_data: Optional[np.ndarray] = None  # [通道数 × 样本数]
+    """
+    Data class for algorithm input data.
+    
+    This class aggregates all possible input data types that algorithms
+    might need, including neural signals, spike data, behavioral data,
+    and metadata.
+    
+    Attributes:
+        lfp_data: Local field potential data [channels × samples]
+        spike_times: Array of spike timestamps in seconds
+        spike_waveforms: Spike waveform data [n_spikes × samples]
+        spike_elec_ids: Array mapping spikes to electrode channels
+        trial_info: List of dictionaries containing trial metadata
+        events: List of dictionaries containing event information
+        sampling_rate: Data sampling rate in Hz (default: 2000.0)
+        duration: Total recording duration in seconds
+        num_channels: Number of recording channels
+        time_range: Tuple specifying time window for analysis (start, end)
+        trial_indices: List of trial indices to include in analysis
+        extra_data: Dictionary for additional custom data
+    """
+    # Signal data
+    lfp_data: Optional[np.ndarray] = None  # Shape: [n_channels × n_samples]
     spike_times: Optional[np.ndarray] = None
     spike_waveforms: Optional[np.ndarray] = None
     spike_elec_ids: Optional[np.ndarray] = None
     
-    # 行为数据
+    # Behavioral data
     trial_info: Optional[List[Dict]] = None
     events: Optional[List[Dict]] = None
     
-    # 元数据
+    # Metadata
     sampling_rate: float = 2000.0
     duration: float = 0.0
     num_channels: int = 0
     
-    # 时间对齐配置
+    # Time alignment configuration
     time_range: Optional[tuple] = None  # (start, end) in seconds
-    trial_indices: Optional[List[int]] = None  # 选中的试次索引
+    trial_indices: Optional[List[int]] = None  # Selected trial indices
     
-    # 额外数据
+    # Additional data
     extra_data: Dict[str, Any] = field(default_factory=dict)
 
 
 @dataclass
 class AlgorithmOutput:
-    """算法输出数据类"""
-    # 分析结果
+    """
+    Data class for algorithm output results.
+    
+    This class structures the output from algorithm execution, including
+    raw data, statistical summaries, visualization configurations,
+    and execution metadata.
+    
+    Attributes:
+        data: Dictionary of numpy arrays containing analysis results
+        statistics: Dictionary of computed statistical metrics
+        plot_config: Configuration for visualization rendering
+        export_data: Data prepared for export to external formats
+        metadata: Additional metadata about the analysis
+        execution_time: Time taken to run the algorithm in seconds
+        success: Whether the algorithm completed successfully
+        error_message: Error description if execution failed
+    """
+    # Analysis results
     data: Dict[str, np.ndarray] = field(default_factory=dict)
     statistics: Dict[str, float] = field(default_factory=dict)
     
-    # 图表配置
+    # Plot configuration for visualization
     plot_config: Dict[str, Any] = field(default_factory=dict)
     
-    # 导出数据
+    # Data prepared for export
     export_data: Dict[str, np.ndarray] = field(default_factory=dict)
     
-    # 元数据
+    # Metadata about the analysis
     metadata: Dict[str, Any] = field(default_factory=dict)
     
-    # 执行信息
+    # Execution information
     execution_time: float = 0.0
     success: bool = True
     error_message: str = ""
@@ -84,46 +178,48 @@ class AlgorithmOutput:
 
 class BaseAlgorithm(ABC):
     """
-    算法抽象基类
+    Abstract base class for all analysis algorithms.
     
-    所有分析算法必须继承此类并实现以下方法：
-    - get_parameters_schema(): 返回参数模式定义
-    - validate_input(): 验证输入数据
-    - run(): 执行算法
+    This class defines the interface and common functionality that all
+    algorithms must implement. It provides parameter management, input
+    validation, execution tracking, and result structuring.
     
-    用法:
-        class MyAlgorithm(BaseAlgorithm):
-            def get_parameters_schema(self):
-                return [...]
-            
-            def validate_input(self, input_data):
-                return True
-            
-            def run(self, input_data, parameters):
-                # 实现算法逻辑
-                return AlgorithmOutput(...)
+    Subclasses must implement:
+        - get_parameters_schema(): Return list of AlgorithmParameter objects
+        - validate_input(input_data): Check if input is valid
+        - run(input_data, parameters): Execute the algorithm
+    
+    Attributes:
+        name: Algorithm class name
+        description: Human-readable description
+        version: Version identifier
+        category: Algorithm category (e.g., 'Spike', 'LFP', 'Behavior')
+        required_data_types: List of required data types
+        data_requirements_description: Description of data requirements
+        _execution_history: List tracking past executions
     """
     
     def __init__(self):
-        """初始化算法"""
+        """Initialize algorithm with default settings"""
         self.name = self.__class__.__name__
         self.description = ""
         self.version = "1.0"
-        self.category = "General"  # 算法分类
+        self.category = "General"  # Algorithm category for organization
+        
+        # Track execution history for debugging and performance monitoring
         self._execution_history: List[Dict] = []
         
-        # 数据需求定义
-        # required_data_types: 列表，可包含 'lfp', 'spike', 'behavior' 等
-        # data_requirements_description: 人类可读的描述
+        # Define data requirements
+        # Valid types: 'lfp', 'spike', 'behavior'
         self.required_data_types: List[str] = []
         self.data_requirements_description: str = ""
     
     def get_data_requirements(self) -> Dict[str, Any]:
         """
-        获取算法的数据需求信息
+        Get information about the algorithm's data requirements.
         
         Returns:
-            包含数据需求的字典
+            Dictionary containing required data types and description
         """
         return {
             'required_types': self.required_data_types,
@@ -134,23 +230,23 @@ class BaseAlgorithm(ABC):
     @abstractmethod
     def get_parameters_schema(self) -> List[AlgorithmParameter]:
         """
-        获取算法参数模式定义
+        Define the parameter schema for this algorithm.
         
         Returns:
-            参数定义列表
+            List of AlgorithmParameter objects defining all parameters
         """
         pass
     
     @abstractmethod
     def validate_input(self, input_data: AlgorithmInput) -> bool:
         """
-        验证输入数据
+        Validate that input data meets the algorithm's requirements.
         
         Args:
-            input_data: 算法输入数据
-            
+            input_data: AlgorithmInput object containing input data
+        
         Returns:
-            True if valid
+            True if input is valid for processing, False otherwise
         """
         pass
     
@@ -158,42 +254,42 @@ class BaseAlgorithm(ABC):
     def run(self, input_data: AlgorithmInput, 
             parameters: Dict[str, Any]) -> AlgorithmOutput:
         """
-        执行算法
+        Execute the algorithm with the provided input data and parameters.
         
         Args:
-            input_data: 算法输入数据
-            parameters: 算法参数
-            
+            input_data: AlgorithmInput object with input data
+            parameters: Dictionary of parameter values
+        
         Returns:
-            算法输出结果
+            AlgorithmOutput object containing results
         """
         pass
     
     def get_default_parameters(self) -> Dict[str, Any]:
         """
-        获取默认参数值
+        Get a dictionary of default parameter values.
         
         Returns:
-            参数名 -> 默认值 的字典
+            Dictionary mapping parameter names to their default values
         """
         schema = self.get_parameters_schema()
         return {p.name: p.default_value for p in schema}
     
     def validate_parameters(self, parameters: Dict[str, Any]) -> tuple:
         """
-        验证参数值
+        Validate that provided parameters meet constraints.
         
         Args:
-            parameters: 参数字典
-            
+            parameters: Dictionary of parameter values to validate
+        
         Returns:
-            (is_valid, error_messages)
+            Tuple of (is_valid: bool, errors: List[str])
         """
         schema = self.get_parameters_schema()
         errors = []
         
         for param in schema:
-            # 检查必需参数
+            # Check for required parameters
             if param.required and param.name not in parameters:
                 errors.append(f"Missing required parameter: {param.name}")
                 continue
@@ -203,7 +299,7 @@ class BaseAlgorithm(ABC):
             
             value = parameters[param.name]
             
-            # 类型检查
+            # Type validation
             if param.param_type == ParameterType.INTEGER:
                 if not isinstance(value, (int, np.integer)):
                     errors.append(f"Parameter '{param.name}' must be an integer")
@@ -221,7 +317,7 @@ class BaseAlgorithm(ABC):
                     errors.append(f"Parameter '{param.name}' must be one of {param.options}")
                     continue
             
-            # 范围检查
+            # Range validation for numeric types
             if param.min_value is not None and value < param.min_value:
                 errors.append(f"Parameter '{param.name}' must be >= {param.min_value}")
             
@@ -232,10 +328,10 @@ class BaseAlgorithm(ABC):
     
     def get_info(self) -> Dict[str, Any]:
         """
-        获取算法信息
+        Get comprehensive information about the algorithm.
         
         Returns:
-            算法信息字典
+            Dictionary containing name, description, version, category, and parameters
         """
         return {
             'name': self.name,
@@ -257,7 +353,14 @@ class BaseAlgorithm(ABC):
     def _record_execution(self, input_data: AlgorithmInput, 
                          parameters: Dict[str, Any],
                          output: AlgorithmOutput):
-        """记录算法执行历史"""
+        """
+        Record execution details for history tracking.
+        
+        Args:
+            input_data: The input data used
+            parameters: The parameters used
+            output: The resulting output
+        """
         import time
         from datetime import datetime
         
@@ -270,27 +373,26 @@ class BaseAlgorithm(ABC):
     
     def prepare_visualization_data(self, input_data: AlgorithmInput) -> Dict[str, Any]:
         """
-        准备可视化数据
+        Prepare input data for visualization.
         
         Args:
-            input_data: 算法输入数据
-            
+            input_data: AlgorithmInput object
+        
         Returns:
-            可视化数据字典
+            Dictionary containing visualization-ready data
         """
-        import numpy as np
         output_data = {}
         
         if input_data.lfp_data is not None:
-            # 准备LFP数据的可视化
+            # Prepare LFP signal data for visualization
             output_data['signal_data'] = input_data.lfp_data
             output_data['sampling_rate'] = input_data.sampling_rate
-            # 生成时间轴
+            # Generate time axis
             times = np.arange(input_data.lfp_data.shape[1]) / input_data.sampling_rate
             output_data['times'] = times
             output_data['plot_type'] = 'raw_signal'
-        elif input_data.spike_times:
-            # 准备Spike数据的可视化
+        elif input_data.spike_times is not None:
+            # Prepare spike data for visualization
             output_data['spike_times'] = input_data.spike_times
             output_data['trial_info'] = input_data.trial_info
             output_data['plot_type'] = 'spike_raster'
@@ -298,22 +400,22 @@ class BaseAlgorithm(ABC):
         return output_data
 
 
-# 便捷函数
+# Utility function
 def create_parameter(name: str, param_type: ParameterType,
                     description: str, default_value: Any,
                     **kwargs) -> AlgorithmParameter:
     """
-    创建算法参数的便捷函数
+    Convenience function to create an AlgorithmParameter.
     
     Args:
-        name: 参数名
-        param_type: 参数类型
-        description: 参数描述
-        default_value: 默认值
-        **kwargs: 其他参数
-        
+        name: Parameter identifier
+        param_type: Type of parameter (from ParameterType enum)
+        description: Human-readable description
+        default_value: Default parameter value
+        **kwargs: Additional parameters (min_value, max_value, options, required)
+    
     Returns:
-        AlgorithmParameter对象
+        AlgorithmParameter object with the specified properties
     """
     return AlgorithmParameter(
         name=name,
@@ -325,35 +427,38 @@ def create_parameter(name: str, param_type: ParameterType,
 
 
 if __name__ == '__main__':
-    # 测试代码
+    """
+    Self-test for base algorithm classes.
+    Verifies parameter handling, validation, and basic algorithm execution.
+    """
     print("=== Testing BaseAlgorithm ===\n")
     
-    # 创建一个测试算法
+    # Create a test algorithm
     class TestAlgorithm(BaseAlgorithm):
         def __init__(self):
             super().__init__()
-            self.description = "A test algorithm"
+            self.description = "A test algorithm for validation"
             self.category = "Test"
         
         def get_parameters_schema(self):
             return [
                 create_parameter(
                     "threshold", ParameterType.FLOAT,
-                    "Detection threshold", 3.5,
+                    "Detection threshold in standard deviations", 3.5,
                     min_value=0.1, max_value=10.0
                 ),
                 create_parameter(
                     "window_size", ParameterType.INTEGER,
-                    "Window size in ms", 50,
+                    "Analysis window size in milliseconds", 50,
                     min_value=10, max_value=200
                 ),
                 create_parameter(
                     "use_filter", ParameterType.BOOLEAN,
-                    "Apply filter", True
+                    "Apply bandpass filter before analysis", True
                 ),
                 create_parameter(
                     "method", ParameterType.SELECT,
-                    "Analysis method", "method1",
+                    "Analysis method selection", "method1",
                     options=["method1", "method2", "method3"]
                 )
             ]
@@ -365,7 +470,7 @@ if __name__ == '__main__':
             import time
             start_time = time.time()
             
-            # 模拟算法执行
+            # Simulate algorithm execution
             result_data = np.random.randn(100, 100)
             
             execution_time = time.time() - start_time
@@ -377,39 +482,39 @@ if __name__ == '__main__':
                 success=True
             )
     
-    # 测试算法
+    # Test the algorithm
     algo = TestAlgorithm()
     
-    print("1. Algorithm info:")
+    print("1. Algorithm Information:")
     info = algo.get_info()
     print(f"   Name: {info['name']}")
     print(f"   Description: {info['description']}")
     print(f"   Category: {info['category']}")
-    print(f"   Parameters:")
+    print(f"   Parameters ({len(info['parameters'])}):")
     for param in info['parameters']:
         print(f"     - {param['name']} ({param['type']}): {param['description']}")
     print()
     
-    print("2. Default parameters:")
+    print("2. Default Parameters:")
     defaults = algo.get_default_parameters()
     for name, value in defaults.items():
         print(f"   {name}: {value}")
     print()
     
-    print("3. Parameter validation:")
-    # 有效参数
+    print("3. Parameter Validation:")
+    # Test valid parameters
     valid_params = {'threshold': 5.0, 'window_size': 100, 'use_filter': False, 'method': 'method2'}
     is_valid, errors = algo.validate_parameters(valid_params)
-    print(f"   Valid params: {is_valid}")
+    print(f"   Valid parameters test: {is_valid}")
     
-    # 无效参数
+    # Test invalid parameters
     invalid_params = {'threshold': 15.0, 'window_size': 5, 'method': 'invalid_method'}
     is_valid, errors = algo.validate_parameters(invalid_params)
-    print(f"   Invalid params: {is_valid}")
-    print(f"   Errors: {errors}")
+    print(f"   Invalid parameters test: {is_valid}")
+    print(f"   Error messages: {errors}")
     print()
     
-    print("4. Run algorithm:")
+    print("4. Algorithm Execution:")
     input_data = AlgorithmInput(
         lfp_data=np.random.randn(10, 1000),
         sampling_rate=2000.0
@@ -418,7 +523,7 @@ if __name__ == '__main__':
     print(f"   Success: {output.success}")
     print(f"   Execution time: {output.execution_time:.4f}s")
     print(f"   Output data shape: {output.data['result'].shape}")
-    print(f"   Statistics: {output.statistics}")
+    print(f"   Statistics: mean={output.statistics['mean']:.4f}, std={output.statistics['std']:.4f}")
     print()
     
-    print("✅ BaseAlgorithm tests completed!")
+    print("✅ BaseAlgorithm tests completed successfully!")

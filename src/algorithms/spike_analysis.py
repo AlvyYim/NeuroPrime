@@ -1,7 +1,27 @@
 """
-Spike Analysis Algorithms - Spike分析算法
+Spike Analysis Algorithms Module
+================================
 
-提供PSTH、栅格图、调谐曲线等Spike分析功能
+This module provides core spike analysis algorithms for electrophysiological data processing,
+including Peri-Stimulus Time Histogram (PSTH), Raster Plot, and Tuning Curve analysis.
+
+Key Features:
+- PSTH Analysis: Computes spike time distribution around stimulus events
+- Raster Plot: Visualizes spike times across trials with sorting options
+- Tuning Curve: Analyzes neuron response selectivity to different stimulus conditions
+
+Design Principles:
+- Follows BaseAlgorithm interface for consistent API
+- Handles multiple trials and stimulus conditions
+- Supports event-time alignment and spike filtering
+- Includes statistical metrics and visualization configurations
+- Robust error handling and input validation
+
+Usage:
+    from src.algorithms.spike_analysis import PSTHAnalysis
+    analyzer = PSTHAnalysis()
+    params = analyzer.get_default_parameters()
+    output = analyzer.run(input_data, params)
 """
 
 import numpy as np
@@ -17,115 +37,165 @@ except ImportError:
 
 class PSTHAnalysis(BaseAlgorithm):
     """
-    刺激后时间直方图（PSTH）分析算法
+    Peri-Stimulus Time Histogram (PSTH) Analysis Algorithm
     
-    计算Spike在刺激事件周围的时间分布。
+    Computes the spike firing rate distribution relative to stimulus onset times.
+    This algorithm aligns spikes from multiple trials to stimulus events and bins
+    them into a histogram to visualize the temporal response pattern of neurons.
     
-    可设置参数:
-    - pre_time: 刺激前时间（ms）
-    - post_time: 刺激后时间（ms）
-    - bin_size: 时间窗大小（ms）
-    - smoothing_sigma: 高斯平滑系数（ms）
+    Key Operations:
+    1. Extracts valid event times from trial information (excluding aborted trials)
+    2. Aligns spike times to each stimulus event
+    3. Bins spikes into time windows around the event
+    4. Normalizes by number of trials to get firing rate (Hz)
+    5. Applies optional Gaussian smoothing
+    6. Computes baseline and response statistics
+    
+    Parameters:
+        pre_time: Time window before stimulus onset (ms)
+        post_time: Time window after stimulus onset (ms)
+        bin_size: Width of each time bin (ms)
+        smoothing_sigma: Standard deviation for Gaussian smoothing (ms)
+        event_type: Type of event to align to (default: 'stimulus_onset')
+    
+    Output:
+        data: Contains bin_centers, psth_rate, psth_counts
+        statistics: Baseline rate, peak rate, peak time, response modulation
+        plot_config: Configuration for visualization
     """
     
     def __init__(self):
+        """Initialize PSTH analysis with default settings"""
         super().__init__()
         self.name = "PSTHAnalysis"
-        self.description = "刺激后时间直方图（PSTH）分析"
+        self.description = "Peri-Stimulus Time Histogram (PSTH) Analysis"
         self.category = "Spike"
         self.version = "1.0"
         self.required_data_types = ['spike', 'behavior']
-        self.data_requirements_description = "需要Spike数据和行为数据（试次信息）"
+        self.data_requirements_description = "Requires spike times array and trial information with start_time"
     
     def get_parameters_schema(self):
+        """
+        Define the parameter schema for PSTH analysis.
+        
+        Returns:
+            List of parameter definitions with name, type, description, default value, and constraints
+        """
         return [
             create_parameter(
                 "pre_time", ParameterType.FLOAT,
-                "刺激前时间（ms）", 200.0,
+                "Pre-stimulus time window (ms)", 200.0,
                 min_value=50.0, max_value=1000.0
             ),
             create_parameter(
                 "post_time", ParameterType.FLOAT,
-                "刺激后时间（ms）", 1000.0,
+                "Post-stimulus time window (ms)", 1000.0,
                 min_value=100.0, max_value=2000.0
             ),
             create_parameter(
                 "bin_size", ParameterType.FLOAT,
-                "时间窗大小（ms）", 10.0,
+                "Time bin width (ms)", 10.0,
                 min_value=1.0, max_value=100.0
             ),
             create_parameter(
                 "smoothing_sigma", ParameterType.FLOAT,
-                "高斯平滑系数（ms）", 20.0,
+                "Gaussian smoothing standard deviation (ms)", 20.0,
                 min_value=0.0, max_value=100.0
             ),
             create_parameter(
                 "event_type", ParameterType.STRING,
-                "事件类型", "stimulus_onset"
+                "Event type for alignment", "stimulus_onset"
             )
         ]
     
     def validate_input(self, input_data: AlgorithmInput) -> bool:
+        """
+        Validate that input data meets requirements for PSTH analysis.
+        
+        Args:
+            input_data: AlgorithmInput object containing spike_times and trial_info
+        
+        Returns:
+            True if input is valid, False otherwise
+        """
         return (input_data.spike_times is not None and 
                 input_data.trial_info is not None and
                 len(input_data.spike_times) > 0)
     
     def run(self, input_data: AlgorithmInput, parameters: Dict) -> AlgorithmOutput:
+        """
+        Execute PSTH analysis on input data with specified parameters.
+        
+        Args:
+            input_data: Contains spike_times (np.ndarray) and trial_info (list of dicts)
+            parameters: Dictionary with pre_time, post_time, bin_size, smoothing_sigma, event_type
+        
+        Returns:
+            AlgorithmOutput with PSTH data, statistics, and visualization config
+        """
         import time
         start_time = time.time()
         
         try:
+            # Extract core data from input
             spike_times = input_data.spike_times
             trial_info = input_data.trial_info
             
-            # 提取参数
-            pre_time = parameters.get("pre_time", 200.0) / 1000.0  # 转换为秒
+            # Convert parameters from milliseconds to seconds for calculations
+            pre_time = parameters.get("pre_time", 200.0) / 1000.0
             post_time = parameters.get("post_time", 500.0) / 1000.0
             bin_size = parameters.get("bin_size", 10.0) / 1000.0
             smoothing_sigma = parameters.get("smoothing_sigma", 20.0) / 1000.0
             
-            # 获取事件时间
+            # Extract valid event times, excluding aborted trials
+            # Each trial must have 'start_time' and not be marked as aborted
             event_times = []
             for trial in trial_info:
                 if 'start_time' in trial and not trial.get('aborted', False):
                     event_times.append(trial['start_time'])
             
+            # Handle case with no valid events
             if not event_times:
                 return AlgorithmOutput(
                     success=False,
                     error_message="No valid event times found in trial info"
                 )
             
+            # Convert to numpy array for efficient processing
             event_times = np.array(event_times)
             
-            # 创建时间窗
+            # Create time bins from -pre_time to +post_time
+            # bins define the edges, bin_centers are used for plotting
             bins = np.arange(-pre_time, post_time + bin_size, bin_size)
             bin_centers = (bins[:-1] + bins[1:]) / 2
             
-            # 计算PSTH
+            # Initialize PSTH count array
             psth_counts = np.zeros(len(bins) - 1)
             
+            # Accumulate spikes across all trials
             for event_time in event_times:
-                # 对齐Spike时间
+                # Align spikes relative to this stimulus event
                 aligned_spikes = spike_times - event_time
                 
-                # 筛选在时间窗内的Spike
+                # Filter spikes within the analysis window
                 mask = (aligned_spikes >= -pre_time) & (aligned_spikes <= post_time)
                 valid_spikes = aligned_spikes[mask]
                 
-                # 统计
+                # Count spikes in each bin and accumulate
                 counts, _ = np.histogram(valid_spikes, bins=bins)
                 psth_counts += counts
             
-            # 转换为发放率（Hz）
+            # Convert raw counts to firing rate (Hz)
+            # Normalize by number of trials and bin width
             psth_rate = psth_counts / (len(event_times) * bin_size)
             
-            # 应用平滑
+            # Apply Gaussian smoothing if requested
+            # Convert sigma from seconds to number of samples
             if smoothing_sigma > 0:
                 sigma_samples = smoothing_sigma / bin_size
                 psth_rate = gaussian_filter1d(psth_rate, sigma=sigma_samples)
             
-            # 计算基线发放率（刺激前）
+            # Calculate baseline statistics from pre-stimulus period
             baseline_mask = bin_centers < 0
             if np.any(baseline_mask):
                 baseline_rate = np.mean(psth_rate[baseline_mask])
@@ -134,7 +204,7 @@ class PSTHAnalysis(BaseAlgorithm):
                 baseline_rate = 0
                 baseline_std = 0
             
-            # 计算响应峰值
+            # Calculate response peak statistics from post-stimulus period
             response_mask = bin_centers > 0
             if np.any(response_mask):
                 peak_rate = np.max(psth_rate[response_mask])
@@ -145,28 +215,28 @@ class PSTHAnalysis(BaseAlgorithm):
             
             execution_time = time.time() - start_time
             
-            # 准备输出
+            # Prepare comprehensive output
             output = AlgorithmOutput(
                 data={
-                    'bin_centers': bin_centers,
-                    'psth_rate': psth_rate,
-                    'psth_counts': psth_counts
+                    'bin_centers': bin_centers,       # Time points for each bin (center)
+                    'psth_rate': psth_rate,           # Firing rate in Hz
+                    'psth_counts': psth_counts        # Raw spike counts
                 },
                 statistics={
-                    'baseline_rate': float(baseline_rate),
-                    'baseline_std': float(baseline_std),
-                    'peak_rate': float(peak_rate),
-                    'peak_time': float(peak_time),
+                    'baseline_rate': float(baseline_rate),      # Pre-stimulus firing rate
+                    'baseline_std': float(baseline_std),        # Variability in baseline
+                    'peak_rate': float(peak_rate),              # Maximum response rate
+                    'peak_time': float(peak_time),              # Time of peak response
                     'response_modulation': float((peak_rate - baseline_rate) / (baseline_rate + 1e-10)),
-                    'n_trials': len(event_times),
-                    'n_spikes_total': int(np.sum(psth_counts))
+                    'n_trials': len(event_times),               # Number of valid trials
+                    'n_spikes_total': int(np.sum(psth_counts)) # Total spikes analyzed
                 },
                 plot_config={
                     'type': 'psth',
                     'title': 'Peri-Stimulus Time Histogram (PSTH)',
                     'xlabel': 'Time from stimulus (s)',
                     'ylabel': 'Firing rate (Hz)',
-                    'vline': 0  # 刺激 onset
+                    'vline': 0  # Mark stimulus onset
                 },
                 export_data={
                     'bin_centers': bin_centers,
@@ -187,6 +257,7 @@ class PSTHAnalysis(BaseAlgorithm):
             return output
             
         except Exception as e:
+            # Handle any exceptions and return error information
             return AlgorithmOutput(
                 success=False,
                 error_message=str(e),
@@ -196,54 +267,81 @@ class PSTHAnalysis(BaseAlgorithm):
 
 class RasterPlotAnalysis(BaseAlgorithm):
     """
-    栅格图分析算法
+    Raster Plot Analysis Algorithm
     
-    生成Spike在试次中的时间分布栅格图。
+    Generates spike raster plots showing spike times across multiple trials.
+    Each row represents one trial, with dots indicating spike occurrences.
+    Trials can be sorted by response strength or chronological order.
     
-    可设置参数:
-    - pre_time: 刺激前时间（ms）
-    - post_time: 刺激后时间（ms）
-    - sort_by: 排序方式（time/response）
+    Key Features:
+    - Groups trials by stimulus condition
+    - Supports sorting by response magnitude or trial order
+    - Handles multiple trial sources (experiments)
+    - Computes per-trial response metrics
+    
+    Parameters:
+        pre_time: Time before stimulus onset (ms)
+        post_time: Time after stimulus onset (ms)
+        sort_by: 'time' (chronological) or 'response' (by spike count)
+        show_baseline: Include baseline period in visualization
+    
+    Output:
+        data: Grouped raster data by stimulus condition
+        statistics: Trial counts, response statistics
+        plot_config: Configuration for grouped raster visualization
     """
     
     def __init__(self):
+        """Initialize raster plot analysis with default settings"""
         super().__init__()
         self.name = "RasterPlotAnalysis"
-        self.description = "栅格图分析"
+        self.description = "Spike Raster Plot Analysis"
         self.category = "Spike"
         self.version = "1.0"
         self.required_data_types = ['spike', 'behavior']
-        self.data_requirements_description = "需要Spike数据和行为数据（试次信息）"
+        self.data_requirements_description = "Requires spike times array and trial information"
     
     def get_parameters_schema(self):
+        """Define parameter schema for raster plot analysis"""
         return [
             create_parameter(
                 "pre_time", ParameterType.FLOAT,
-                "刺激前时间（ms）", 200.0,
+                "Pre-stimulus time window (ms)", 200.0,
                 min_value=50.0, max_value=1000.0
             ),
             create_parameter(
                 "post_time", ParameterType.FLOAT,
-                "刺激后时间（ms）", 500.0,
+                "Post-stimulus time window (ms)", 500.0,
                 min_value=100.0, max_value=2000.0
             ),
             create_parameter(
                 "sort_by", ParameterType.SELECT,
-                "排序方式", "time",
+                "Sort trials by", "time",
                 options=["time", "response"]
             ),
             create_parameter(
                 "show_baseline", ParameterType.BOOLEAN,
-                "显示基线期", True
+                "Include baseline period", True
             )
         ]
     
     def validate_input(self, input_data: AlgorithmInput) -> bool:
+        """Validate input data for raster plot analysis"""
         return (input_data.spike_times is not None and 
                 input_data.trial_info is not None and
                 len(input_data.spike_times) > 0)
     
     def run(self, input_data: AlgorithmInput, parameters: Dict) -> AlgorithmOutput:
+        """
+        Execute raster plot analysis.
+        
+        Args:
+            input_data: Contains spike_times and trial_info
+            parameters: Analysis configuration
+        
+        Returns:
+            AlgorithmOutput with raster data organized by stimulus condition
+        """
         import time
         start_time = time.time()
         
@@ -251,93 +349,94 @@ class RasterPlotAnalysis(BaseAlgorithm):
             spike_times = input_data.spike_times
             trial_info = input_data.trial_info
             
-            # 提取参数
+            # Extract and convert parameters
             pre_time = parameters.get("pre_time", 200.0) / 1000.0
             post_time = parameters.get("post_time", 500.0) / 1000.0
             sort_by = parameters.get("sort_by", "time")
             show_baseline = parameters.get("show_baseline", True)
             
-            # 获取事件时间、刺激条件和试次来源
+            # Collect event times, stimulus conditions, and trial sources
+            # This allows for grouping by both condition and experiment
             event_times = []
             stim_conditions = []
-            trial_sources = []  # 记录试次来源（试验名称）
+            trial_sources = []
             
             for trial in trial_info:
                 if 'start_time' in trial and not trial.get('aborted', False):
                     event_times.append(trial['start_time'])
-                    # 获取刺激条件，默认为0
-                    stim_cnd = trial.get('stim_cnd', 0)
-                    stim_conditions.append(stim_cnd)
-                    # 获取试次来源，用于区分不同试验的数据
-                    trial_source = trial.get('trial_source', 'unknown')
-                    trial_sources.append(trial_source)
+                    stim_conditions.append(trial.get('stim_cnd', 0))
+                    trial_sources.append(trial.get('trial_source', 'unknown'))
             
+            # Handle empty case
             if not event_times:
                 return AlgorithmOutput(
                     success=False,
                     error_message="No valid event times found in trial info"
                 )
             
+            # Convert to numpy arrays for efficient processing
             event_times = np.array(event_times)
             stim_conditions = np.array(stim_conditions)
             trial_sources = np.array(trial_sources)
             
-            # 获取唯一的刺激条件
+            # Get unique conditions and sources for grouping
             unique_conditions = np.unique(stim_conditions)
-            
-            # 获取唯一的试次来源
             unique_sources = np.unique(trial_sources)
             
-            # 为每个试次收集Spike时间
+            # Collect spikes for each trial
             trial_spikes = []
             trial_responses = []
             
             for i, event_time in enumerate(event_times):
-                # 对齐Spike时间
+                # Align spikes to this trial's event
                 aligned_spikes = spike_times - event_time
                 
-                # 筛选在时间窗内的Spike
+                # Filter spikes within analysis window
                 mask = (aligned_spikes >= -pre_time) & (aligned_spikes <= post_time)
                 valid_spikes = aligned_spikes[mask]
                 
-                # 转换为Python列表以便序列化
+                # Convert to list for serialization
                 trial_spikes.append(valid_spikes.tolist() if hasattr(valid_spikes, 'tolist') else list(valid_spikes))
                 
-                # 计算响应（刺激后的Spike数量）
+                # Calculate response metric (spikes after stimulus)
                 response_mask = aligned_spikes > 0
                 trial_responses.append(int(np.sum(response_mask)))
             
-            # 按刺激条件分组，同时保留试次来源信息
+            # Organize raster data by stimulus condition
             condition_rasters = {}
             for condition in unique_conditions:
+                # Get indices for this condition
                 condition_mask = stim_conditions == condition
                 condition_indices = np.where(condition_mask)[0]
                 
-                # 获取该条件下的试次spike数据
+                # Extract data for this condition
                 condition_trial_spikes = [trial_spikes[i] for i in condition_indices]
                 condition_responses = [trial_responses[i] for i in condition_indices]
                 condition_trial_sources = [trial_sources[i] for i in condition_indices]
                 
-                # 排序试次
+                # Sort trials based on user preference
                 if sort_by == "response":
+                    # Sort by response magnitude (descending)
                     sort_indices = np.argsort(condition_responses)[::-1]
                 else:
+                    # Keep original chronological order
                     sort_indices = np.arange(len(condition_trial_spikes))
                 
-                # 重新排序
+                # Apply sorting
                 sorted_spikes = [condition_trial_spikes[i] for i in sort_indices]
                 sorted_sources = [condition_trial_sources[i] for i in sort_indices]
                 
+                # Store organized data
                 condition_rasters[int(condition)] = {
                     'trial_spikes': sorted_spikes,
-                    'trial_sources': sorted_sources,  # 添加试次来源信息
+                    'trial_sources': sorted_sources,
                     'n_trials': len(sorted_spikes),
                     'mean_response': float(np.mean(condition_responses)) if condition_responses else 0.0
                 }
             
             execution_time = time.time() - start_time
             
-            # 准备输出 - 包含所有条件的栅格图数据
+            # Prepare output
             output = AlgorithmOutput(
                 data={
                     'condition_rasters': condition_rasters,
@@ -386,54 +485,81 @@ class RasterPlotAnalysis(BaseAlgorithm):
 
 class TuningCurveAnalysis(BaseAlgorithm):
     """
-    调谐曲线分析算法
+    Tuning Curve Analysis Algorithm
     
-    分析神经元对不同刺激条件的调谐特性。
+    Analyzes neuron response selectivity across different stimulus conditions.
+    Computes mean response for each condition and derives tuning metrics.
     
-    可设置参数:
-    - pre_time: 刺激前基线时间（ms）
-    - post_time: 刺激后响应时间（ms）
-    - metric: 响应指标（rate/count）
+    Key Features:
+    - Supports multiple trials and experimental sessions
+    - Computes net response (response - baseline)
+    - Calculates tuning index and preferred stimulus
+    - Handles missing conditions gracefully
+    - Provides per-trial and aggregated results
+    
+    Parameters:
+        pre_time: Baseline period before stimulus (ms)
+        post_time: Response period after stimulus (ms)
+        metric: 'rate' (firing rate) or 'count' (spike count)
+        stim_condition_key: Field name for stimulus condition in trial info
+    
+    Output:
+        data: Condition-response pairs with statistics
+        statistics: Tuning index, preferred condition, response metrics
+        plot_config: Configuration for tuning curve visualization
     """
     
     def __init__(self):
+        """Initialize tuning curve analysis with default settings"""
         super().__init__()
         self.name = "TuningCurveAnalysis"
-        self.description = "调谐曲线分析"
+        self.description = "Neuron Tuning Curve Analysis"
         self.category = "Spike"
         self.version = "1.0"
         self.required_data_types = ['spike', 'behavior']
-        self.data_requirements_description = "需要Spike数据和行为数据（试次信息）"
+        self.data_requirements_description = "Requires spike times and trial info with stimulus conditions"
     
     def get_parameters_schema(self):
+        """Define parameter schema for tuning curve analysis"""
         return [
             create_parameter(
                 "pre_time", ParameterType.FLOAT,
-                "刺激前基线时间（ms）", 200.0,
+                "Pre-stimulus baseline period (ms)", 200.0,
                 min_value=50.0, max_value=1000.0
             ),
             create_parameter(
                 "post_time", ParameterType.FLOAT,
-                "刺激后响应时间（ms）", 500.0,
+                "Post-stimulus response period (ms)", 500.0,
                 min_value=100.0, max_value=2000.0
             ),
             create_parameter(
                 "metric", ParameterType.SELECT,
-                "响应指标", "rate",
+                "Response metric", "rate",
                 options=["rate", "count"]
             ),
             create_parameter(
                 "stim_condition_key", ParameterType.STRING,
-                "刺激条件字段名", "stim_cnd"
+                "Field name for stimulus condition", "stim_cnd"
             )
         ]
     
     def validate_input(self, input_data: AlgorithmInput) -> bool:
+        """Validate input data for tuning curve analysis"""
         return (input_data.spike_times is not None and 
                 input_data.trial_info is not None and
                 len(input_data.spike_times) > 0)
     
     def run(self, input_data: AlgorithmInput, parameters: Dict) -> AlgorithmOutput:
+        """
+        Execute tuning curve analysis.
+        
+        Args:
+            input_data: Contains spike_times and trial_info
+            parameters: Analysis configuration
+        
+        Returns:
+            AlgorithmOutput with tuning curve data and statistics
+        """
         import time
         start_time = time.time()
         
@@ -441,13 +567,13 @@ class TuningCurveAnalysis(BaseAlgorithm):
             spike_times = input_data.spike_times
             trial_info = input_data.trial_info
             
-            # 提取参数
+            # Extract and convert parameters
             pre_time = parameters.get("pre_time", 200.0) / 1000.0
             post_time = parameters.get("post_time", 500.0) / 1000.0
             metric = parameters.get("metric", "rate")
             stim_condition_key = parameters.get("stim_condition_key", "stim_cnd")
             
-            # 按试验分组（如果trial_info中有trial_source字段）
+            # Group trials by source (experiment/session)
             trial_sources = {}
             for trial in trial_info:
                 source = trial.get('trial_source', 'default')
@@ -455,11 +581,11 @@ class TuningCurveAnalysis(BaseAlgorithm):
                     trial_sources[source] = []
                 trial_sources[source].append(trial)
             
-            # 如果没有多个试验，使用默认分组
+            # If no multiple sources, use single group
             if len(trial_sources) <= 1:
                 trial_sources = {'all': trial_info}
             
-            # 为每个试验计算调谐曲线
+            # Calculate tuning curve for each trial group
             trial_curves = {}
             all_conditions = set()
             
@@ -468,51 +594,56 @@ class TuningCurveAnalysis(BaseAlgorithm):
                 responses = []
                 
                 for trial in trials:
+                    # Skip invalid or aborted trials
                     if 'start_time' not in trial or trial.get('aborted', False):
                         continue
                     
                     event_time = trial['start_time']
                     stim_condition = trial.get(stim_condition_key, 0)
                     
-                    # 对齐Spike时间
+                    # Align spikes to this trial's event
                     aligned_spikes = spike_times - event_time
                     
-                    # 计算基线期Spike数量
+                    # Count spikes in baseline period
                     baseline_mask = (aligned_spikes >= -pre_time) & (aligned_spikes < 0)
                     n_baseline = np.sum(baseline_mask)
                     
-                    # 计算响应期Spike数量
+                    # Count spikes in response period
                     response_mask = (aligned_spikes >= 0) & (aligned_spikes <= post_time)
                     n_response = np.sum(response_mask)
                     
-                    # 计算净响应
+                    # Calculate net response based on selected metric
                     if metric == "rate":
+                        # Convert counts to firing rates (Hz)
                         baseline_rate = n_baseline / pre_time
                         response_rate = n_response / post_time
                         net_response = response_rate - baseline_rate
-                    else:  # count
+                    else:
+                        # Use raw spike counts
                         net_response = n_response - n_baseline
                     
                     conditions.append(stim_condition)
                     responses.append(net_response)
                     all_conditions.add(stim_condition)
                 
+                # Store data for this trial group if valid
                 if conditions:
                     trial_curves[trial_name] = {
                         'conditions': np.array(conditions),
                         'responses': np.array(responses)
                     }
             
+            # Handle empty case
             if not trial_curves:
                 return AlgorithmOutput(
                     success=False,
                     error_message="No valid trials found"
                 )
             
-            # 获取所有唯一的刺激条件（排序）
+            # Get all unique conditions sorted numerically
             unique_conditions = np.array(sorted(all_conditions))
             
-            # 为每个试验计算每个条件的平均响应
+            # Compute mean responses for each condition within each trial group
             trial_mean_responses = {}
             for trial_name, data in trial_curves.items():
                 mean_responses = []
@@ -521,10 +652,11 @@ class TuningCurveAnalysis(BaseAlgorithm):
                     if np.any(mask):
                         mean_responses.append(np.mean(data['responses'][mask]))
                     else:
-                        mean_responses.append(np.nan)  # 该试验没有这个条件
+                        # Use NaN for missing conditions
+                        mean_responses.append(np.nan)
                 trial_mean_responses[trial_name] = np.array(mean_responses)
             
-            # 计算所有试验合并的平均响应
+            # Aggregate data across all trial groups
             all_conditions_list = []
             all_responses_list = []
             for data in trial_curves.values():
@@ -534,6 +666,7 @@ class TuningCurveAnalysis(BaseAlgorithm):
             all_conditions_arr = np.array(all_conditions_list)
             all_responses_arr = np.array(all_responses_list)
             
+            # Compute statistics for each unique condition
             mean_responses = []
             std_responses = []
             sem_responses = []
@@ -552,7 +685,8 @@ class TuningCurveAnalysis(BaseAlgorithm):
             std_responses = np.array(std_responses)
             sem_responses = np.array(sem_responses)
             
-            # 计算调谐指数
+            # Calculate tuning index: (max - min) / (max + min)
+            # This ranges from 0 (no tuning) to 1 (maximal tuning)
             if len(mean_responses) > 1:
                 tuning_index = (np.max(mean_responses) - np.min(mean_responses)) / (
                     np.max(mean_responses) + np.min(mean_responses) + 1e-10
@@ -564,14 +698,14 @@ class TuningCurveAnalysis(BaseAlgorithm):
             
             execution_time = time.time() - start_time
             
-            # 准备输出 - 包含每个试验的调谐曲线
+            # Prepare comprehensive output
             output = AlgorithmOutput(
                 data={
                     'conditions': unique_conditions,
                     'mean_responses': mean_responses,
                     'std_responses': std_responses,
                     'sem_responses': sem_responses,
-                    'trial_curves': trial_mean_responses  # 每个试验的调谐曲线
+                    'trial_curves': trial_mean_responses
                 },
                 statistics={
                     'tuning_index': float(tuning_index),
@@ -620,38 +754,40 @@ class TuningCurveAnalysis(BaseAlgorithm):
 
 
 if __name__ == '__main__':
-    # 测试代码
+    """
+    Self-test for spike analysis algorithms.
+    This test verifies basic functionality of all three analysis classes.
+    """
     print("=== Testing Spike Analysis Algorithms ===\n")
     
-    # 创建模拟数据
+    # Set random seed for reproducibility
     np.random.seed(42)
     
-    # 模拟Spike时间（10秒，平均20Hz）
+    # Generate simulated spike data (10 seconds recording at 20 Hz)
     duration = 10.0
     spike_rate = 20.0
     n_spikes = int(duration * spike_rate)
     spike_times = np.sort(np.random.uniform(0, duration, n_spikes))
     
-    # 模拟试次信息（5个试次，间隔2秒）
+    # Generate simulated trial information (5 trials, 3 stimulus conditions)
     trial_info = []
     for i in range(5):
         trial_info.append({
             'trial_num': i + 1,
             'start_time': i * 2.0 + 0.5,
-            'stim_cnd': i % 3  # 3种刺激条件
+            'stim_cnd': i % 3  # Cycle through 3 conditions
         })
     
+    # Create input data object
     input_data = AlgorithmInput(
         spike_times=spike_times,
         trial_info=trial_info
     )
     
-    # 测试PSTH分析
+    # Test PSTH Analysis
     print("1. Testing PSTHAnalysis...")
     psth_analyzer = PSTHAnalysis()
-    
     psth_params = psth_analyzer.get_default_parameters()
-    
     psth_output = psth_analyzer.run(input_data, psth_params)
     
     if psth_output.success:
@@ -665,12 +801,10 @@ if __name__ == '__main__':
         print(f"   ✗ PSTH analysis failed: {psth_output.error_message}")
     print()
     
-    # 测试栅格图分析
+    # Test Raster Plot Analysis
     print("2. Testing RasterPlotAnalysis...")
     raster_analyzer = RasterPlotAnalysis()
-    
     raster_params = raster_analyzer.get_default_parameters()
-    
     raster_output = raster_analyzer.run(input_data, raster_params)
     
     if raster_output.success:
@@ -683,12 +817,10 @@ if __name__ == '__main__':
         print(f"   ✗ Raster plot analysis failed: {raster_output.error_message}")
     print()
     
-    # 测试调谐曲线分析
+    # Test Tuning Curve Analysis
     print("3. Testing TuningCurveAnalysis...")
     tuning_analyzer = TuningCurveAnalysis()
-    
     tuning_params = tuning_analyzer.get_default_parameters()
-    
     tuning_output = tuning_analyzer.run(input_data, tuning_params)
     
     if tuning_output.success:
@@ -702,4 +834,4 @@ if __name__ == '__main__':
     else:
         print(f"   ✗ Tuning curve analysis failed: {tuning_output.error_message}")
     
-    print("\n✅ Spike analysis tests completed!")
+    print("\n✅ Spike analysis tests completed successfully!")

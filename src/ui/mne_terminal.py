@@ -7027,10 +7027,10 @@ class CustomAlgorithmEditor(QWidget):
                 code
             )
             
-            # Ensure category is set to "自定义算法"
+            # Ensure category is set to "Custom Algorithm"
             updated_code = re.sub(
                 r"'category':\s*algorithm\.category",
-                "'category': '自定义算法'",
+                "'category': 'Custom Algorithm'",
                 updated_code
             )
             
@@ -7039,7 +7039,7 @@ class CustomAlgorithmEditor(QWidget):
             pattern = r'self\.category\s*=\s*[\'\"]([^\'\"]*)[\'\"]'
             updated_code = re.sub(
                 pattern,
-                "self.category = '自定义算法'",
+                "self.category = 'Custom Algorithm'",
                 updated_code
             )
             
